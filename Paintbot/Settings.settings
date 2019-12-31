@@ -1,0 +1,72 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Paintbot" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="colorContainerHeight_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="zMoveHeight_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="brushsize_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="colorPosY_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="colorPosX_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="colorPosZ_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="xySpeed_mm_min" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="pickColorFrequency" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="zSpeed_mm_min" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="gcodeEndPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Paintbot\conf\gcodeEnd.txt</Value>
+    </Setting>
+    <Setting Name="gcodeStartPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Paintbot\conf\gcodeStart.txt</Value>
+    </Setting>
+    <Setting Name="outputPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Paintbot\out\</Value>
+    </Setting>
+    <Setting Name="imagePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Paintbot\in.bmp</Value>
+    </Setting>
+    <Setting Name="ignoreColor_hex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ffffffff</Value>
+    </Setting>
+    <Setting Name="zDepth_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-5</Value>
+    </Setting>
+    <Setting Name="colorAtYgantry" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="flipYAxis" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="endOverPaint" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="moveZXsameTime" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="canvasZeroPosX_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="canvasZeroPosY_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-10</Value>
+    </Setting>
+    <Setting Name="canvasZeroPosZ_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-10</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
