@@ -286,5 +286,17 @@ namespace Paintbot {
                 this["canvasZeroPosZ_mm"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int progressbar {
+            get {
+                return ((int)(this["progressbar"]));
+            }
+            set {
+                this["progressbar"] = value;
+            }
+        }
     }
 }

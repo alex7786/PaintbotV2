@@ -8,14 +8,13 @@ using System.Windows.Forms;
 
 namespace Paintbot
     //everything in absolute coordinates (G53)
-    //TODO: use next neighbor pixel
-    //TODO: progress bar
 {
     class Program
     {
         public static float oldXpos = 0;
         public static float oldYpos = 0;
         public static float oldZpos = 0;
+        public static Form1 form1;
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
@@ -24,7 +23,8 @@ namespace Paintbot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            form1 = new Form1();
+            Application.Run(form1);
         }
 
         public static void GenerateGCode()
@@ -51,6 +51,7 @@ namespace Paintbot
             float canvasZeroPosX_mm = (float)Settings.Default.canvasZeroPosX_mm;
             float canvasZeroPosY_mm = (float)Settings.Default.canvasZeroPosY_mm;
             float canvasZeroPosZ_mm = (float)Settings.Default.canvasZeroPosZ_mm;
+            int progressBar = Settings.Default.progressbar; //value between 0 and 100
 
             Bitmap image1 = new Bitmap(imagePath);
 
@@ -83,8 +84,16 @@ namespace Paintbot
                 }
             }
 
+            int progress = 0;
+
             foreach (string colorType in colorStrings)
             {
+                float progressRatio = (float)progress / (float)colorStrings.Count;
+                progressBar = (int)(progressRatio * 100);
+                progress++;
+                form1.progressBar1.Value = progressBar;
+                form1.progressBar1.Update();
+
                 StreamWriter fileOut = new StreamWriter(Path.Combine(outputPath, AztecColorAssign(colorType) + ".gcode"), true);
 
                 fileOut.WriteLine(gcodeStart);
@@ -112,19 +121,23 @@ namespace Paintbot
                 foreach (colorCoordinate point in colorCoordinates)
                 {
                     if (currentPoint == null)
-                    {
+                    {   //initialization of the first point
                         currentPoint = point;
+                        nextPoint = point;
+                        doneColorCoordinates.Add(point);
                     }
+                    
                     
                     foreach (colorCoordinate nPoint in colorCoordinates)
                     {
-                        if(nPoint != point && !doneColorCoordinates.Contains(nPoint))
+                        if (!doneColorCoordinates.Contains(nPoint))
                         {
-                            if(nextPoint == null || nextPoint.Equals(currentPoint))
-                            {   //initialization of the first next point
+                            if (nextPoint.Equals(currentPoint) && !nPoint.Equals(currentPoint))
+                            {
                                 nextPoint = nPoint;
                             }
-                            else if (currentPoint.checkDistance(nPoint) < currentPoint.checkDistance(nextPoint)) {
+                            if (currentPoint.checkDistance(nPoint) < currentPoint.checkDistance(nextPoint))
+                            {
                                 nextPoint = nPoint;
                             }
                         }
@@ -143,9 +156,9 @@ namespace Paintbot
                     {
                         fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
                     }
-
-                    doneColorCoordinates.Add(currentPoint); //length not the same!!!
+                    
                     currentPoint = nextPoint;
+                    doneColorCoordinates.Add(currentPoint);
 
                 }
 
@@ -162,7 +175,9 @@ namespace Paintbot
                 fileOut.Close();
             }
 
-            var formPopup = new Form2();
+            form1.progressBar1.Value = 100;
+            form1.progressBar1.Update();
+            var formPopup = new Form2(form1);
             formPopup.Show();
         }
 

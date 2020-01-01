@@ -68,5 +68,8 @@
     <Setting Name="canvasZeroPosZ_mm" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-10</Value>
     </Setting>
+    <Setting Name="progressbar" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

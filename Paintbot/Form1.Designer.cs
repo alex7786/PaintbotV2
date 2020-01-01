@@ -52,6 +52,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
@@ -74,7 +76,6 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
@@ -307,6 +308,25 @@
             this.label22.Size = new System.Drawing.Size(111, 13);
             this.label22.TabIndex = 87;
             this.label22.Text = "canvasZeroPosZ[mm]";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(13, 13);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(237, 13);
+            this.label23.TabIndex = 89;
+            this.label23.Text = "everything in absolute coordinates (G53)";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "progressbar", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.progressBar1.Location = new System.Drawing.Point(13, 624);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(322, 23);
+            this.progressBar1.TabIndex = 90;
+            this.progressBar1.Value = global::Paintbot.Settings.Default.progressbar;
             // 
             // numericUpDown13
             // 
@@ -615,20 +635,12 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(13, 13);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(197, 13);
-            this.label23.TabIndex = 89;
-            this.label23.Text = "everything in absolute coordinates (G53)";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 680);
+            this.ClientSize = new System.Drawing.Size(347, 660);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.numericUpDown13);
             this.Controls.Add(this.label22);
@@ -745,6 +757,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown13;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
+        public System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

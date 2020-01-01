@@ -12,8 +12,10 @@ namespace Paintbot
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        public Form2(Form1 form1)
         {
+            form1.progressBar1.Value = 0;
+            form1.progressBar1.Update();
             InitializeComponent();
         }
 
@@ -21,5 +23,6 @@ namespace Paintbot
         {
             Close();
         }
+
     }
 }
