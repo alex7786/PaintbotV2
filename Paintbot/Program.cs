@@ -89,7 +89,7 @@ namespace Paintbot
 
                 fileOut.WriteLine(gcodeStart);
 
-                int getColor = 0;
+                HashSet<colorCoordinate> colorCoordinates = new HashSet<colorCoordinate>();
                 for (x = 0; x < image1.Width; x++)  // Loop through the images pixels
                 {
                     for (y = 0; y < image1.Height; y++)
@@ -98,22 +98,55 @@ namespace Paintbot
                         {
                             if (string.Equals(pixelColor.Name, colorType))
                             {
-                                if (getColor % pickColorFrequency == 0)
-                                {
-                                    fileOut.WriteLine(GetColor(getColor, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime));
-                                }
-                                getColor++;
-                                if (flipYAxis)
-                                {
-                                    fileOut.WriteLine(PaintStroke(x, -y, zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
-                                }
-                                else
-                                {
-                                    fileOut.WriteLine(PaintStroke(x, y, zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
-                                }
+                                colorCoordinates.Add(new colorCoordinate(x, y));
                             }
                         }
                     }
+                }
+
+                int getColor = 0;
+                colorCoordinate currentPoint = null;
+                colorCoordinate nextPoint = null;
+                HashSet<colorCoordinate> doneColorCoordinates = new HashSet<colorCoordinate>();
+
+                foreach (colorCoordinate point in colorCoordinates)
+                {
+                    if (currentPoint == null)
+                    {
+                        currentPoint = point;
+                    }
+                    
+                    foreach (colorCoordinate nPoint in colorCoordinates)
+                    {
+                        if(nPoint != point && !doneColorCoordinates.Contains(nPoint))
+                        {
+                            if(nextPoint == null || nextPoint.Equals(currentPoint))
+                            {   //initialization of the first next point
+                                nextPoint = nPoint;
+                            }
+                            else if (currentPoint.checkDistance(nPoint) < currentPoint.checkDistance(nextPoint)) {
+                                nextPoint = nPoint;
+                            }
+                        }
+                    }
+
+                    if (getColor % pickColorFrequency == 0)
+                    {
+                        fileOut.WriteLine(GetColor(getColor, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime));
+                    }
+                    getColor++;
+                    if (flipYAxis)
+                    {
+                        fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), -currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                    }
+                    else
+                    {
+                        fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                    }
+
+                    doneColorCoordinates.Add(currentPoint); //length not the same!!!
+                    currentPoint = nextPoint;
+
                 }
 
                 if (endOverPaint)
