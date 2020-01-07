@@ -26,5 +26,51 @@ namespace Paintbot
         {
             Program.GenerateGCode();
         }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+            Program.DisplayPictureSize();
+            Program.RefreshPreview();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                String res = openFileDialog1.FileName;
+                Settings.Default.imagePath = res;
+                Program.LoadImage();
+                Program.RefreshPreview();
+                Program.DisplayPictureSize();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Program.RotatePicture();
+            Program.DisplayPictureSize();
+            Program.RefreshPreview();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Program.MirrorPictureX();
+            Program.RefreshPreview();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Program.MirrorPictureY();
+            Program.RefreshPreview();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Program.ResizePicture();
+            Program.RefreshPreview();
+            Program.DisplayPictureSize();
+        }
     }
 }

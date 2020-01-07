@@ -169,7 +169,7 @@ namespace Paintbot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Paintbot\\in.bmp")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string imagePath {
             get {
                 return ((string)(this["imagePath"]));
@@ -296,6 +296,30 @@ namespace Paintbot {
             }
             set {
                 this["progressbar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("905")]
+        public decimal maxWidthX {
+            get {
+                return ((decimal)(this["maxWidthX"]));
+            }
+            set {
+                this["maxWidthX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1640")]
+        public decimal maxHeightY {
+            get {
+                return ((decimal)(this["maxHeightY"]));
+            }
+            set {
+                this["maxHeightY"] = value;
             }
         }
     }

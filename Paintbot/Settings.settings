@@ -39,7 +39,7 @@
       <Value Profile="(Default)">D:\Paintbot\out\</Value>
     </Setting>
     <Setting Name="imagePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Paintbot\in.bmp</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ignoreColor_hex" Type="System.String" Scope="User">
       <Value Profile="(Default)">ffffffff</Value>
@@ -70,6 +70,12 @@
     </Setting>
     <Setting Name="progressbar" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="maxWidthX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">905</Value>
+    </Setting>
+    <Setting Name="maxHeightY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1640</Value>
     </Setting>
   </Settings>
 </SettingsFile>

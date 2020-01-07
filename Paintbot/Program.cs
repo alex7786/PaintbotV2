@@ -8,6 +8,11 @@ using System.Windows.Forms;
 
 namespace Paintbot
     //everything in absolute coordinates (G53)
+    //TODO:
+    //Center picture on canvas
+    //Read jpg to bmp
+    //Find nearest color
+    //Display preview
 {
     class Program
     {
@@ -15,6 +20,7 @@ namespace Paintbot
         public static float oldYpos = 0;
         public static float oldZpos = 0;
         public static Form1 form1;
+        public static Bitmap image1;
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
@@ -24,7 +30,10 @@ namespace Paintbot
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             form1 = new Form1();
-            Application.Run(form1);
+            LoadImage();
+            DisplayPictureSize();
+            RefreshPreview();
+            Application.Run(form1); 
         }
 
         public static void GenerateGCode()
@@ -52,8 +61,6 @@ namespace Paintbot
             float canvasZeroPosY_mm = (float)Settings.Default.canvasZeroPosY_mm;
             float canvasZeroPosZ_mm = (float)Settings.Default.canvasZeroPosZ_mm;
             int progressBar = Settings.Default.progressbar; //value between 0 and 100
-
-            Bitmap image1 = new Bitmap(imagePath);
 
             Directory.CreateDirectory(outputPath);
             DirectoryInfo di = new DirectoryInfo(outputPath);
@@ -312,6 +319,76 @@ namespace Paintbot
             oldZpos = zMoveHeight + canvasZeroPosZ_mm;
 
             return paintStrokeString;
+        }
+
+        public static void LoadImage()
+        {
+            String imagePath = Settings.Default.imagePath;
+            image1 = new Bitmap(imagePath);
+        }
+
+        public static void ResizePicture()
+        {
+            float brushSize = (float)Settings.Default.brushsize_mm;
+            float width = (float)Settings.Default.maxWidthX / brushSize;
+            float height = (float)Settings.Default.maxHeightY / brushSize;
+
+            float scale = Math.Min(width / image1.Width, height / image1.Height);
+            var scaleWidth = (int)(image1.Width * scale);
+            var scaleHeight = (int)(image1.Height * scale);
+            Bitmap resized = new Bitmap(image1, new Size(scaleWidth, scaleHeight));
+
+            image1 = resized;
+        }
+
+        public static void RefreshPreview()
+        {
+            String imagePath = Settings.Default.imagePath;
+            if (File.Exists(imagePath))
+            {
+                form1.pictureBox1.Image = image1;
+            }
+        }
+
+        public static void RotatePicture()
+        {
+            String imagePath = Settings.Default.imagePath;
+            if (File.Exists(imagePath))
+            {
+                image1.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            }
+        }
+
+        public static void MirrorPictureX()
+        {
+            String imagePath = Settings.Default.imagePath;
+            if (File.Exists(imagePath))
+            {
+                image1.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            }
+        }
+
+        public static void MirrorPictureY()
+        {
+            String imagePath = Settings.Default.imagePath;
+            if (File.Exists(imagePath))
+            {
+                image1.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            }
+        }
+
+        public static void DisplayPictureSize()
+        {
+            float brushSize = (float)Settings.Default.brushsize_mm;
+            float xSize, ySize;
+            String imagePath = Settings.Default.imagePath;
+            if(File.Exists(imagePath))
+            {
+                xSize = image1.Width * brushSize;
+                ySize = image1.Height * brushSize;
+                form1.textBox1.Text = "X: " + xSize + "mm; Y: " + ySize + "mm";
+                form1.textBox1.Update();
+            }
         }
 
         static string AztecColorAssign(string hexcolor)
