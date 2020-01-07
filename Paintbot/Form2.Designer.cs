@@ -36,7 +36,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 25);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 23);
+            this.button1.Size = new System.Drawing.Size(134, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "close";
             this.button1.UseVisualStyleBackColor = true;
@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(142, 61);
+            this.ClientSize = new System.Drawing.Size(158, 55);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "Form2";

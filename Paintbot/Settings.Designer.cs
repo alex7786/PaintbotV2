@@ -322,5 +322,17 @@ namespace Paintbot {
                 this["maxHeightY"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string colorDefinitions {
+            get {
+                return ((string)(this["colorDefinitions"]));
+            }
+            set {
+                this["colorDefinitions"] = value;
+            }
+        }
     }
 }

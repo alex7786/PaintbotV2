@@ -62,6 +62,11 @@
             this.button6 = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
@@ -85,10 +90,10 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
@@ -102,12 +107,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
             // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(15, 734);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(316, 23);
@@ -118,6 +122,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(15, 675);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 23);
@@ -418,6 +423,63 @@
             this.label26.Size = new System.Drawing.Size(99, 13);
             this.label26.TabIndex = 101;
             this.label26.Text = "max height (Y) [mm]";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(281, 704);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(96, 23);
+            this.button7.TabIndex = 104;
+            this.button7.Text = "resize picture";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "colorDefinitions", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.richTextBox1.Location = new System.Drawing.Point(772, 34);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(451, 635);
+            this.richTextBox1.TabIndex = 105;
+            this.richTextBox1.Text = global::Paintbot.Settings.Default.colorDefinitions;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(772, 13);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(400, 13);
+            this.label27.TabIndex = 106;
+            this.label27.Text = "color definitions; format: name/hexColor/xPos/yPos ( eg. \"a132/ffff00ff/32.0/64.1" +
+    "\")";
+            // 
+            // numericUpDown15
+            // 
+            this.numericUpDown15.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxHeightY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown15.Location = new System.Drawing.Point(146, 423);
+            this.numericUpDown15.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Name = "numericUpDown15";
+            this.numericUpDown15.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown15.TabIndex = 103;
+            this.numericUpDown15.Value = global::Paintbot.Settings.Default.maxHeightY;
+            // 
+            // numericUpDown14
+            // 
+            this.numericUpDown14.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxWidthX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown14.Location = new System.Drawing.Point(146, 397);
+            this.numericUpDown14.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Name = "numericUpDown14";
+            this.numericUpDown14.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown14.TabIndex = 102;
+            this.numericUpDown14.Value = global::Paintbot.Settings.Default.maxWidthX;
             // 
             // progressBar1
             // 
@@ -737,49 +799,24 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // numericUpDown14
+            // button8
             // 
-            this.numericUpDown14.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxWidthX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown14.Location = new System.Drawing.Point(146, 397);
-            this.numericUpDown14.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(185, 20);
-            this.numericUpDown14.TabIndex = 102;
-            this.numericUpDown14.Value = global::Paintbot.Settings.Default.maxWidthX;
-            // 
-            // numericUpDown15
-            // 
-            this.numericUpDown15.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxHeightY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown15.Location = new System.Drawing.Point(146, 423);
-            this.numericUpDown15.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(185, 20);
-            this.numericUpDown15.TabIndex = 103;
-            this.numericUpDown15.Value = global::Paintbot.Settings.Default.maxHeightY;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(281, 704);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(96, 23);
-            this.button7.TabIndex = 104;
-            this.button7.Text = "resize picture";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button8.Location = new System.Drawing.Point(775, 675);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 107;
+            this.button8.Text = "parse colors";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 825);
+            this.ClientSize = new System.Drawing.Size(1235, 825);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.numericUpDown15);
             this.Controls.Add(this.numericUpDown14);
@@ -843,6 +880,8 @@
             this.Name = "Form1";
             this.Text = "Paintbot";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
@@ -856,8 +895,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -925,6 +962,9 @@
         private System.Windows.Forms.NumericUpDown numericUpDown14;
         private System.Windows.Forms.NumericUpDown numericUpDown15;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button button8;
     }
 }
 

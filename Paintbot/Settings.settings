@@ -77,5 +77,8 @@
     <Setting Name="maxHeightY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1640</Value>
     </Setting>
+    <Setting Name="colorDefinitions" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

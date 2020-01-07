@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Paintbot
 {
-    class colorCoordinate
+    class ColorCoordinate
     {
         private int xPos, yPos;
 
-        public colorCoordinate(int x, int y)
+        public ColorCoordinate(int x, int y)
         {
             xPos = x;
             yPos = y;
@@ -26,7 +26,7 @@ namespace Paintbot
             return yPos;
         }
 
-        public double checkDistance(colorCoordinate pointToCheck)
+        public double checkDistance(ColorCoordinate pointToCheck)
         {
             double a = Math.Abs(this.xPos - pointToCheck.getXpos());
             double b = Math.Abs(this.yPos - pointToCheck.getYpos());
