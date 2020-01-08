@@ -77,5 +77,11 @@ namespace Paintbot
         {
             Program.ParseColors();
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Program.RecolorImage();
+            Program.RefreshPreview();
+        }
     }
 }

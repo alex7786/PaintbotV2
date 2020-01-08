@@ -63,8 +63,13 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -90,7 +95,8 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
@@ -107,12 +113,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(15, 734);
+            this.button2.Location = new System.Drawing.Point(383, 756);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(316, 23);
             this.button2.TabIndex = 63;
@@ -123,7 +130,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(15, 675);
+            this.button1.Location = new System.Drawing.Point(15, 726);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 62;
@@ -134,7 +141,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 505);
+            this.label15.Location = new System.Drawing.Point(12, 556);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 13);
             this.label15.TabIndex = 61;
@@ -143,7 +150,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 479);
+            this.label14.Location = new System.Drawing.Point(12, 530);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(81, 13);
             this.label14.TabIndex = 59;
@@ -152,7 +159,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 453);
+            this.label13.Location = new System.Drawing.Point(12, 504);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 13);
             this.label13.TabIndex = 57;
@@ -161,7 +168,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 346);
+            this.label12.Location = new System.Drawing.Point(12, 397);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(57, 13);
             this.label12.TabIndex = 55;
@@ -170,7 +177,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 320);
+            this.label10.Location = new System.Drawing.Point(12, 371);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 13);
             this.label10.TabIndex = 51;
@@ -197,7 +204,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 190);
+            this.label7.Location = new System.Drawing.Point(12, 241);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 13);
             this.label7.TabIndex = 45;
@@ -206,7 +213,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 216);
+            this.label6.Location = new System.Drawing.Point(12, 267);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 13);
             this.label6.TabIndex = 43;
@@ -215,7 +222,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 242);
+            this.label5.Location = new System.Drawing.Point(12, 293);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 41;
@@ -224,7 +231,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 268);
+            this.label4.Location = new System.Drawing.Point(12, 319);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 39;
@@ -233,7 +240,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 294);
+            this.label3.Location = new System.Drawing.Point(12, 345);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 37;
@@ -278,7 +285,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(12, 552);
+            this.label17.Location = new System.Drawing.Point(12, 603);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(27, 13);
             this.label17.TabIndex = 78;
@@ -287,7 +294,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(12, 529);
+            this.label18.Location = new System.Drawing.Point(12, 580);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(75, 13);
             this.label18.TabIndex = 80;
@@ -296,7 +303,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 575);
+            this.label19.Location = new System.Drawing.Point(12, 626);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(126, 13);
             this.label19.TabIndex = 82;
@@ -305,7 +312,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(12, 599);
+            this.label20.Location = new System.Drawing.Point(12, 650);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(111, 13);
             this.label20.TabIndex = 83;
@@ -314,7 +321,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(12, 625);
+            this.label21.Location = new System.Drawing.Point(12, 676);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(111, 13);
             this.label21.TabIndex = 85;
@@ -323,7 +330,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(12, 651);
+            this.label22.Location = new System.Drawing.Point(12, 702);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(111, 13);
             this.label22.TabIndex = 87;
@@ -342,7 +349,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(12, 372);
+            this.label24.Location = new System.Drawing.Point(12, 423);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(61, 13);
             this.label24.TabIndex = 91;
@@ -350,7 +357,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 370);
+            this.textBox1.Location = new System.Drawing.Point(146, 421);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(185, 20);
@@ -358,7 +365,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(119, 675);
+            this.button3.Location = new System.Drawing.Point(119, 726);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(212, 23);
             this.button3.TabIndex = 93;
@@ -378,7 +385,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(15, 705);
+            this.button4.Location = new System.Drawing.Point(15, 756);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(98, 23);
             this.button4.TabIndex = 95;
@@ -388,7 +395,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(119, 704);
+            this.button5.Location = new System.Drawing.Point(119, 755);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 96;
@@ -398,7 +405,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(200, 704);
+            this.button6.Location = new System.Drawing.Point(200, 755);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 97;
@@ -409,7 +416,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(13, 400);
+            this.label25.Location = new System.Drawing.Point(13, 451);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(95, 13);
             this.label25.TabIndex = 100;
@@ -418,7 +425,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(12, 427);
+            this.label26.Location = new System.Drawing.Point(12, 478);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(99, 13);
             this.label26.TabIndex = 101;
@@ -426,22 +433,13 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(281, 704);
+            this.button7.Location = new System.Drawing.Point(281, 755);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(96, 23);
             this.button7.TabIndex = 104;
             this.button7.Text = "resize picture";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "colorDefinitions", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.richTextBox1.Location = new System.Drawing.Point(772, 34);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(451, 635);
-            this.richTextBox1.TabIndex = 105;
-            this.richTextBox1.Text = global::Paintbot.Settings.Default.colorDefinitions;
             // 
             // label27
             // 
@@ -453,10 +451,71 @@
             this.label27.Text = "color definitions; format: name/hexColor/xPos/yPos ( eg. \"a132/ffff00ff/32.0/64.1" +
     "\")";
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(775, 675);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 107;
+            this.button8.Text = "parse colors";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Checked = global::Paintbot.Settings.Default.useColorPosDef;
+            this.checkBox6.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "useColorPosDef", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox6.Location = new System.Drawing.Point(146, 189);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(181, 17);
+            this.checkBox6.TabIndex = 109;
+            this.checkBox6.Text = "use color positions from definition";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(13, 190);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(107, 13);
+            this.label28.TabIndex = 110;
+            this.label28.Text = "multiple colors per file";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(13, 216);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(91, 13);
+            this.label29.TabIndex = 112;
+            this.label29.Text = "max colors per file";
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Checked = global::Paintbot.Settings.Default.centerOnCanvas;
+            this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "centerOnCanvas", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox5.Location = new System.Drawing.Point(337, 730);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(109, 17);
+            this.checkBox5.TabIndex = 108;
+            this.checkBox5.Text = "center on canvas";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "colorDefinitions", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.richTextBox1.Location = new System.Drawing.Point(772, 34);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(451, 635);
+            this.richTextBox1.TabIndex = 105;
+            this.richTextBox1.Text = global::Paintbot.Settings.Default.colorDefinitions;
+            // 
             // numericUpDown15
             // 
             this.numericUpDown15.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxHeightY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown15.Location = new System.Drawing.Point(146, 423);
+            this.numericUpDown15.Location = new System.Drawing.Point(146, 474);
             this.numericUpDown15.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -470,7 +529,7 @@
             // numericUpDown14
             // 
             this.numericUpDown14.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxWidthX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown14.Location = new System.Drawing.Point(146, 397);
+            this.numericUpDown14.Location = new System.Drawing.Point(146, 448);
             this.numericUpDown14.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -494,7 +553,7 @@
             // 
             this.numericUpDown13.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "canvasZeroPosZ_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown13.DecimalPlaces = 1;
-            this.numericUpDown13.Location = new System.Drawing.Point(146, 649);
+            this.numericUpDown13.Location = new System.Drawing.Point(146, 700);
             this.numericUpDown13.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -515,7 +574,7 @@
             // 
             this.numericUpDown12.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "canvasZeroPosY_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown12.DecimalPlaces = 1;
-            this.numericUpDown12.Location = new System.Drawing.Point(146, 623);
+            this.numericUpDown12.Location = new System.Drawing.Point(146, 674);
             this.numericUpDown12.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -536,7 +595,7 @@
             // 
             this.numericUpDown11.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "canvasZeroPosX_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown11.DecimalPlaces = 1;
-            this.numericUpDown11.Location = new System.Drawing.Point(146, 597);
+            this.numericUpDown11.Location = new System.Drawing.Point(146, 648);
             this.numericUpDown11.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -559,7 +618,7 @@
             this.checkBox4.Checked = global::Paintbot.Settings.Default.moveZXsameTime;
             this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "moveZXsameTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox4.Location = new System.Drawing.Point(146, 574);
+            this.checkBox4.Location = new System.Drawing.Point(146, 625);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(138, 17);
             this.checkBox4.TabIndex = 81;
@@ -572,7 +631,7 @@
             this.checkBox3.Checked = global::Paintbot.Settings.Default.endOverPaint;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "endOverPaint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Location = new System.Drawing.Point(146, 528);
+            this.checkBox3.Location = new System.Drawing.Point(146, 579);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(113, 17);
             this.checkBox3.TabIndex = 79;
@@ -585,7 +644,7 @@
             this.checkBox2.Checked = global::Paintbot.Settings.Default.flipYAxis;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "flipYAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox2.Location = new System.Drawing.Point(146, 551);
+            this.checkBox2.Location = new System.Drawing.Point(146, 602);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(70, 17);
             this.checkBox2.TabIndex = 77;
@@ -600,9 +659,9 @@
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "colorAtYgantry", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox1.Location = new System.Drawing.Point(146, 165);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(93, 17);
+            this.checkBox1.Size = new System.Drawing.Size(168, 17);
             this.checkBox1.TabIndex = 75;
-            this.checkBox1.Text = "color at gantry";
+            this.checkBox1.Text = "color at gantry (moving with Y)";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // numericUpDown10
@@ -624,7 +683,7 @@
             // numericUpDown9
             // 
             this.numericUpDown9.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "xySpeed_mm_min", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown9.Location = new System.Drawing.Point(146, 292);
+            this.numericUpDown9.Location = new System.Drawing.Point(146, 343);
             this.numericUpDown9.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -639,7 +698,7 @@
             // numericUpDown8
             // 
             this.numericUpDown8.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "zSpeed_mm_min", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown8.Location = new System.Drawing.Point(146, 266);
+            this.numericUpDown8.Location = new System.Drawing.Point(146, 317);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -654,7 +713,7 @@
             // numericUpDown7
             // 
             this.numericUpDown7.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "pickColorFrequency", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown7.Location = new System.Drawing.Point(146, 240);
+            this.numericUpDown7.Location = new System.Drawing.Point(146, 291);
             this.numericUpDown7.Name = "numericUpDown7";
             this.numericUpDown7.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown7.TabIndex = 70;
@@ -665,7 +724,7 @@
             // 
             this.numericUpDown6.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "colorContainerHeight_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown6.DecimalPlaces = 1;
-            this.numericUpDown6.Location = new System.Drawing.Point(146, 214);
+            this.numericUpDown6.Location = new System.Drawing.Point(146, 265);
             this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown6.TabIndex = 69;
@@ -676,7 +735,7 @@
             // 
             this.numericUpDown5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "colorPosZ_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown5.DecimalPlaces = 1;
-            this.numericUpDown5.Location = new System.Drawing.Point(146, 188);
+            this.numericUpDown5.Location = new System.Drawing.Point(146, 239);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -755,7 +814,7 @@
             // textBox15
             // 
             this.textBox15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gcodeEndPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox15.Location = new System.Drawing.Point(146, 502);
+            this.textBox15.Location = new System.Drawing.Point(146, 553);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(185, 20);
             this.textBox15.TabIndex = 60;
@@ -764,7 +823,7 @@
             // textBox14
             // 
             this.textBox14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gcodeStartPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox14.Location = new System.Drawing.Point(146, 476);
+            this.textBox14.Location = new System.Drawing.Point(146, 527);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(185, 20);
             this.textBox14.TabIndex = 58;
@@ -773,7 +832,7 @@
             // textBox13
             // 
             this.textBox13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "outputPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox13.Location = new System.Drawing.Point(146, 450);
+            this.textBox13.Location = new System.Drawing.Point(146, 501);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(185, 20);
             this.textBox13.TabIndex = 56;
@@ -782,7 +841,7 @@
             // textBox12
             // 
             this.textBox12.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "imagePath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox12.Location = new System.Drawing.Point(146, 343);
+            this.textBox12.Location = new System.Drawing.Point(146, 394);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(185, 20);
@@ -793,27 +852,42 @@
             // textBox10
             // 
             this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "ignoreColor_hex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox10.Location = new System.Drawing.Point(146, 317);
+            this.textBox10.Location = new System.Drawing.Point(146, 368);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(185, 20);
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // button8
+            // numericUpDown16
             // 
-            this.button8.Location = new System.Drawing.Point(775, 675);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 107;
-            this.button8.Text = "parse colors";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.numericUpDown16.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "maxNumColorPerFile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown16.Location = new System.Drawing.Point(146, 214);
+            this.numericUpDown16.Name = "numericUpDown16";
+            this.numericUpDown16.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown16.TabIndex = 113;
+            this.numericUpDown16.Value = global::Paintbot.Settings.Default.maxNumColorPerFile;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(452, 726);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(108, 23);
+            this.button9.TabIndex = 114;
+            this.button9.Text = "recolor image";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1235, 825);
+            this.ClientSize = new System.Drawing.Size(1235, 792);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.numericUpDown16);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.checkBox6);
+            this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.richTextBox1);
@@ -895,6 +969,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -965,6 +1040,12 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.NumericUpDown numericUpDown16;
+        private System.Windows.Forms.Button button9;
     }
 }
 

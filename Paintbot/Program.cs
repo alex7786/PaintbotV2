@@ -8,10 +8,8 @@ using System.Windows.Forms;
 namespace Paintbot
     //everything in absolute coordinates (G53)
     //TODO:
-    //Center picture on canvas
-    //Find nearest color
-    //use colorpalette
-    //resize picture without blurring it
+    //Find nearest color in colorpalette
+    //automatic next color 
 {
     class Program
     {
@@ -294,6 +292,22 @@ namespace Paintbot
              * offsetZ = heigth of the canvas
              * zMoveHeight = z height for movement over canvas
             */
+            if (Settings.Default.centerOnCanvas)
+            {
+                float width = (float)Settings.Default.maxWidthX / brushSize;
+                float height = (float)Settings.Default.maxHeightY / brushSize;
+                if (image1.Width < width && image1.Height >= height - 1)
+                {
+                    int xOffset = ((int)width - image1.Width) / 2;
+                    canvasZeroPosX_mm = canvasZeroPosX_mm + xOffset;
+                }
+                else if (image1.Width >= width - 1 && image1.Height < height)
+                {
+                    int yOffset = ((int)height - image1.Height) / 2;
+                    canvasZeroPosY_mm = canvasZeroPosY_mm + yOffset;
+                }
+            }
+
             string paintStrokeString = "";
 
             if (xPos == oldXpos)
@@ -338,6 +352,12 @@ namespace Paintbot
             var scaleWidth = (int)(image1.Width * scale);
             var scaleHeight = (int)(image1.Height * scale);
             Bitmap resized = new Bitmap(image1, new Size(scaleWidth, scaleHeight));
+
+            using (Graphics g = Graphics.FromImage(resized))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                g.DrawImage(image1, 0, 0, scaleWidth, scaleHeight);
+            }
 
             image1 = resized;
         }
@@ -392,68 +412,49 @@ namespace Paintbot
             }
         }
 
-        /*Color definitions
-        a101/ffffffff/10.0/10.0
-        a139/ffecda3e/10.1/10.1
-        a102/fff4ed56/10.2/10.2
-        a121/ffeecf3d/10.3/10.3
-        a140/ffe39d33/10.4/10.4
-        a134/ff8369bf/10.5/10.5
-        a125/ff3c3333/10.6/10.6
-        a111/ff433866/10.7/10.7
-        a110/ff4b4273/10.8/10.8
-        a116/ff3c334d/10.9/10.9
-        a113/ffcf9a38/10.10/10.10
-        a127/ffb48347/10.11/10.11
-        a144/ffa97537/10.12/10.12
-        a131/fff1d69e/10.13/10.13
-        a148/ffde7b2d/10.14/10.14
-        a152/ffb4553d/10.15/10.15
-        a114/ffdc5b2c/10.16/10.16
-        a126/ffd94834/10.17/10.17
-        a129/ffdoa574/10.18/10.18
-        a106/ffd73d35/10.19/10.19
-        a145/ffda4538/10.20/10.20
-        a142/ffd83f38/10.21/10.21
-        a161/ffd93c44/10.22/10.22
-        a155/ffce383c/10.23/10.23
-        a105/ffd13d43/10.24/10.24
-        a150/ff9a3138/10.25/10.25
-        a138/ffd1333c/10.26/10.26
-        a115/ffd51e81/10.27/10.27
-        a146/ffdc37be/10.28/10.28
-        a157/ffdb4f76/10.29/10.29
-        a141/ffe59cd0/10.30/10.30
-        a135/fff4e2b7/10.31/10.31
-        a124/ff7197f7/10.32/10.32
-        a147/ff5d84dd/10.33/10.33
-        a123/ff5d8ee1/10.34/10.34
-        a154/ff69a1f5/10.35/10.35
-        a120/ff72c898/10.36/10.36
-        a103/ff262c3a/10.37/10.37
-        a136/ff40706e/10.38/10.38
-        a122/ff294321/10.39/10.39
-        a158/ff282d39/10.40/10.40
-        a143/ff325719/10.41/10.41
-        a149/ff41684d/10.42/10.42
-        a159/ff4c8a54/10.43/10.43
-        a109/ff6ec856/10.44/10.44
-        a156/ff52911f/10.45/10.45
-        a137/ff5f643c/10.46/10.46
-        a119/ffbb843a/10.47/10.47
-        a118/ff42372f/10.48/10.48
-        a130/ff6b5340/10.49/10.49
-        a108/ff5b3a31/10.50/10.50
-        a151/ff833130/10.51/10.51
-        a107/ff9a4635/10.52/10.52
-        a153/ff5a392f/10.53/10.53
-        a160/ff2a292e/10.54/10.54
-        a162/ff38302d/10.55/10.55
-        a112/ff000000/10.56/10.56
-        a132/ffb0b1b5/10.57/10.57
-        a117/ffb3c8e5/10.58/10.58
-        a128/ffcacace/10.59/10.59
-        */
+        public static void RecolorImage()
+        {
+            for (int x = 0; x < image1.Width; x++)  // Loop through the images pixels
+            {
+                for (int y = 0; y < image1.Height; y++)
+                {
+                    //TODO: chjeck indexed image
+                    image1 = CreateNonIndexedImage(image1);
+                    double colorDistanceOld = 99999999.0f;
+                    Color pixelColor = image1.GetPixel(x, y);
+                    //TODO: https://en.wikipedia.org/wiki/Color_difference#Euclidean<<<
+                    foreach(ColorDef colorDef in colorPalette)
+                    {
+                        float rX = (colorDef.Color.R + pixelColor.R) / 2;
+                        float deltaR = colorDef.Color.R - pixelColor.R;
+                        float deltaG = colorDef.Color.G - pixelColor.G;
+                        float deltaB = colorDef.Color.B - pixelColor.B;
+                        double colorDistance = Math.Sqrt((2 + rX / 256) * deltaR*deltaR + 4* deltaG*deltaG + (2+ (255-rX)/256) * deltaB*deltaB);
+                        if(colorDistance < colorDistanceOld)
+                        {
+                            image1.SetPixel(x, y, colorDef.Color);
+                        }
+                        else if(colorDistance == 0)
+                        {
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+        public static Bitmap CreateNonIndexedImage(Image src)
+        {
+            Bitmap newBmp = new Bitmap(src.Width, src.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics gfx = Graphics.FromImage(newBmp))
+            {
+                gfx.DrawImage(src, 0, 0);
+            }
+
+            return newBmp;
+        }
 
         public static void ParseColors()
         {
@@ -469,190 +470,13 @@ namespace Paintbot
 
         static string AztecColorAssign(string hexcolor)
         {
-            switch (hexcolor)
+            ParseColors();
+            foreach (ColorDef colorDef in colorPalette)
             {
-                case "ffffffff":
-                    hexcolor += "_101";
-                    break;
-                case "ffecda3e":
-                    hexcolor += "_139";
-                    break;
-                case "fff4ed56":
-                    hexcolor += "_102";
-                    break;
-                case "ffeecf3d":
-                    hexcolor += "_121";
-                    break;
-                case "ffe39d33":
-                    hexcolor += "_140";
-                    break;
-                case "ff8369bf":
-                    hexcolor += "_134";
-                    break;
-                case "ff3c3333":
-                    hexcolor += "_125";
-                    break;
-                case "ff433866":
-                    hexcolor += "_111";
-                    break;
-                case "ff4b4273":
-                    hexcolor += "_110";
-                    break;
-                case "ff3c334d":
-                    hexcolor += "_116";
-                    break;
-                case "ffcf9a38":
-                    hexcolor += "_113";
-                    break;
-                case "ffb48347":
-                    hexcolor += "_127";
-                    break;
-                case "ffa97537":
-                    hexcolor += "_144";
-                    break;
-                case "fff1d69e":
-                    hexcolor += "_131";
-                    break;
-                case "ffde7b2d":
-                    hexcolor += "_148";
-                    break;
-                case "ffb4553d":
-                    hexcolor += "_152";
-                    break;
-                case "ffdc5b2c":
-                    hexcolor += "_114";
-                    break;
-                case "ffd94834":
-                    hexcolor += "_126";
-                    break;
-                case "ffdoa574":
-                    hexcolor += "_129";
-                    break;
-                case "ffd73d35":
-                    hexcolor += "_106";
-                    break;
-                case "ffda4538":
-                    hexcolor += "_145";
-                    break;
-                case "ffd83f38":
-                    hexcolor += "_142";
-                    break;
-                case "ffd93c44":
-                    hexcolor += "_161";
-                    break;
-                case "ffce383c":
-                    hexcolor += "_155";
-                    break;
-                case "ffd13d43":
-                    hexcolor += "_105";
-                    break;
-                case "ff9a3138":
-                    hexcolor += "_150";
-                    break;
-                case "ffd1333c":
-                    hexcolor += "_138";
-                    break;
-                case "ffd51e81":
-                    hexcolor += "_115";
-                    break;
-                case "ffdc37be":
-                    hexcolor += "_146";
-                    break;
-                case "ffdb4f76":
-                    hexcolor += "_157";
-                    break;
-                case "ffe59cd0":
-                    hexcolor += "_141";
-                    break;
-                case "fff4e2b7":
-                    hexcolor += "_135";
-                    break;
-                case "ff7197f7":
-                    hexcolor += "_124";
-                    break;
-                case "ff5d84dd":
-                    hexcolor += "_147";
-                    break;
-                case "ff5d8ee1":
-                    hexcolor += "_123";
-                    break;
-                case "ff69a1f5":
-                    hexcolor += "_154";
-                    break;
-                case "ff72c898":
-                    hexcolor += "_120";
-                    break;
-                case "ff262c3a":
-                    hexcolor += "_103";
-                    break;
-                case "ff40706e":
-                    hexcolor += "_136";
-                    break;
-                case "ff294321":
-                    hexcolor += "_122";
-                    break;
-                case "ff282d39":
-                    hexcolor += "_158";
-                    break;
-                case "ff325719":
-                    hexcolor += "_143";
-                    break;
-                case "ff41684d":
-                    hexcolor += "_149";
-                    break;
-                case "ff4c8a54":
-                    hexcolor += "_159";
-                    break;
-                case "ff6ec856":
-                    hexcolor += "_109";
-                    break;
-                case "ff52911f":
-                    hexcolor += "_156";
-                    break;
-                case "ff5f643c":
-                    hexcolor += "_137";
-                    break;
-                case "ffbb843a":
-                    hexcolor += "_119";
-                    break;
-                case "ff42372f":
-                    hexcolor += "_118";
-                    break;
-                case "ff6b5340":
-                    hexcolor += "_130";
-                    break;
-                case "ff5b3a31":
-                    hexcolor += "_108";
-                    break;
-                case "ff833130":
-                    hexcolor += "_151";
-                    break;
-                case "ff9a4635":
-                    hexcolor += "_107";
-                    break;
-                case "ff5a392f":
-                    hexcolor += "_153";
-                    break;
-                case "ff2a292e":
-                    hexcolor += "_160";
-                    break;
-                case "ff38302d":
-                    hexcolor += "_162";
-                    break;
-                case "ff000000":
-                    hexcolor += "_112";
-                    break;
-                case "ffb0b1b5":
-                    hexcolor += "_132";
-                    break;
-                case "ffb3c8e5":
-                    hexcolor += "_117";
-                    break;
-                case "ffcacace	":
-                    hexcolor += "_128";
-                    break;
-                default:
-                    break;
+                if (colorDef.ColorHex.Equals(hexcolor))
+                {
+                    hexcolor = colorDef.Name + "_" + colorDef.ColorHex;
+                }
             }
             return hexcolor;
         }

@@ -334,5 +334,41 @@ namespace Paintbot {
                 this["colorDefinitions"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool centerOnCanvas {
+            get {
+                return ((bool)(this["centerOnCanvas"]));
+            }
+            set {
+                this["centerOnCanvas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useColorPosDef {
+            get {
+                return ((bool)(this["useColorPosDef"]));
+            }
+            set {
+                this["useColorPosDef"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public decimal maxNumColorPerFile {
+            get {
+                return ((decimal)(this["maxNumColorPerFile"]));
+            }
+            set {
+                this["maxNumColorPerFile"] = value;
+            }
+        }
     }
 }
