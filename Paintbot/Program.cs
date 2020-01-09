@@ -6,10 +6,9 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace Paintbot
-    //everything in absolute coordinates (G53)
-    //TODO:
-    //Find nearest color in colorpalette
-    //automatic next color 
+//everything in absolute coordinates (G53)
+//TODO: automatic brush cleaning -> change endOverPaint to endOverWater and clean -> waterPosX_mm,waterPosY_mm,waterPosZ_mm
+//TODO: clean brush every cleanBrushPicks times (modulo for getColor times)
 {
     class Program
     {
@@ -37,6 +36,8 @@ namespace Paintbot
 
         public static void GenerateGCode()
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             float brushSize = (float)Settings.Default.brushsize_mm;
             float zMoveHeight = (float)Settings.Default.zMoveHeight_mm;
             float colorPositionX = (float)Settings.Default.colorPosX_mm;
@@ -54,12 +55,14 @@ namespace Paintbot
             String gcodeEndPath = Settings.Default.gcodeEndPath;
             bool colorAtYgantry = Settings.Default.colorAtYgantry;
             bool flipYAxis = Settings.Default.flipYAxis;
-            bool endOverPaint = Settings.Default.endOverPaint;
+            bool endOverWater = Settings.Default.endOverWater;
             bool moveXZsameTime = Settings.Default.moveZXsameTime;
             float canvasZeroPosX_mm = (float)Settings.Default.canvasZeroPosX_mm;
             float canvasZeroPosY_mm = (float)Settings.Default.canvasZeroPosY_mm;
             float canvasZeroPosZ_mm = (float)Settings.Default.canvasZeroPosZ_mm;
             int progressBar = Settings.Default.progressbar; //value between 0 and 100
+            bool useColorPosDef = Settings.Default.useColorPosDef;
+            int maxNumColorPerFile = (int)Settings.Default.maxNumColorPerFile;
 
             Directory.CreateDirectory(outputPath);
             DirectoryInfo di = new DirectoryInfo(outputPath);
@@ -91,6 +94,8 @@ namespace Paintbot
             }
 
             int progress = 0;
+            string[,] pathArray = new string[colorStrings.Count,2];
+            int pathNo = 0;
 
             foreach (string colorType in colorStrings)
             {
@@ -100,9 +105,16 @@ namespace Paintbot
                 form1.progressBar1.Value = progressBar;
                 form1.progressBar1.Update();
 
-                StreamWriter fileOut = new StreamWriter(Path.Combine(outputPath, AztecColorAssign(colorType) + ".gcode"), true);
+                string gcodePath = Path.Combine(outputPath, AztecColorAssign(colorType) + ".gcode");
+                StreamWriter fileOut = new StreamWriter(gcodePath, true);
+                pathArray[pathNo, 0] = gcodePath;
+                pathArray[pathNo, 1] = AztecColorAssign(colorType);
+                pathNo++;
 
-                fileOut.WriteLine(gcodeStart);
+                if(maxNumColorPerFile == 1)
+                {
+                    fileOut.WriteLine(gcodeStart);
+                }
 
                 HashSet<ColorCoordinate> colorCoordinates = new HashSet<ColorCoordinate>();
                 for (x = 0; x < image1.Width; x++)  // Loop through the images pixels
@@ -115,6 +127,20 @@ namespace Paintbot
                             {
                                 colorCoordinates.Add(new ColorCoordinate(x, y));
                             }
+                        }
+                    }
+                }
+
+                if (useColorPosDef)//automatic get color from position
+                {
+                    colorAtYgantry = false; //to ensure color at gantry not selected when positions are used
+                    foreach (ColorDef colorDef in colorPalette)
+                    {
+                        if (colorDef.ColorHex.Equals(colorType))
+                        {
+                            colorPositionX = colorDef.XPos;
+                            colorPositionY = colorDef.YPos;
+                            break;
                         }
                     }
                 }
@@ -168,23 +194,48 @@ namespace Paintbot
 
                 }
 
-                if (endOverPaint)
+                if (endOverWater)
                 {
                     fileOut.WriteLine(GetColor(getColor, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime));
                     //end with getting color
                 }
                 else
                 {
-                    fileOut.WriteLine(gcodeEnd);
+                    if (maxNumColorPerFile == 1)
+                    {
+                        fileOut.WriteLine(gcodeEnd);
+                    }
                 }
 
                 fileOut.Close();
             }
 
+            if(maxNumColorPerFile > 1)//TODO: chain maxNumColorPerFile gcodes together
+            {
+                //TODO: use start and end gcode only once per file
+                //fileOut.WriteLine(gcodeStart);
+                //fileOut.WriteLine(gcodeEnd);
+                string fileName = "";
+                int noOfFiles = pathArray.Length/2;
+                for (int i = 0; i < noOfFiles; i++)
+                {
+                    //generate filename
+                    fileName = fileName + "_" + pathArray[i, 1];
+                }
+                for (int i = 0; i < noOfFiles; i++)
+                {
+                    File.AppendAllText(outputPath + fileName + ".gcode", File.ReadAllText(pathArray[i, 0]));
+                }
+            }
+
             form1.progressBar1.Value = 100;
             form1.progressBar1.Update();
-            var formPopup = new Form2(form1);
-            formPopup.Show();
+
+            Cursor.Current = Cursors.Default;
+
+            Form2 formPopup = new Form2(form1);
+            formPopup.StartPosition = FormStartPosition.CenterParent;
+            formPopup.ShowDialog();
         }
 
         static string GetColor(int getColorIndex, float xPos, float yPos, bool colorAtYgantry, float zPos, float zColorHeight, int zSpeed, int xySpeed, bool moveXZsameTime)
@@ -198,7 +249,7 @@ namespace Paintbot
 
             string getColorString = "";
 
-            if (moveXZsameTime) //TODO: consider absolute and relative coordinates
+            if (moveXZsameTime)
             {
                 double phi = Math.Atan(Math.Abs(zPos - oldZpos) / Math.Abs(xPos - oldXpos));
                 double feedRate1 = zSpeed / Math.Sin(phi);
@@ -235,11 +286,11 @@ namespace Paintbot
                 {
                     getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " Z" + zColorHeight + " F" + (int)feedRate + "; get paint start " +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " Y" + (yPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " Y" + (yPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " Y" + (yPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " Y" + (yPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + zColorHeight + " F" + zSpeed + "; get paint end ";
                 }
 
@@ -264,11 +315,11 @@ namespace Paintbot
                     getColorString = "\nG53 Z" + zColorHeight + " F" + zSpeed + "; get paint start " +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " Y" + (yPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " Y" + (yPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos + 3).ToString().Replace(',', '.') + " Y" + (yPos + 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + (xPos - 3).ToString().Replace(',', '.') + " Y" + (yPos - 3).ToString().Replace(',', '.') + " F" + xySpeed +
+                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + zColorHeight + " F" + zSpeed + "; get paint end ";
                 }
             }
@@ -414,15 +465,17 @@ namespace Paintbot
 
         public static void RecolorImage()
         {
+            Cursor.Current = Cursors.WaitCursor;
+            GC.Collect();
             for (int x = 0; x < image1.Width; x++)  // Loop through the images pixels
             {
                 for (int y = 0; y < image1.Height; y++)
                 {
-                    //TODO: chjeck indexed image
-                    image1 = CreateNonIndexedImage(image1);
+                    //get non indexed image
+                    image1 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                     double colorDistanceOld = 99999999.0f;
                     Color pixelColor = image1.GetPixel(x, y);
-                    //TODO: https://en.wikipedia.org/wiki/Color_difference#Euclidean<<<
+                    //source: https://en.wikipedia.org/wiki/Color_difference#Euclidean
                     foreach(ColorDef colorDef in colorPalette)
                     {
                         float rX = (colorDef.Color.R + pixelColor.R) / 2;
@@ -432,6 +485,7 @@ namespace Paintbot
                         double colorDistance = Math.Sqrt((2 + rX / 256) * deltaR*deltaR + 4* deltaG*deltaG + (2+ (255-rX)/256) * deltaB*deltaB);
                         if(colorDistance < colorDistanceOld)
                         {
+                            colorDistanceOld = colorDistance;
                             image1.SetPixel(x, y, colorDef.Color);
                         }
                         else if(colorDistance == 0)
@@ -439,21 +493,9 @@ namespace Paintbot
                             break;
                         }
                     }
-                    
                 }
             }
-        }
-        
-        public static Bitmap CreateNonIndexedImage(Image src)
-        {
-            Bitmap newBmp = new Bitmap(src.Width, src.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            using (Graphics gfx = Graphics.FromImage(newBmp))
-            {
-                gfx.DrawImage(src, 0, 0);
-            }
-
-            return newBmp;
+            Cursor.Current = Cursors.Default;
         }
 
         public static void ParseColors()

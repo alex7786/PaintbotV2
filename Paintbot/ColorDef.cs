@@ -16,6 +16,8 @@ namespace Paintbot
         public string Name { get => name; set => name = value; }
         public string ColorHex { get => colorHex; set => colorHex = value; }
         public Color Color { get => color; set => color = value; }
+        public float XPos { get => xPos; set => xPos = value; }
+        public float YPos { get => yPos; set => yPos = value; }
 
         public ColorDef(string name, string color, float xPos, float yPos)
         {
