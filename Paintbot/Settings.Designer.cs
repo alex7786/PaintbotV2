@@ -430,5 +430,161 @@ namespace Paintbot {
                 this["filePrefix"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal colorMoveRadius {
+            get {
+                return ((decimal)(this["colorMoveRadius"]));
+            }
+            set {
+                this["colorMoveRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal waterMoveRadius {
+            get {
+                return ((decimal)(this["waterMoveRadius"]));
+            }
+            set {
+                this["waterMoveRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal spongeMoveRadius {
+            get {
+                return ((decimal)(this["spongeMoveRadius"]));
+            }
+            set {
+                this["spongeMoveRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal tissueMoveRadius {
+            get {
+                return ((decimal)(this["tissueMoveRadius"]));
+            }
+            set {
+                this["tissueMoveRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal spongePosX_mm {
+            get {
+                return ((decimal)(this["spongePosX_mm"]));
+            }
+            set {
+                this["spongePosX_mm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal spongePosY_mm {
+            get {
+                return ((decimal)(this["spongePosY_mm"]));
+            }
+            set {
+                this["spongePosY_mm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal spongePosZ_mm {
+            get {
+                return ((decimal)(this["spongePosZ_mm"]));
+            }
+            set {
+                this["spongePosZ_mm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal tissuePosX_mm {
+            get {
+                return ((decimal)(this["tissuePosX_mm"]));
+            }
+            set {
+                this["tissuePosX_mm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal tissuePosY_mm {
+            get {
+                return ((decimal)(this["tissuePosY_mm"]));
+            }
+            set {
+                this["tissuePosY_mm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal tissuePosZ_mm {
+            get {
+                return ((decimal)(this["tissuePosZ_mm"]));
+            }
+            set {
+                this["tissuePosZ_mm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useSponge {
+            get {
+                return ((bool)(this["useSponge"]));
+            }
+            set {
+                this["useSponge"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useWater {
+            get {
+                return ((bool)(this["useWater"]));
+            }
+            set {
+                this["useWater"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useTissue {
+            get {
+                return ((bool)(this["useTissue"]));
+            }
+            set {
+                this["useTissue"] = value;
+            }
+        }
     }
 }

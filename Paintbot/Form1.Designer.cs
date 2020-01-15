@@ -72,6 +72,31 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown33 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown30 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown31 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown27 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown28 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown29 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown25 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown26 = new System.Windows.Forms.NumericUpDown();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.numericUpDown20 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown19 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
@@ -105,9 +130,17 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
@@ -133,9 +166,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(442, 802);
+            this.button2.Location = new System.Drawing.Point(16, 839);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(316, 23);
+            this.button2.Size = new System.Drawing.Size(749, 44);
             this.button2.TabIndex = 63;
             this.button2.Text = "generate gCode";
             this.button2.UseVisualStyleBackColor = true;
@@ -447,7 +480,8 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(604, 733);
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(556, 803);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(96, 23);
             this.button7.TabIndex = 104;
@@ -495,7 +529,8 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(337, 762);
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(442, 803);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(108, 23);
             this.button9.TabIndex = 114;
@@ -535,14 +570,342 @@
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(13, 807);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(131, 13);
+            this.label33.Size = new System.Drawing.Size(157, 13);
             this.label33.TabIndex = 121;
-            this.label33.Text = "clean brush every ... picks";
+            this.label33.Text = "clean brush every ... color picks";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(337, 768);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(48, 13);
+            this.label34.TabIndex = 124;
+            this.label34.Text = "file prefix";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(1058, 763);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(89, 13);
+            this.label38.TabIndex = 135;
+            this.label38.Text = "spongePosZ[mm]";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(1058, 711);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(89, 13);
+            this.label39.TabIndex = 132;
+            this.label39.Text = "spongePosX[mm]";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(1058, 737);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(89, 13);
+            this.label40.TabIndex = 131;
+            this.label40.Text = "spongePosY[mm]";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(772, 763);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(81, 13);
+            this.label41.TabIndex = 141;
+            this.label41.Text = "tissuePosZ[mm]";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(772, 711);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(81, 13);
+            this.label42.TabIndex = 138;
+            this.label42.Text = "tissuePosX[mm]";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(772, 737);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(81, 13);
+            this.label43.TabIndex = 137;
+            this.label43.Text = "tissuePosY[mm]";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(737, 787);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(124, 13);
+            this.label44.TabIndex = 147;
+            this.label44.Text = "spongeMoveRadius[mm]";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(1058, 787);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(112, 13);
+            this.label45.TabIndex = 144;
+            this.label45.Text = "colorMoveRadius[mm]";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(1058, 813);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(115, 13);
+            this.label46.TabIndex = 143;
+            this.label46.Text = "waterMoveRadius[mm]";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(737, 813);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(116, 13);
+            this.label47.TabIndex = 149;
+            this.label47.Text = "tissueMoveRadius[mm]";
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Checked = global::Paintbot.Settings.Default.useSponge;
+            this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox7.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "useSponge", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox7.Location = new System.Drawing.Point(867, 838);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(81, 17);
+            this.checkBox7.TabIndex = 151;
+            this.checkBox7.Text = "use sponge";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Checked = global::Paintbot.Settings.Default.useWater;
+            this.checkBox8.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox8.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "useWater", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox8.Location = new System.Drawing.Point(867, 862);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(72, 17);
+            this.checkBox8.TabIndex = 152;
+            this.checkBox8.Text = "use water";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Checked = global::Paintbot.Settings.Default.useTissue;
+            this.checkBox9.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox9.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "useTissue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox9.Location = new System.Drawing.Point(1188, 839);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(73, 17);
+            this.checkBox9.TabIndex = 153;
+            this.checkBox9.Text = "use tissue";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown33
+            // 
+            this.numericUpDown33.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "tissueMoveRadius", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown33.DecimalPlaces = 1;
+            this.numericUpDown33.Location = new System.Drawing.Point(867, 811);
+            this.numericUpDown33.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown33.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown33.Name = "numericUpDown33";
+            this.numericUpDown33.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown33.TabIndex = 150;
+            this.numericUpDown33.Tag = 3F;
+            this.numericUpDown33.Value = global::Paintbot.Settings.Default.tissueMoveRadius;
+            // 
+            // numericUpDown30
+            // 
+            this.numericUpDown30.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "spongeMoveRadius", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown30.DecimalPlaces = 1;
+            this.numericUpDown30.Location = new System.Drawing.Point(867, 785);
+            this.numericUpDown30.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown30.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown30.Name = "numericUpDown30";
+            this.numericUpDown30.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown30.TabIndex = 148;
+            this.numericUpDown30.Tag = 3F;
+            this.numericUpDown30.Value = global::Paintbot.Settings.Default.spongeMoveRadius;
+            // 
+            // numericUpDown31
+            // 
+            this.numericUpDown31.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "waterMoveRadius", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown31.DecimalPlaces = 1;
+            this.numericUpDown31.Location = new System.Drawing.Point(1188, 811);
+            this.numericUpDown31.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown31.Name = "numericUpDown31";
+            this.numericUpDown31.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown31.TabIndex = 146;
+            this.numericUpDown31.Tag = 3F;
+            this.numericUpDown31.Value = global::Paintbot.Settings.Default.waterMoveRadius;
+            // 
+            // numericUpDown32
+            // 
+            this.numericUpDown32.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "colorMoveRadius", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown32.DecimalPlaces = 1;
+            this.numericUpDown32.Location = new System.Drawing.Point(1188, 785);
+            this.numericUpDown32.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown32.Name = "numericUpDown32";
+            this.numericUpDown32.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown32.TabIndex = 145;
+            this.numericUpDown32.Tag = 3F;
+            this.numericUpDown32.Value = global::Paintbot.Settings.Default.colorMoveRadius;
+            // 
+            // numericUpDown27
+            // 
+            this.numericUpDown27.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "tissuePosZ_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown27.DecimalPlaces = 1;
+            this.numericUpDown27.Location = new System.Drawing.Point(867, 761);
+            this.numericUpDown27.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown27.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown27.Name = "numericUpDown27";
+            this.numericUpDown27.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown27.TabIndex = 142;
+            this.numericUpDown27.Tag = 3F;
+            this.numericUpDown27.Value = global::Paintbot.Settings.Default.tissuePosZ_mm;
+            // 
+            // numericUpDown28
+            // 
+            this.numericUpDown28.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "tissuePosY_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown28.DecimalPlaces = 1;
+            this.numericUpDown28.Location = new System.Drawing.Point(867, 735);
+            this.numericUpDown28.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown28.Name = "numericUpDown28";
+            this.numericUpDown28.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown28.TabIndex = 140;
+            this.numericUpDown28.Tag = 3F;
+            this.numericUpDown28.Value = global::Paintbot.Settings.Default.tissuePosY_mm;
+            // 
+            // numericUpDown29
+            // 
+            this.numericUpDown29.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "tissuePosX_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown29.DecimalPlaces = 1;
+            this.numericUpDown29.Location = new System.Drawing.Point(867, 709);
+            this.numericUpDown29.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown29.Name = "numericUpDown29";
+            this.numericUpDown29.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown29.TabIndex = 139;
+            this.numericUpDown29.Tag = 3F;
+            this.numericUpDown29.Value = global::Paintbot.Settings.Default.tissuePosX_mm;
+            // 
+            // numericUpDown24
+            // 
+            this.numericUpDown24.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "spongePosZ_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown24.DecimalPlaces = 1;
+            this.numericUpDown24.Location = new System.Drawing.Point(1188, 761);
+            this.numericUpDown24.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown24.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown24.Name = "numericUpDown24";
+            this.numericUpDown24.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown24.TabIndex = 136;
+            this.numericUpDown24.Tag = 3F;
+            this.numericUpDown24.Value = global::Paintbot.Settings.Default.spongePosZ_mm;
+            // 
+            // numericUpDown25
+            // 
+            this.numericUpDown25.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "spongePosY_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown25.DecimalPlaces = 1;
+            this.numericUpDown25.Location = new System.Drawing.Point(1188, 735);
+            this.numericUpDown25.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown25.Name = "numericUpDown25";
+            this.numericUpDown25.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown25.TabIndex = 134;
+            this.numericUpDown25.Tag = 3F;
+            this.numericUpDown25.Value = global::Paintbot.Settings.Default.spongePosY_mm;
+            // 
+            // numericUpDown26
+            // 
+            this.numericUpDown26.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "spongePosX_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown26.DecimalPlaces = 1;
+            this.numericUpDown26.Location = new System.Drawing.Point(1188, 709);
+            this.numericUpDown26.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown26.Name = "numericUpDown26";
+            this.numericUpDown26.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown26.TabIndex = 133;
+            this.numericUpDown26.Tag = 3F;
+            this.numericUpDown26.Value = global::Paintbot.Settings.Default.spongePosX_mm;
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "filePrefix", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox2.Location = new System.Drawing.Point(391, 765);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(185, 20);
+            this.textBox2.TabIndex = 123;
+            this.textBox2.Text = global::Paintbot.Settings.Default.filePrefix;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // numericUpDown20
             // 
             this.numericUpDown20.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "cleanBrushPicks", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown20.Location = new System.Drawing.Point(147, 805);
+            this.numericUpDown20.Location = new System.Drawing.Point(176, 805);
             this.numericUpDown20.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -554,7 +917,7 @@
             0,
             -2147483648});
             this.numericUpDown20.Name = "numericUpDown20";
-            this.numericUpDown20.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown20.Size = new System.Drawing.Size(155, 20);
             this.numericUpDown20.TabIndex = 122;
             this.numericUpDown20.Value = global::Paintbot.Settings.Default.cleanBrushPicks;
             // 
@@ -653,7 +1016,7 @@
             this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "colorDefinitions", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.richTextBox1.Location = new System.Drawing.Point(772, 34);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(451, 635);
+            this.richTextBox1.Size = new System.Drawing.Size(601, 635);
             this.richTextBox1.TabIndex = 105;
             this.richTextBox1.Text = global::Paintbot.Settings.Default.colorDefinitions;
             // 
@@ -765,9 +1128,9 @@
             this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "moveZXsameTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox4.Location = new System.Drawing.Point(146, 625);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(138, 17);
+            this.checkBox4.Size = new System.Drawing.Size(108, 17);
             this.checkBox4.TabIndex = 81;
-            this.checkBox4.Text = "WIP ! X and Z get color";
+            this.checkBox4.Text = "X and Z get color";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox3
@@ -1003,29 +1366,34 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(451, 767);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(48, 13);
-            this.label34.TabIndex = 124;
-            this.label34.Text = "file prefix";
-            // 
-            // textBox2
-            // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "filePrefix", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox2.Location = new System.Drawing.Point(505, 764);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 20);
-            this.textBox2.TabIndex = 123;
-            this.textBox2.Text = global::Paintbot.Settings.Default.filePrefix;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1235, 836);
+            this.ClientSize = new System.Drawing.Size(1392, 894);
+            this.Controls.Add(this.checkBox9);
+            this.Controls.Add(this.checkBox8);
+            this.Controls.Add(this.checkBox7);
+            this.Controls.Add(this.numericUpDown33);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.numericUpDown30);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.numericUpDown31);
+            this.Controls.Add(this.numericUpDown32);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.label46);
+            this.Controls.Add(this.numericUpDown27);
+            this.Controls.Add(this.label41);
+            this.Controls.Add(this.numericUpDown28);
+            this.Controls.Add(this.numericUpDown29);
+            this.Controls.Add(this.label42);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.numericUpDown24);
+            this.Controls.Add(this.label38);
+            this.Controls.Add(this.numericUpDown25);
+            this.Controls.Add(this.numericUpDown26);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.label40);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.numericUpDown20);
@@ -1108,6 +1476,16 @@
             this.Name = "Form1";
             this.Text = "Paintbot";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
@@ -1214,6 +1592,29 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.NumericUpDown numericUpDown24;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.NumericUpDown numericUpDown25;
+        private System.Windows.Forms.NumericUpDown numericUpDown26;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.NumericUpDown numericUpDown27;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.NumericUpDown numericUpDown28;
+        private System.Windows.Forms.NumericUpDown numericUpDown29;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.NumericUpDown numericUpDown30;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.NumericUpDown numericUpDown31;
+        private System.Windows.Forms.NumericUpDown numericUpDown32;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.NumericUpDown numericUpDown33;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox checkBox9;
     }
 }
 

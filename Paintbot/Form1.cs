@@ -83,5 +83,10 @@ namespace Paintbot
             Program.RecolorImage();
             Program.RefreshPreview();
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
