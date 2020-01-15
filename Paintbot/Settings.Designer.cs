@@ -418,5 +418,17 @@ namespace Paintbot {
                 this["cleanBrushPicks"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0file")]
+        public string filePrefix {
+            get {
+                return ((string)(this["filePrefix"]));
+            }
+            set {
+                this["filePrefix"] = value;
+            }
+        }
     }
 }

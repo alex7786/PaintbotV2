@@ -9,6 +9,9 @@ namespace Paintbot
 //everything in absolute coordinates (G53)
 //TODO: automatic brush cleaning -> change endOverPaint to endOverWater and clean -> waterPosX_mm,waterPosY_mm,waterPosZ_mm
 //TODO: clean brush every cleanBrushPicks times (modulo for getColor times)
+//TODO: Test different brush sizes
+//TODO: work on circle drawings 
+//https://www.bigstockphoto.com/image-330726007/stock-vector-divide-math-operation-mosaic-of-round-dots-in-various-sizes-and-shades%2C-based-on-divide-math-operati
 {
     class Program
     {
@@ -105,7 +108,11 @@ namespace Paintbot
                 form1.progressBar1.Value = progressBar;
                 form1.progressBar1.Update();
 
-                string gcodePath = Path.Combine(outputPath, AztecColorAssign(colorType) + ".gcode");
+                //ensure paths exist
+                System.IO.Directory.CreateDirectory(outputPath);
+                System.IO.Directory.CreateDirectory(outputPath + "\\singleColors");
+
+                string gcodePath = Path.Combine(outputPath + "\\singleColors", AztecColorAssign(colorType) + ".gcode");
                 StreamWriter fileOut = new StreamWriter(gcodePath, true);
                 pathArray[pathNo, 0] = gcodePath;
                 pathArray[pathNo, 1] = AztecColorAssign(colorType);
@@ -210,21 +217,54 @@ namespace Paintbot
                 fileOut.Close();
             }
 
-            if(maxNumColorPerFile > 1)//TODO: chain maxNumColorPerFile gcodes together
+            if(maxNumColorPerFile > 1)
             {
-                //TODO: use start and end gcode only once per file
-                //fileOut.WriteLine(gcodeStart);
-                //fileOut.WriteLine(gcodeEnd);
-                string fileName = "";
-                int noOfFiles = pathArray.Length/2;
-                for (int i = 0; i < noOfFiles; i++)
+                int noOfFiles = pathArray.Length / 2;
+                double numberOfRuns = Math.Ceiling((float)noOfFiles / maxNumColorPerFile);
+                for(int k = 0; k < numberOfRuns; k++)
                 {
-                    //generate filename
-                    fileName = fileName + "_" + pathArray[i, 1];
-                }
-                for (int i = 0; i < noOfFiles; i++)
-                {
-                    File.AppendAllText(outputPath + fileName + ".gcode", File.ReadAllText(pathArray[i, 0]));
+                    int offset = k * maxNumColorPerFile;
+                    
+                    bool firstRun = true;
+                    string fileName = Settings.Default.filePrefix + "_" + k;
+                    string colors = "";
+
+                    int upperlimit = offset + maxNumColorPerFile;
+                    if(upperlimit > noOfFiles)
+                    {
+                        upperlimit = noOfFiles;
+                    }
+
+                    for (int i = offset; i < upperlimit; i++)
+                    {
+                        //generate colors as comment
+                        if (firstRun)
+                        {
+                            colors = ";" + pathArray[i, 1].Substring(0, 4);
+                            firstRun = false;
+                        }
+                        else
+                        {
+                            colors = colors + "_" + pathArray[i, 1].Substring(0, 4);
+                        }
+                    }
+                    firstRun = true;
+                    string filePath = outputPath + fileName + ".gcode";
+                    for (int i = offset; i < upperlimit; i++)
+                    {
+                        if (firstRun)
+                        {
+                            File.AppendAllText(filePath, colors + "\n\n");
+                            File.AppendAllText(filePath, gcodeStart);
+                            File.AppendAllText(filePath, File.ReadAllText(pathArray[i, 0]));
+                            firstRun = false;
+                        }
+                        else
+                        {
+                            File.AppendAllText(filePath, File.ReadAllText(pathArray[i, 0]));
+                        }
+                    }
+                    File.AppendAllText(filePath, gcodeEnd);
                 }
             }
 
