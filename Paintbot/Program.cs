@@ -8,9 +8,8 @@ using System.Windows.Forms;
 namespace Paintbot
 //everything in absolute coordinates (G53)
 
+//TODO: test g-code simulator
 //TODO: Test different brush sizes
-//TODO: work on circle drawings 
-//https://www.bigstockphoto.com/image-330726007/stock-vector-divide-math-operation-mosaic-of-round-dots-in-various-sizes-and-shades%2C-based-on-divide-math-operati
 {
     class Program
     {
@@ -83,21 +82,7 @@ namespace Paintbot
 
             int x, y;
 
-            HashSet<string> colorStrings = new HashSet<string>();
-
-            for (x = 0; x < image1.Width; x++)  // Loop through the images pixels
-            {
-                for (y = 0; y < image1.Height; y++)
-                {
-                    System.Drawing.Color pixelColor = image1.GetPixel(x, y);
-                    {
-                        if (!String.Equals(pixelColor.Name, ignoreColor))
-                        {
-                            colorStrings.Add(pixelColor.Name);
-                        }
-                    }
-                }
-            }
+            HashSet<string> colorStrings = GetColorStrings(ignoreColor);
 
             int progress = 0;
             string[,] pathArray = new string[colorStrings.Count,2];
@@ -286,6 +271,43 @@ namespace Paintbot
             Form2 formPopup = new Form2(form1);
             formPopup.StartPosition = FormStartPosition.CenterParent;
             formPopup.ShowDialog();
+        }
+
+        //TODO: work on circle drawings 
+        //https://www.bigstockphoto.com/image-330726007/stock-vector-divide-math-operation-mosaic-of-round-dots-in-various-sizes-and-shades%2C-based-on-divide-math-operati
+        public static void FillWithCircles(int minCircleDiameterPixel)
+        {
+            //idea: 
+            //loop through pixels for colors and when color found loop to left and right check width, then to top and bottom check height, 
+            //add both together and calculate center point, make a CirclePoint(int centerX, int centerY, int width, int height)
+            //if next point has bigger Width+Height replace Circlepoint after looping through image draw a circle with smaller value of height and width around the centerpoint in circleImage. 
+            //overwrite that area with ignorecolor rectangle in imageCopy. If after looping circle would be < then minCircleDiameterPixel overwrite with ignorcolor without drawing circle
+            //repeat until color not found anymore -> next color
+
+            HashSet<string> pictureColors = GetColorStrings(Settings.Default.ignoreColor_hex);
+            Bitmap imageCopy = new Bitmap(image1);
+            Bitmap circleImage = new Bitmap(image1);
+        }
+
+        static HashSet<string> GetColorStrings(string ignoreColor)
+        {
+            HashSet<string> colorStrings = new HashSet<string>();
+
+            for (int x = 0; x < image1.Width; x++)  // Loop through the images pixels
+            {
+                for (int y = 0; y < image1.Height; y++)
+                {
+                    System.Drawing.Color pixelColor = image1.GetPixel(x, y);
+                    {
+                        if (!String.Equals(pixelColor.Name, ignoreColor))
+                        {
+                            colorStrings.Add(pixelColor.Name);
+                        }
+                    }
+                }
+            }
+
+            return colorStrings;
         }
 
         static string GetColor(int getColorIndex, float xPos, float yPos, bool colorAtYgantry, float zPos, float zColorHeight, int zSpeed, int xySpeed, bool moveXZsameTime, float xyMoveRadius, bool brushClean)

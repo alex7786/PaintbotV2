@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CirclePoint.cs" />
     <Compile Include="ColorDef.cs" />
     <Compile Include="ColorCoordinates.cs" />
     <Compile Include="Form1.cs">
