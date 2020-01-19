@@ -586,5 +586,41 @@ namespace Paintbot {
                 this["useTissue"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal minCircleDiameterPixel {
+            get {
+                return ((decimal)(this["minCircleDiameterPixel"]));
+            }
+            set {
+                this["minCircleDiameterPixel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal maxCircleDiameterPixel {
+            get {
+                return ((decimal)(this["maxCircleDiameterPixel"]));
+            }
+            set {
+                this["maxCircleDiameterPixel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string amountOfCircles {
+            get {
+                return ((string)(this["amountOfCircles"]));
+            }
+            set {
+                this["amountOfCircles"] = value;
+            }
+        }
     }
 }

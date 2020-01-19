@@ -7,9 +7,8 @@ using System.Windows.Forms;
 
 namespace Paintbot
 //everything in absolute coordinates (G53)
-
-//TODO: test g-code simulator
 //TODO: Test different brush sizes
+//TODO: generate circle drawings gcode by using circlepoint hashset
 {
     class Program
     {
@@ -273,20 +272,166 @@ namespace Paintbot
             formPopup.ShowDialog();
         }
 
-        //TODO: work on circle drawings 
-        //https://www.bigstockphoto.com/image-330726007/stock-vector-divide-math-operation-mosaic-of-round-dots-in-various-sizes-and-shades%2C-based-on-divide-math-operati
-        public static void FillWithCircles(int minCircleDiameterPixel)
+        public static HashSet<CirclePoint> FillWithCircles(int minCircleDiameterPixel, int maxCircleDiameterPixel)
         {
-            //idea: 
-            //loop through pixels for colors and when color found loop to left and right check width, then to top and bottom check height, 
-            //add both together and calculate center point, make a CirclePoint(int centerX, int centerY, int width, int height)
-            //if next point has bigger Width+Height replace Circlepoint after looping through image draw a circle with smaller value of height and width around the centerpoint in circleImage. 
-            //overwrite that area with ignorecolor rectangle in imageCopy. If after looping circle would be < then minCircleDiameterPixel overwrite with ignorcolor without drawing circle
-            //repeat until color not found anymore -> next color
+            //TODO: find filter for grouping colors
+            Cursor.Current = Cursors.WaitCursor;
 
             HashSet<string> pictureColors = GetColorStrings(Settings.Default.ignoreColor_hex);
             Bitmap imageCopy = new Bitmap(image1);
-            Bitmap circleImage = new Bitmap(image1);
+            Bitmap circleImage = new Bitmap(image1.Width, image1.Height);
+            ColorConverter colorConverter = new ColorConverter();
+            using (Graphics gfx = Graphics.FromImage(circleImage))
+            using (SolidBrush brush = new SolidBrush((Color)colorConverter.ConvertFromString("#" + Settings.Default.ignoreColor_hex)))
+            {
+                gfx.FillRectangle(brush, 0, 0, circleImage.Width, circleImage.Height);
+            }
+
+            HashSet<CirclePoint> circlePointSet = new HashSet<CirclePoint>();
+
+            //loop through pixels for colors and when color found loop to left and right check width, then to top and bottom check height, 
+            //add both together and calculate center point, make a CirclePoint(int centerX, int centerY, int width, int height)
+            foreach (string color in pictureColors)
+            {
+                bool colorDone = false;
+                while (!colorDone)  //TODO: better solution then while loop
+                {   //repeat until color not found anymore -> next color
+                    CirclePoint circlePoint = new CirclePoint(0, 0, 0, 0, "");
+                    CirclePoint temp = new CirclePoint(0, 0, 0, 0, "");
+                    for (int y = 0; y < imageCopy.Height; y++)
+                    {
+                        for (int x = 0; x < imageCopy.Width; x++)
+                        {
+                            if(imageCopy.GetPixel(x,y).Name.Equals(color))
+                            {
+                                int xLeft = 0, xRight = 0, yTop = 0, yBottom = 0, xWidth = 0, yHeight = 0;
+                                if(x > 0)
+                                {
+                                    for(xLeft = x; xLeft > 0; xLeft--)
+                                    {
+                                        if(!imageCopy.GetPixel(xLeft, y).Name.Equals(color))
+                                        {
+                                            xLeft = xLeft + 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if(x < imageCopy.Width)
+                                {
+                                    for(xRight = x; xRight < imageCopy.Width; xRight++)
+                                    {
+                                        if (!imageCopy.GetPixel(xRight, y).Name.Equals(color))
+                                        {
+                                            xRight = xRight - 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if(x - xLeft < xRight - x)
+                                {
+                                    xWidth = 2 * (x - xLeft);
+                                }
+                                else
+                                {
+                                    xWidth = 2 * (xRight - x);
+                                }
+                                
+                                if (y > 0)
+                                {
+                                    for (yTop = y; yTop > 0; yTop--)
+                                    {
+                                        if (!imageCopy.GetPixel(x, yTop).Name.Equals(color))
+                                        {
+                                            yTop = yTop + 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (y < imageCopy.Height)
+                                {
+                                    for (yBottom = y; yBottom < imageCopy.Height; yBottom++)
+                                    {
+                                        if (!imageCopy.GetPixel(x, yBottom).Name.Equals(color))
+                                        {
+                                            yBottom = yBottom - 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (y - yTop < yBottom - y)
+                                {
+                                    yHeight = 2 * (y - yTop);
+                                }
+                                else
+                                {
+                                    yHeight = 2 * (yBottom - y);
+                                }
+
+                                temp = new CirclePoint(x, y, xWidth, yHeight, color);
+                                if(temp.Radius > circlePoint.Radius)
+                                {
+                                    //if next point has bigger Width+Height replace Circlepoint after looping through image draw a circle with smaller value of height and width around the centerpoint in circleImage. 
+                                    circlePoint = temp;
+                                }
+                            }
+                        }
+                        
+                    }
+                    if (circlePoint.Radius == 0)
+                    {
+                        colorDone = true;
+                    }
+                    else
+                    {
+                        //overwrite that area with ignorecolor circle in imageCopy. If after looping circle would be < then minCircleDiameterPixel overwrite with ignorcolor without drawing circle.
+                        //if circle after loop is > maxCircleDiameterPixel, draw circle with maxCircleDiameterPixel at centerpoint
+                        if(circlePoint.Diameter > maxCircleDiameterPixel)
+                        {
+                            circlePoint.Radius = maxCircleDiameterPixel / 2;
+                            circlePoint.Width = maxCircleDiameterPixel * 2;
+                            circlePoint.Height = maxCircleDiameterPixel * 2;
+                            circlePoint.Diameter = maxCircleDiameterPixel;
+                        }
+
+                        Rectangle rect = new Rectangle(circlePoint.CenterX - (int)circlePoint.Radius, circlePoint.CenterY - (int)circlePoint.Radius, circlePoint.Diameter, circlePoint.Diameter);
+                        if (circlePoint.Radius < 1.0 && circlePoint.Radius != 0)
+                        {
+                            //TODO: catch 1 pixel circles -> check circle borders
+                            rect = new Rectangle(circlePoint.CenterX, circlePoint.CenterY, 1, 1);
+                        }
+
+                        Graphics gTemp = Graphics.FromImage(imageCopy);
+                        Graphics gCircle = Graphics.FromImage(circleImage);
+                        SolidBrush brushTemp = new SolidBrush((Color)colorConverter.ConvertFromString("#" + Settings.Default.ignoreColor_hex));
+
+                        gTemp.FillEllipse(brushTemp, rect);
+                        brushTemp = new SolidBrush((Color)colorConverter.ConvertFromString("#" + color));
+                        gTemp.Dispose();
+
+                        if(circlePoint.Diameter >= minCircleDiameterPixel)
+                        {
+                            gCircle.FillEllipse(brushTemp, rect);
+                            gCircle.Dispose();
+                        }
+                        
+                        brushTemp.Dispose();
+
+                        circlePointSet.Add(circlePoint);
+                        temp = new CirclePoint(0,0,0,0, "");
+                    }
+                }
+
+            }
+
+            image1 = new Bitmap(circleImage);
+            RefreshPreview();
+            imageCopy.Dispose();
+            circleImage.Dispose();
+
+            Settings.Default.amountOfCircles = circlePointSet.Count.ToString();
+            Cursor.Current = Cursors.Default;
+
+            return circlePointSet;
         }
 
         static HashSet<string> GetColorStrings(string ignoreColor)
@@ -591,14 +736,14 @@ namespace Paintbot
                         float deltaG = colorDef.Color.G - pixelColor.G;
                         float deltaB = colorDef.Color.B - pixelColor.B;
                         double colorDistance = Math.Sqrt((2 + rX / 256) * deltaR*deltaR + 4* deltaG*deltaG + (2+ (255-rX)/256) * deltaB*deltaB);
-                        if(colorDistance < colorDistanceOld)
+                        if(colorDistance == 0)
+                        {
+                            break;
+                        }
+                        else if (colorDistance < colorDistanceOld)
                         {
                             colorDistanceOld = colorDistance;
                             image1.SetPixel(x, y, colorDef.Color);
-                        }
-                        else if(colorDistance == 0)
-                        {
-                            break;
                         }
                     }
                 }

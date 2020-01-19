@@ -88,5 +88,10 @@ namespace Paintbot
         {
 
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Program.FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
+        }
     }
 }
