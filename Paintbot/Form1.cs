@@ -93,5 +93,18 @@ namespace Paintbot
         {
             Program.FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
         }
+
+        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox10.Checked)
+            {
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else
+            {
+                pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+            }
+            pictureBox1.Refresh();
+        }
     }
 }

@@ -311,7 +311,6 @@ namespace Paintbot
                                     {
                                         if(!imageCopy.GetPixel(xLeft, y).Name.Equals(color))
                                         {
-                                            xLeft = xLeft + 1;
                                             break;
                                         }
                                     }
@@ -322,7 +321,6 @@ namespace Paintbot
                                     {
                                         if (!imageCopy.GetPixel(xRight, y).Name.Equals(color))
                                         {
-                                            xRight = xRight - 1;
                                             break;
                                         }
                                     }
@@ -342,7 +340,6 @@ namespace Paintbot
                                     {
                                         if (!imageCopy.GetPixel(x, yTop).Name.Equals(color))
                                         {
-                                            yTop = yTop + 1;
                                             break;
                                         }
                                     }
@@ -353,7 +350,6 @@ namespace Paintbot
                                     {
                                         if (!imageCopy.GetPixel(x, yBottom).Name.Equals(color))
                                         {
-                                            yBottom = yBottom - 1;
                                             break;
                                         }
                                     }
@@ -396,7 +392,7 @@ namespace Paintbot
                         Rectangle rect = new Rectangle(circlePoint.CenterX - (int)circlePoint.Radius, circlePoint.CenterY - (int)circlePoint.Radius, circlePoint.Diameter, circlePoint.Diameter);
                         if (circlePoint.Radius < 1.0 && circlePoint.Radius != 0)
                         {
-                            //TODO: catch 1 pixel circles -> check circle borders
+                            //catch 1 pixel circles
                             rect = new Rectangle(circlePoint.CenterX, circlePoint.CenterY, 1, 1);
                         }
 
@@ -424,6 +420,8 @@ namespace Paintbot
             }
 
             image1 = new Bitmap(circleImage);
+            //TODO: use imageCopy as progress image and refresh every cycle. add additional picturebox
+            //image1 = new Bitmap(imageCopy);
             RefreshPreview();
             imageCopy.Dispose();
             circleImage.Dispose();

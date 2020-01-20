@@ -137,6 +137,7 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
@@ -1457,11 +1458,25 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Checked = true;
+            this.checkBox10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox10.Location = new System.Drawing.Point(604, 737);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(84, 17);
+            this.checkBox10.TabIndex = 161;
+            this.checkBox10.Text = "zoomPicture";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.checkBox10);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button10);
@@ -1722,6 +1737,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox10;
     }
 }
 
