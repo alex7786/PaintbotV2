@@ -7,8 +7,10 @@ using System.Windows.Forms;
 
 namespace Paintbot
 //everything in absolute coordinates (G53)
+
 //TODO: Test different brush sizes
 //TODO: generate circle drawings gcode by using circlepoint hashset
+
 {
     class Program
     {
@@ -32,6 +34,34 @@ namespace Paintbot
             ParseColors();
 
             Application.Run(form1); 
+        }
+
+        public static void GroupColors()
+        {
+            float scale = (float)Settings.Default.groupColorFactor;
+            int scaleWidth = (int)(image1.Width * scale);
+            int scaleHeight = (int)(image1.Height * scale);
+            Bitmap resized = new Bitmap(image1, new Size(scaleWidth, scaleHeight));
+
+            using (Graphics g = Graphics.FromImage(resized))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+                g.DrawImage(image1, 0, 0, scaleWidth, scaleHeight);
+            }
+
+            scale = 1 / scale;
+            scaleWidth = (int)(resized.Width * scale);
+            scaleHeight = (int)(resized.Height * scale);
+            resized = new Bitmap(resized, new Size(scaleWidth, scaleHeight));
+
+            using (Graphics g = Graphics.FromImage(resized))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+                g.DrawImage(image1, 0, 0, scaleWidth, scaleHeight);
+            }
+
+            image1 = new Bitmap(resized);
+            resized.Dispose();
         }
 
         public static void GenerateGCode()
@@ -272,10 +302,30 @@ namespace Paintbot
             formPopup.ShowDialog();
         }
 
+        public static string[,] GetBitmapColorNames(Bitmap bitmap)
+        {
+            //read whole bmp once in 2-dim array with all colors instead of Bitmap.getPixel
+            string[,] colorNames = new string[bitmap.Width, bitmap.Height];
+
+            for (int y = 0; y < bitmap.Height; y++)
+            {
+                for (int x = 0; x < bitmap.Width; x++)
+                {
+                    colorNames[x, y] = bitmap.GetPixel(x, y).Name;
+                }
+            }
+            return colorNames;
+        }
+
         public static HashSet<CirclePoint> FillWithCircles(int minCircleDiameterPixel, int maxCircleDiameterPixel)
         {
-            //TODO: find filter for grouping colors
             Cursor.Current = Cursors.WaitCursor;
+
+            if (Settings.Default.filterResizeRecolor)
+            {
+                ResizePicture();
+                RecolorImage();
+            }
 
             HashSet<string> pictureColors = GetColorStrings(Settings.Default.ignoreColor_hex);
             Bitmap imageCopy = new Bitmap(image1);
@@ -287,6 +337,8 @@ namespace Paintbot
                 gfx.FillRectangle(brush, 0, 0, circleImage.Width, circleImage.Height);
             }
 
+            string[,] colorArray = GetBitmapColorNames(imageCopy);
+
             HashSet<CirclePoint> circlePointSet = new HashSet<CirclePoint>();
 
             //loop through pixels for colors and when color found loop to left and right check width, then to top and bottom check height, 
@@ -294,7 +346,7 @@ namespace Paintbot
             foreach (string color in pictureColors)
             {
                 bool colorDone = false;
-                while (!colorDone)  //TODO: better solution then while loop
+                while (!colorDone)
                 {   //repeat until color not found anymore -> next color
                     CirclePoint circlePoint = new CirclePoint(0, 0, 0, 0, "");
                     CirclePoint temp = new CirclePoint(0, 0, 0, 0, "");
@@ -302,14 +354,14 @@ namespace Paintbot
                     {
                         for (int x = 0; x < imageCopy.Width; x++)
                         {
-                            if(imageCopy.GetPixel(x,y).Name.Equals(color))
+                            if(colorArray[x,y].Equals(color))
                             {
                                 int xLeft = 0, xRight = 0, yTop = 0, yBottom = 0, xWidth = 0, yHeight = 0;
                                 if(x > 0)
                                 {
                                     for(xLeft = x; xLeft > 0; xLeft--)
                                     {
-                                        if(!imageCopy.GetPixel(xLeft, y).Name.Equals(color))
+                                        if(!colorArray[xLeft, y].Equals(color))
                                         {
                                             break;
                                         }
@@ -319,12 +371,13 @@ namespace Paintbot
                                 {
                                     for(xRight = x; xRight < imageCopy.Width; xRight++)
                                     {
-                                        if (!imageCopy.GetPixel(xRight, y).Name.Equals(color))
+                                        if (!colorArray[xRight, y].Equals(color))
                                         {
                                             break;
                                         }
                                     }
                                 }
+                                //TODO: check sizes
                                 if(x - xLeft < xRight - x)
                                 {
                                     xWidth = 2 * (x - xLeft);
@@ -338,7 +391,7 @@ namespace Paintbot
                                 {
                                     for (yTop = y; yTop > 0; yTop--)
                                     {
-                                        if (!imageCopy.GetPixel(x, yTop).Name.Equals(color))
+                                        if (!colorArray[x, yTop].Equals(color))
                                         {
                                             break;
                                         }
@@ -348,12 +401,13 @@ namespace Paintbot
                                 {
                                     for (yBottom = y; yBottom < imageCopy.Height; yBottom++)
                                     {
-                                        if (!imageCopy.GetPixel(x, yBottom).Name.Equals(color))
+                                        if (!colorArray[x, yBottom].Equals(color))
                                         {
                                             break;
                                         }
                                     }
                                 }
+                                //TODO: check sizes
                                 if (y - yTop < yBottom - y)
                                 {
                                     yHeight = 2 * (y - yTop);
@@ -412,16 +466,43 @@ namespace Paintbot
                         
                         brushTemp.Dispose();
 
+                        //TODO: check array why circles are drawn over each other
+                        if (Settings.Default.useRectangleErase)
+                        {
+                            //erase rectangle
+                            for (int y = circlePoint.GetCircleYmin(); y < circlePoint.GetCircleYmax(); y++)
+                            {
+                                for (int x = circlePoint.GetCircleXmin(); x < circlePoint.GetCircleXmax(); x++)
+                                {
+                                    colorArray[x, y] = Settings.Default.ignoreColor_hex;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //erase circle instead of rectangle
+                            for (int r = 0; r < circlePoint.Radius; r++)
+                            {
+                                for (int phi = 0; phi < 360; phi++)
+                                {
+                                    int x = (int)(circlePoint.CenterX + r * Math.Cos(phi * Math.PI / 180));
+                                    int y = (int)(circlePoint.CenterY + r * Math.Sin(phi * Math.PI / 180));
+                                    colorArray[x, y] = Settings.Default.ignoreColor_hex;
+                                }
+                            }
+                        }
+                        
+
                         circlePointSet.Add(circlePoint);
                         temp = new CirclePoint(0,0,0,0, "");
                     }
                 }
-
+                
+                form1.pictureBox2.Image = imageCopy;
+                form1.pictureBox2.Refresh();
             }
 
             image1 = new Bitmap(circleImage);
-            //TODO: use imageCopy as progress image and refresh every cycle. add additional picturebox
-            //image1 = new Bitmap(imageCopy);
             RefreshPreview();
             imageCopy.Dispose();
             circleImage.Dispose();
@@ -430,6 +511,29 @@ namespace Paintbot
             Cursor.Current = Cursors.Default;
 
             return circlePointSet;
+        }
+
+        public static void DrawHollowCircles()
+        {
+            HashSet<CirclePoint> circlePoints = FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
+
+            Bitmap emptyBmp = new Bitmap(image1.Width, image1.Height);
+            Graphics graphics = Graphics.FromImage(emptyBmp);
+            ColorConverter colorConverter = new ColorConverter();
+
+            foreach(CirclePoint circlePoint in circlePoints)
+            {
+                Rectangle rect = new Rectangle(circlePoint.GetCircleXmin(), circlePoint.GetCircleYmin(), circlePoint.Width, circlePoint.Height);
+                Pen pen = new Pen((Color)colorConverter.ConvertFromString("#" + circlePoint.Color));
+
+                graphics.DrawEllipse(pen, rect);
+            }
+
+            image1 = new Bitmap(emptyBmp);
+            RefreshPreview();
+
+            emptyBmp.Dispose();
+            graphics.Dispose();
         }
 
         static HashSet<string> GetColorStrings(string ignoreColor)
@@ -651,8 +755,8 @@ namespace Paintbot
             float height = (float)Settings.Default.maxHeightY / brushSize;
 
             float scale = Math.Min(width / image1.Width, height / image1.Height);
-            var scaleWidth = (int)(image1.Width * scale);
-            var scaleHeight = (int)(image1.Height * scale);
+            int scaleWidth = (int)(image1.Width * scale);
+            int scaleHeight = (int)(image1.Height * scale);
             Bitmap resized = new Bitmap(image1, new Size(scaleWidth, scaleHeight));
 
             using (Graphics g = Graphics.FromImage(resized))
@@ -661,7 +765,8 @@ namespace Paintbot
                 g.DrawImage(image1, 0, 0, scaleWidth, scaleHeight);
             }
 
-            image1 = resized;
+            image1 = new Bitmap(resized);
+            resized.Dispose();
         }
 
         public static void RefreshPreview()

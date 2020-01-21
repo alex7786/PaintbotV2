@@ -43,5 +43,11 @@ namespace Paintbot
 
             diameter = (int)(2 * radius);
         }
+
+        public int GetCircleXmin(){ return CenterX - (int)Radius; }
+        public int GetCircleYmin(){ return CenterY - (int)Radius; }
+
+        public int GetCircleXmax() { return CenterX + (int)Radius; }
+        public int GetCircleYmax() { return CenterY + (int)Radius; }
     }
 }

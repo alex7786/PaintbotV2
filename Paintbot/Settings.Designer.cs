@@ -622,5 +622,41 @@ namespace Paintbot {
                 this["amountOfCircles"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useRectangleErase {
+            get {
+                return ((bool)(this["useRectangleErase"]));
+            }
+            set {
+                this["useRectangleErase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool filterResizeRecolor {
+            get {
+                return ((bool)(this["filterResizeRecolor"]));
+            }
+            set {
+                this["filterResizeRecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal groupColorFactor {
+            get {
+                return ((decimal)(this["groupColorFactor"]));
+            }
+            set {
+                this["groupColorFactor"] = value;
+            }
+        }
     }
 }

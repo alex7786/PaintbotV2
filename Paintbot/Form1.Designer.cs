@@ -87,6 +87,10 @@
             this.label36 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
@@ -137,8 +141,12 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
+            this.label48 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
@@ -171,6 +179,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -703,7 +712,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(1509, 113);
+            this.button10.Location = new System.Drawing.Point(1382, 163);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(121, 23);
             this.button10.TabIndex = 158;
@@ -719,6 +728,53 @@
             this.label37.Size = new System.Drawing.Size(87, 13);
             this.label37.TabIndex = 160;
             this.label37.Text = "amount of circles";
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Checked = true;
+            this.checkBox10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox10.Location = new System.Drawing.Point(604, 737);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(84, 17);
+            this.checkBox10.TabIndex = 161;
+            this.checkBox10.Text = "zoomPicture";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Location = new System.Drawing.Point(1382, 192);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(316, 477);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 162;
+            this.pictureBox2.TabStop = false;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Checked = global::Paintbot.Settings.Default.filterResizeRecolor;
+            this.checkBox12.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "filterResizeRecolor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox12.Location = new System.Drawing.Point(1382, 140);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(266, 17);
+            this.checkBox12.TabIndex = 164;
+            this.checkBox12.Text = "automatically resize and recolor when applying filter";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Checked = global::Paintbot.Settings.Default.useRectangleErase;
+            this.checkBox11.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "useRectangleErase", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox11.Location = new System.Drawing.Point(1382, 117);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(147, 17);
+            this.checkBox11.TabIndex = 163;
+            this.checkBox11.Text = "use rectangles for erasing";
+            this.checkBox11.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
@@ -1458,24 +1514,73 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // checkBox10
+            // numericUpDown23
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Checked = true;
-            this.checkBox10.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox10.Location = new System.Drawing.Point(604, 737);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(84, 17);
-            this.checkBox10.TabIndex = 161;
-            this.checkBox10.Text = "zoomPicture";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            this.numericUpDown23.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "groupColorFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown23.DecimalPlaces = 2;
+            this.numericUpDown23.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown23.Location = new System.Drawing.Point(1542, 679);
+            this.numericUpDown23.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown23.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown23.Name = "numericUpDown23";
+            this.numericUpDown23.Size = new System.Drawing.Size(75, 20);
+            this.numericUpDown23.TabIndex = 166;
+            this.numericUpDown23.Tag = 3F;
+            this.numericUpDown23.Value = global::Paintbot.Settings.Default.groupColorFactor;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(1447, 681);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(90, 13);
+            this.label48.TabIndex = 165;
+            this.label48.Text = "group color factor";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(1623, 676);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 167;
+            this.button11.Text = "group colors";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(1509, 163);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(115, 23);
+            this.button12.TabIndex = 168;
+            this.button12.Text = "draw hollow circles";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.numericUpDown23);
+            this.Controls.Add(this.label48);
+            this.Controls.Add(this.checkBox12);
+            this.Controls.Add(this.checkBox11);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.checkBox10);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.textBox3);
@@ -1589,6 +1694,7 @@
             this.Name = "Form1";
             this.Text = "Paintbot";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
@@ -1621,6 +1727,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1738,6 +1845,13 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckBox checkBox10;
+        public System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.NumericUpDown numericUpDown23;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }
 

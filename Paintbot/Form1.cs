@@ -106,5 +106,16 @@ namespace Paintbot
             }
             pictureBox1.Refresh();
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Program.GroupColors();
+            Program.RefreshPreview();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Program.DrawHollowCircles();
+        }
     }
 }
