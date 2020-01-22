@@ -356,13 +356,15 @@ namespace Paintbot
                         {
                             if(colorArray[x,y].Equals(color))
                             {
-                                int xLeft = 0, xRight = 0, yTop = 0, yBottom = 0, xWidth = 0, yHeight = 0;
+                                int xLeft = 0, xRight = 0, yTop = 0, yBottom = 0;
+                                float xWidth = 0, yHeight = 0;
                                 if(x > 0)
                                 {
                                     for(xLeft = x; xLeft > 0; xLeft--)
                                     {
                                         if(!colorArray[xLeft, y].Equals(color))
                                         {
+                                            xLeft = xLeft + 1;
                                             break;
                                         }
                                     }
@@ -373,6 +375,7 @@ namespace Paintbot
                                     {
                                         if (!colorArray[xRight, y].Equals(color))
                                         {
+                                            xRight = xRight - 1;
                                             break;
                                         }
                                     }
@@ -380,11 +383,11 @@ namespace Paintbot
                                 //TODO: check sizes
                                 if(x - xLeft < xRight - x)
                                 {
-                                    xWidth = 2 * (x - xLeft);
+                                    xWidth = 2 * (x - xLeft);// + 1;
                                 }
                                 else
                                 {
-                                    xWidth = 2 * (xRight - x);
+                                    xWidth = 2 * (xRight - x);// + 1;
                                 }
                                 
                                 if (y > 0)
@@ -393,6 +396,7 @@ namespace Paintbot
                                     {
                                         if (!colorArray[x, yTop].Equals(color))
                                         {
+                                            yTop = yTop + 1;
                                             break;
                                         }
                                     }
@@ -403,6 +407,7 @@ namespace Paintbot
                                     {
                                         if (!colorArray[x, yBottom].Equals(color))
                                         {
+                                            yBottom = yBottom - 1;
                                             break;
                                         }
                                     }
@@ -410,18 +415,27 @@ namespace Paintbot
                                 //TODO: check sizes
                                 if (y - yTop < yBottom - y)
                                 {
-                                    yHeight = 2 * (y - yTop);
+                                    yHeight = 2 * (y - yTop);// + 1;
                                 }
                                 else
                                 {
-                                    yHeight = 2 * (yBottom - y);
+                                    yHeight = 2 * (yBottom - y);// + 1;
                                 }
 
-                                temp = new CirclePoint(x, y, xWidth, yHeight, color);
-                                if(temp.Radius > circlePoint.Radius)
+                                //move x and y to center
+                                int xCenter = (xLeft + xRight) / 2;  
+                                int yCenter = (yBottom + yTop) / 2;
+
+                                temp = new CirclePoint(xCenter, yCenter, (int)xWidth, (int)yHeight, color);
+                                if(temp.Diameter > circlePoint.Diameter)
                                 {
                                     //if next point has bigger Width+Height replace Circlepoint after looping through image draw a circle with smaller value of height and width around the centerpoint in circleImage. 
                                     circlePoint = temp;
+                                    //System.Diagnostics.Debug.WriteLine("yTop:" + yTop + "yBottom:" + yBottom + "xLeft:" + xLeft + "xRight:" + xRight);
+                                    //foreach (var item in colorArray)
+                                    //{
+                                    //    Console.WriteLine(item.ToString());
+                                    //}
                                 }
                             }
                         }
@@ -443,11 +457,11 @@ namespace Paintbot
                             circlePoint.Diameter = maxCircleDiameterPixel;
                         }
 
-                        Rectangle rect = new Rectangle(circlePoint.CenterX - (int)circlePoint.Radius, circlePoint.CenterY - (int)circlePoint.Radius, circlePoint.Diameter, circlePoint.Diameter);
+                        Rectangle rect = new Rectangle((int)circlePoint.CenterX - (int)circlePoint.Radius, (int)circlePoint.CenterY - (int)circlePoint.Radius, (int)circlePoint.Diameter, (int)circlePoint.Diameter);
                         if (circlePoint.Radius < 1.0 && circlePoint.Radius != 0)
                         {
                             //catch 1 pixel circles
-                            rect = new Rectangle(circlePoint.CenterX, circlePoint.CenterY, 1, 1);
+                            rect = new Rectangle((int)circlePoint.CenterX, (int)circlePoint.CenterY, 1, 1);
                         }
 
                         Graphics gTemp = Graphics.FromImage(imageCopy);
@@ -470,11 +484,15 @@ namespace Paintbot
                         if (Settings.Default.useRectangleErase)
                         {
                             //erase rectangle
-                            for (int y = circlePoint.GetCircleYmin(); y < circlePoint.GetCircleYmax(); y++)
+                            for (int y = (int)circlePoint.GetCircleYmin(); y < circlePoint.GetCircleYmax() + 1; y++)
                             {
-                                for (int x = circlePoint.GetCircleXmin(); x < circlePoint.GetCircleXmax(); x++)
+                                for (int x = (int)circlePoint.GetCircleXmin(); x < circlePoint.GetCircleXmax() + 1; x++)
                                 {
-                                    colorArray[x, y] = Settings.Default.ignoreColor_hex;
+                                    if(x < colorArray.GetLength(0) && y < colorArray.GetLength(1))
+                                    {
+                                        colorArray[x, y] = Settings.Default.ignoreColor_hex;
+                                        //System.Diagnostics.Debug.WriteLine("x:" + x + "y:" + y);
+                                    }
                                 }
                             }
                         }
@@ -491,8 +509,10 @@ namespace Paintbot
                                 }
                             }
                         }
-                        
 
+                        //System.Diagnostics.Debug.WriteLine("circlePoint_x:" + circlePoint.CenterX + "circlePoint_y:" + circlePoint.CenterY + "diam:" + circlePoint.Diameter + "rad:" + circlePoint.Radius);
+                        //System.Diagnostics.Debug.WriteLine("circlePoint_xMin:" + circlePoint.GetCircleXmin() + "circlePoint_yMin:" + circlePoint.GetCircleYmin());
+                        //System.Diagnostics.Debug.WriteLine("circlePoint_xMax:" + circlePoint.GetCircleXmax() + "circlePoint_yMax:" + circlePoint.GetCircleYmax());
                         circlePointSet.Add(circlePoint);
                         temp = new CirclePoint(0,0,0,0, "");
                     }
@@ -523,7 +543,7 @@ namespace Paintbot
 
             foreach(CirclePoint circlePoint in circlePoints)
             {
-                Rectangle rect = new Rectangle(circlePoint.GetCircleXmin(), circlePoint.GetCircleYmin(), circlePoint.Width, circlePoint.Height);
+                Rectangle rect = new Rectangle((int)circlePoint.GetCircleXmin(), (int)circlePoint.GetCircleYmin(), (int)circlePoint.Width, (int)circlePoint.Height);
                 Pen pen = new Pen((Color)colorConverter.ConvertFromString("#" + circlePoint.Color));
 
                 graphics.DrawEllipse(pen, rect);

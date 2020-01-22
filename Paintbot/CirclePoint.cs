@@ -8,18 +8,17 @@ namespace Paintbot
 {
     class CirclePoint
     {
-        private int centerX, centerY, width, height, heightPlusWidth, diameter;
-        private float radius;
+        private float centerX, centerY, width, height, heightPlusWidth, diameter, radius;
         private string color;
 
-        public int CenterX { get => centerX; set => centerX = value; }
-        public int CenterY { get => centerY; set => centerY = value; }
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
-        public int HeightPlusWidth { get => heightPlusWidth; set => heightPlusWidth = value; }
+        public float CenterX { get => centerX; set => centerX = value; }
+        public float CenterY { get => centerY; set => centerY = value; }
+        public float Width { get => width; set => width = value; }
+        public float Height { get => height; set => height = value; }
+        public float HeightPlusWidth { get => heightPlusWidth; set => heightPlusWidth = value; }
         public float Radius { get => radius; set => radius = value; }
         public string Color { get => color; set => color = value; }
-        public int Diameter { get => diameter; set => diameter = value; }
+        public float Diameter { get => diameter; set => diameter = value; }
 
         public CirclePoint(int centerX, int centerY, int width, int height, string color)
         {
@@ -41,13 +40,13 @@ namespace Paintbot
                 width = height;
             }
 
-            diameter = (int)(2 * radius);
+            diameter = width; //same as heigth
         }
 
-        public int GetCircleXmin(){ return CenterX - (int)Radius; }
-        public int GetCircleYmin(){ return CenterY - (int)Radius; }
+        public float GetCircleXmin(){ return CenterX - Radius; }
+        public float GetCircleYmin(){ return CenterY - Radius; }
 
-        public int GetCircleXmax() { return CenterX + (int)Radius; }
-        public int GetCircleYmax() { return CenterY + (int)Radius; }
+        public float GetCircleXmax() { return CenterX + Radius; }
+        public float GetCircleYmax() { return CenterY + Radius; }
     }
 }
