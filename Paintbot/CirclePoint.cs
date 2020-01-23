@@ -8,39 +8,37 @@ namespace Paintbot
 {
     class CirclePoint
     {
-        private float centerX, centerY, width, height, heightPlusWidth, diameter, radius;
+        private float centerX, centerY, width, height, diameter, radius;
         private string color;
 
         public float CenterX { get => centerX; set => centerX = value; }
         public float CenterY { get => centerY; set => centerY = value; }
         public float Width { get => width; set => width = value; }
         public float Height { get => height; set => height = value; }
-        public float HeightPlusWidth { get => heightPlusWidth; set => heightPlusWidth = value; }
         public float Radius { get => radius; set => radius = value; }
         public string Color { get => color; set => color = value; }
         public float Diameter { get => diameter; set => diameter = value; }
 
-        public CirclePoint(int centerX, int centerY, int width, int height, string color)
+        public CirclePoint(float centerX, float centerY, float width, float height, string color)
         {
             this.centerX = centerX;
             this.centerY = centerY;
             this.width = width;
             this.height = height;
             this.color = color;
-
-            heightPlusWidth = width + height;
+            
             if(width < height)
             {
-                radius = width/2;
-                height = width;
+                Radius = width/2.0f;
+                Height = width;
             }
             else
             {
-                radius = height/2;
-                width = height;
+                Radius = height/2.0f;
+                Width = height;
             }
 
-            diameter = width; //same as heigth
+            Diameter = 2 * radius;
         }
 
         public float GetCircleXmin(){ return CenterX - Radius; }
