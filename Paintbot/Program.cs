@@ -384,7 +384,15 @@ namespace Paintbot
                                     xRight = xRight - 1;
                                 }
 
-                                xWidth = xRight - xLeft + 1;
+                                if (x - xLeft < xRight - x)
+                                {
+                                    xWidth = 2 * (x - xLeft);// + 1;
+                                }
+                                else
+                                {
+                                    xWidth = 2 * (xRight - x);// + 1;
+                                }
+                                //xWidth = xRight - xLeft + 1;
                                 
                                 if (y > 0)
                                 {
@@ -412,7 +420,15 @@ namespace Paintbot
                                     yBottom = yBottom - 1;
                                 }
 
-                                yHeight = yBottom - yTop + 1;
+                                if (y - yTop < yBottom - y)
+                                {
+                                    yHeight = 2 * (y - yTop);// + 1;
+                                }
+                                else
+                                {
+                                    yHeight = 2 * (yBottom - y);// + 1;
+                                }
+                                //yHeight = yBottom - yTop + 1;
 
                                 //move x and y to center
                                 float xCenter = (xLeft + xRight) / 2.0f;
@@ -493,9 +509,9 @@ namespace Paintbot
                         {
                             //erase rectangle
                             //TODO: check math.round
-                            for (int y = (int)circlePoint.GetCircleYmin(); y < (int)circlePoint.GetCircleYmax() + 1; y++)
+                            for (int y = (int)circlePoint.GetCircleYmin(); y < circlePoint.GetCircleYmax() + 1; y++)
                             {
-                                for (int x = (int)circlePoint.GetCircleXmin(); x < (int)circlePoint.GetCircleXmax() + 1; x++)
+                                for (int x = (int)circlePoint.GetCircleXmin(); x < circlePoint.GetCircleXmax() + 1; x++)
                                 {
                                     if(x < colorArray.GetLength(0) && y < colorArray.GetLength(1))
                                     {
