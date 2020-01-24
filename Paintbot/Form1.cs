@@ -70,7 +70,6 @@ namespace Paintbot
         {
             Program.ResizePicture();
             Program.RefreshPreview();
-            Program.DisplayPictureSize();
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -87,11 +86,6 @@ namespace Paintbot
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            Program.FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
         }
 
         private void checkBox10_CheckedChanged(object sender, EventArgs e)
@@ -116,6 +110,11 @@ namespace Paintbot
         private void button12_Click(object sender, EventArgs e)
         {
             Program.DrawHollowCircles();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Program.GenerateCircleGcode();
         }
     }
 }

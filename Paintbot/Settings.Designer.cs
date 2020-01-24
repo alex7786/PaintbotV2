@@ -658,5 +658,17 @@ namespace Paintbot {
                 this["groupColorFactor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string amountOfColors {
+            get {
+                return ((string)(this["amountOfColors"]));
+            }
+            set {
+                this["amountOfColors"] = value;
+            }
+        }
     }
 }

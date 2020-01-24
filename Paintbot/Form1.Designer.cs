@@ -85,10 +85,15 @@
             this.label47 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -141,12 +146,10 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
-            this.label48 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
@@ -179,7 +182,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -189,7 +191,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(749, 44);
             this.button2.TabIndex = 63;
-            this.button2.Text = "generate gCode";
+            this.button2.Text = "generate pixel gCode";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -710,16 +712,6 @@
             this.label36.TabIndex = 154;
             this.label36.Text = "maxCircleDiameter[Pixel]";
             // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(1382, 163);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(121, 23);
-            this.button10.TabIndex = 158;
-            this.button10.Text = "apply circle filter";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
             // label37
             // 
             this.label37.AutoSize = true;
@@ -751,6 +743,80 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 162;
             this.pictureBox2.TabStop = false;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(1447, 681);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(90, 13);
+            this.label48.TabIndex = 165;
+            this.label48.Text = "group color factor";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(1623, 676);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 167;
+            this.button11.Text = "group colors";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(1382, 163);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(242, 23);
+            this.button12.TabIndex = 168;
+            this.button12.Text = "apply circle filter and draw hollow circles";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(556, 768);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(76, 13);
+            this.label49.TabIndex = 170;
+            this.label49.Text = "different colors";
+            // 
+            // textBox4
+            // 
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "amountOfColors", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox4.Location = new System.Drawing.Point(638, 765);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(50, 20);
+            this.textBox4.TabIndex = 169;
+            this.textBox4.Text = global::Paintbot.Settings.Default.amountOfColors;
+            // 
+            // numericUpDown23
+            // 
+            this.numericUpDown23.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "groupColorFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown23.DecimalPlaces = 2;
+            this.numericUpDown23.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown23.Location = new System.Drawing.Point(1542, 679);
+            this.numericUpDown23.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown23.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown23.Name = "numericUpDown23";
+            this.numericUpDown23.Size = new System.Drawing.Size(75, 20);
+            this.numericUpDown23.TabIndex = 166;
+            this.numericUpDown23.Tag = 3F;
+            this.numericUpDown23.Value = global::Paintbot.Settings.Default.groupColorFactor;
             // 
             // checkBox12
             // 
@@ -1045,7 +1111,7 @@
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "filePrefix", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox2.Location = new System.Drawing.Point(391, 765);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 20);
+            this.textBox2.Size = new System.Drawing.Size(159, 20);
             this.textBox2.TabIndex = 123;
             this.textBox2.Text = global::Paintbot.Settings.Default.filePrefix;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -1454,10 +1520,14 @@
             // numericUpDown1
             // 
             this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "brushsize_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown1.DecimalPlaces = 1;
             this.numericUpDown1.Location = new System.Drawing.Point(146, 34);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -1514,66 +1584,25 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // numericUpDown23
+            // button10
             // 
-            this.numericUpDown23.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "groupColorFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown23.DecimalPlaces = 2;
-            this.numericUpDown23.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown23.Location = new System.Drawing.Point(1542, 679);
-            this.numericUpDown23.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown23.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.numericUpDown23.Name = "numericUpDown23";
-            this.numericUpDown23.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown23.TabIndex = 166;
-            this.numericUpDown23.Tag = 3F;
-            this.numericUpDown23.Value = global::Paintbot.Settings.Default.groupColorFactor;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(1447, 681);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(90, 13);
-            this.label48.TabIndex = 165;
-            this.label48.Text = "group color factor";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(1623, 676);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 167;
-            this.button11.Text = "group colors";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(1509, 163);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(115, 23);
-            this.button12.TabIndex = 168;
-            this.button12.Text = "draw hollow circles";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(1382, 839);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(316, 44);
+            this.button10.TabIndex = 171;
+            this.button10.Text = "generate circle gCode";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.label49);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.numericUpDown23);
@@ -1584,7 +1613,6 @@
             this.Controls.Add(this.checkBox10);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button10);
             this.Controls.Add(this.numericUpDown21);
             this.Controls.Add(this.numericUpDown22);
             this.Controls.Add(this.label35);
@@ -1692,9 +1720,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Paintbot";
+            this.Text = "PaintCam";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
@@ -1727,7 +1756,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1841,9 +1869,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown22;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckBox checkBox10;
         public System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.CheckBox checkBox11;
@@ -1852,6 +1878,10 @@
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button10;
     }
 }
 

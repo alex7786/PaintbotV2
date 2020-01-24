@@ -7,10 +7,6 @@ using System.Windows.Forms;
 
 namespace Paintbot
 //everything in absolute coordinates (G53)
-
-//TODO: Test different brush sizes
-//TODO: generate circle drawings gcode by using circlepoint hashset
-
 {
     class Program
     {
@@ -34,6 +30,13 @@ namespace Paintbot
             ParseColors();
 
             Application.Run(form1); 
+        }
+
+        public static void GenerateCircleGcode()
+        {
+            //TODO: generate circle drawings gcode by using circlepoint hashset
+            HashSet<CirclePoint> circlePoints = FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
+
         }
 
         public static void GroupColors()
@@ -321,10 +324,17 @@ namespace Paintbot
         {
             Cursor.Current = Cursors.WaitCursor;
 
-            if (Settings.Default.filterResizeRecolor)
+            if(Settings.Default.filterResizeRecolor)
             {
                 ResizePicture();
                 RecolorImage();
+            }
+
+            if (!Settings.Default.useRectangleErase && minCircleDiameterPixel < 2)
+            {
+                //catch too small circles for filter with circle erase area
+                minCircleDiameterPixel = 2;
+                Settings.Default.minCircleDiameterPixel = 2;
             }
 
             HashSet<string> pictureColors = GetColorStrings(Settings.Default.ignoreColor_hex);
@@ -483,29 +493,6 @@ namespace Paintbot
                             circlePoint.Height = maxCircleDiameterPixel;
                             circlePoint.Diameter = maxCircleDiameterPixel;
                         }
-
-                        Rectangle rect = new Rectangle((int)circlePoint.CenterX - (int)circlePoint.Radius, (int)circlePoint.CenterY - (int)circlePoint.Radius, (int)circlePoint.Diameter, (int)circlePoint.Diameter);
-                        if (circlePoint.Radius < 1.0 && circlePoint.Radius != 0)
-                        {
-                            //catch 1 pixel circles
-                            rect = new Rectangle((int)circlePoint.CenterX, (int)circlePoint.CenterY, 1, 1);
-                        }
-
-                        Graphics gTemp = Graphics.FromImage(imageCopy);
-                        Graphics gCircle = Graphics.FromImage(circleImage);
-                        SolidBrush brushTemp = new SolidBrush((Color)colorConverter.ConvertFromString("#" + Settings.Default.ignoreColor_hex));
-
-                        gTemp.FillEllipse(brushTemp, rect);
-                        brushTemp = new SolidBrush((Color)colorConverter.ConvertFromString("#" + color));
-                        gTemp.Dispose();
-
-                        if(circlePoint.Diameter >= minCircleDiameterPixel)
-                        {
-                            gCircle.FillEllipse(brushTemp, rect);
-                            gCircle.Dispose();
-                        }
-                        
-                        brushTemp.Dispose();
                         
                         if (Settings.Default.useRectangleErase)
                         {
@@ -534,9 +521,37 @@ namespace Paintbot
                                 }
                             }
                         }
-                        
+
+                        //draw the preview with filled circles
+                        Rectangle rect = new Rectangle((int)circlePoint.GetCircleXmin(), (int)circlePoint.GetCircleYmin(), (int)circlePoint.Width, (int)circlePoint.Height);
+                        if (circlePoint.Radius < 1.0 && circlePoint.Radius != 0)
+                        {
+                            //catch 1 pixel circles
+                            rect = new Rectangle((int)circlePoint.CenterX, (int)circlePoint.CenterY, 1, 1);
+                        }
+
+                        Graphics gTemp = Graphics.FromImage(imageCopy);
+                        Graphics gCircle = Graphics.FromImage(circleImage);
+                        SolidBrush brushTemp = new SolidBrush((Color)colorConverter.ConvertFromString("#" + Settings.Default.ignoreColor_hex));
+
+                        gTemp.FillEllipse(brushTemp, rect);
+                        SolidBrush brushColor = new SolidBrush((Color)colorConverter.ConvertFromString("#" + circlePoint.Color));
+                        gTemp.Dispose();
+
+                        if (circlePoint.Diameter >= minCircleDiameterPixel)
+                        {
+                            gCircle.FillEllipse(brushColor, rect);
+                            gCircle.Dispose();
+                        }
+
+                        brushTemp.Dispose();
+                        brushColor.Dispose();
+                        //end of preview
+
                         circlePointSet.Add(circlePoint);
                         temp = new CirclePoint(0,0,0,0, "");
+                        Settings.Default.amountOfCircles = circlePointSet.Count.ToString();
+                        form1.textBox3.Refresh();
                     }
                     form1.pictureBox2.Image = imageCopy;
                     form1.pictureBox2.Refresh();
@@ -811,6 +826,7 @@ namespace Paintbot
 
             image1 = new Bitmap(resized);
             resized.Dispose();
+            DisplayPictureSize();
         }
 
         public static void RefreshPreview()
@@ -867,12 +883,14 @@ namespace Paintbot
         {
             Cursor.Current = Cursors.WaitCursor;
             GC.Collect();
+
+            //get non indexed image
+            image1 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
             for (int x = 0; x < image1.Width; x++)  // Loop through the images pixels
             {
                 for (int y = 0; y < image1.Height; y++)
                 {
-                    //get non indexed image
-                    image1 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                     double colorDistanceOld = 99999999.0f;
                     Color pixelColor = image1.GetPixel(x, y);
                     //source: https://en.wikipedia.org/wiki/Color_difference#Euclidean
@@ -895,6 +913,9 @@ namespace Paintbot
                     }
                 }
             }
+            //display amount of colors
+            Settings.Default.amountOfColors = GetColorStrings(Settings.Default.ignoreColor_hex).Count.ToString();
+
             Cursor.Current = Cursors.Default;
         }
 
