@@ -92,6 +92,7 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
@@ -146,7 +147,6 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
@@ -782,6 +782,17 @@
             this.label49.TabIndex = 170;
             this.label49.Text = "different colors";
             // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(1382, 839);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(316, 44);
+            this.button10.TabIndex = 171;
+            this.button10.Text = "generate circle gCode";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // textBox4
             // 
             this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "amountOfColors", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1031,6 +1042,11 @@
             0,
             0,
             0});
+            this.numericUpDown28.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown28.Name = "numericUpDown28";
             this.numericUpDown28.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown28.TabIndex = 140;
@@ -1047,6 +1063,11 @@
             0,
             0,
             0});
+            this.numericUpDown29.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown29.Name = "numericUpDown29";
             this.numericUpDown29.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown29.TabIndex = 139;
@@ -1084,6 +1105,11 @@
             0,
             0,
             0});
+            this.numericUpDown25.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown25.Name = "numericUpDown25";
             this.numericUpDown25.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown25.TabIndex = 134;
@@ -1100,6 +1126,11 @@
             0,
             0,
             0});
+            this.numericUpDown26.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown26.Name = "numericUpDown26";
             this.numericUpDown26.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown26.TabIndex = 133;
@@ -1583,17 +1614,6 @@
             this.textBox10.Size = new System.Drawing.Size(185, 20);
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
-            // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(1382, 839);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(316, 44);
-            this.button10.TabIndex = 171;
-            this.button10.Text = "generate circle gCode";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Form1
             // 

@@ -19,6 +19,7 @@ namespace Paintbot
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Settings.Default.Properties["maxWidthX"].DefaultValue = Settings.Default.maxWidthX;
             Settings.Default.Save();
         }
 

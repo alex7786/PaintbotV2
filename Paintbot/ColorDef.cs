@@ -31,11 +31,14 @@ namespace Paintbot
         public ColorDef(string parseColor)
         {
             var colorData = parseColor.Split('/');
-            this.name = colorData[0];
-            this.colorHex = colorData[1];
-            this.xPos = float.Parse(colorData[2]);
-            this.yPos = float.Parse(colorData[3]);
-            SetColor(this.colorHex);
+            if(colorData.Length > 3)
+            {
+                this.name = colorData[0];
+                this.colorHex = colorData[1];
+                this.xPos = float.Parse(colorData[2]);
+                this.yPos = float.Parse(colorData[3]);
+                SetColor(this.colorHex);
+            }
         }
        
         private void SetColor(string hexCode)

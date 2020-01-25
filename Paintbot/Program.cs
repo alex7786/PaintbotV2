@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace Paintbot
 //everything in absolute coordinates (G53)
+
 {
     class Program
     {
@@ -29,18 +30,300 @@ namespace Paintbot
             RefreshPreview();
             ParseColors();
 
-            Application.Run(form1); 
+            Application.Run(form1);
         }
 
         public static void GenerateCircleGcode()
         {
-            //TODO: generate circle drawings gcode by using circlepoint hashset
-            HashSet<CirclePoint> circlePoints = FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
+            //TODO: if working with doCircles bool combine gcode generation functions
+            bool doCircles = true;
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            float brushSize = (float)Settings.Default.brushsize_mm;
+            float zMoveHeight = (float)Settings.Default.zMoveHeight_mm;
+            float colorPositionX = (float)Settings.Default.colorPosX_mm;
+            float colorPositionY = (float)Settings.Default.colorPosY_mm;
+            float colorPositionZ = (float)Settings.Default.colorPosZ_mm;
+            float colorContainerHeight = (float)Settings.Default.colorContainerHeight_mm;
+            float zMoveDepth = (float)Settings.Default.zDepth_mm;
+            int pickColorFrequency = (int)Settings.Default.pickColorFrequency;
+            int zSpeed = (int)Settings.Default.zSpeed_mm_min;
+            int xySpeed = (int)Settings.Default.xySpeed_mm_min;
+            String ignoreColor = Settings.Default.ignoreColor_hex;
+            String imagePath = Settings.Default.imagePath;
+            String outputPath = Settings.Default.outputPath;
+            String gcodeStartPath = Settings.Default.gcodeStartPath;
+            String gcodeEndPath = Settings.Default.gcodeEndPath;
+            bool colorAtYgantry = Settings.Default.colorAtYgantry;
+            bool flipYAxis = Settings.Default.flipYAxis;
+            bool endOverWater = Settings.Default.endOverWater;
+            bool moveXZsameTime = Settings.Default.moveZXsameTime;
+            float canvasZeroPosX_mm = (float)Settings.Default.canvasZeroPosX_mm;
+            float canvasZeroPosY_mm = (float)Settings.Default.canvasZeroPosY_mm;
+            float canvasZeroPosZ_mm = (float)Settings.Default.canvasZeroPosZ_mm;
+            int progressBar = Settings.Default.progressbar; //value between 0 and 100
+            bool useColorPosDef = Settings.Default.useColorPosDef;
+            int maxNumColorPerFile = (int)Settings.Default.maxNumColorPerFile;
+
+            Directory.CreateDirectory(outputPath);
+            DirectoryInfo di = new DirectoryInfo(outputPath);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+            string gcodeStart = System.IO.File.ReadAllText(gcodeStartPath);
+            string gcodeEnd = System.IO.File.ReadAllText(gcodeEndPath);
+
+            int x, y;
+
+            HashSet<string> colorStrings = GetColorStrings(ignoreColor);
+
+            int progress = 0;
+            string[,] pathArray = new string[colorStrings.Count, 2];
+            int pathNo = 0;
+
+            foreach (string colorType in colorStrings)
+            {
+                float progressRatio = (float)progress / (float)colorStrings.Count;
+                progressBar = (int)(progressRatio * 100);
+                progress++;
+                form1.progressBar1.Value = progressBar;
+                form1.progressBar1.Update();
+
+                //ensure paths exist
+                System.IO.Directory.CreateDirectory(outputPath);
+                System.IO.Directory.CreateDirectory(outputPath + "\\singleColors");
+
+                string gcodePath = Path.Combine(outputPath + "\\singleColors", AztecColorAssign(colorType) + ".gcode");
+                StreamWriter fileOut = new StreamWriter(gcodePath, true);
+                pathArray[pathNo, 0] = gcodePath;
+                pathArray[pathNo, 1] = AztecColorAssign(colorType);
+                pathNo++;
+
+                if (maxNumColorPerFile == 1)
+                {
+                    fileOut.WriteLine(gcodeStart);
+                }
+
+                HashSet<CirclePoint> circlePoints = new HashSet<CirclePoint>();
+                HashSet<ColorCoordinate> colorCoordinates = new HashSet<ColorCoordinate>();
+                if (doCircles)
+                {
+                    circlePoints = FillWithCircles((int)Settings.Default.minCircleDiameterPixel, (int)Settings.Default.maxCircleDiameterPixel);
+                }
+                else
+                {
+                    colorCoordinates = new HashSet<ColorCoordinate>();
+                    for (x = 0; x < image1.Width; x++)  // Loop through the images pixels
+                    {
+                        for (y = 0; y < image1.Height; y++)
+                        {
+                            System.Drawing.Color pixelColor = image1.GetPixel(x, y);
+                            {
+                                if (string.Equals(pixelColor.Name, colorType))
+                                {
+                                    colorCoordinates.Add(new ColorCoordinate(x, y));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (useColorPosDef)//automatic get color from position
+                {
+                    colorAtYgantry = false; //to ensure color at gantry not selected when positions are used
+                    foreach (ColorDef colorDef in colorPalette)
+                    {
+                        if (colorDef.ColorHex.Equals(colorType))
+                        {
+                            colorPositionX = colorDef.XPos;
+                            colorPositionY = colorDef.YPos;
+                            break;
+                        }
+                    }
+                }
+
+                int pixelNo = 0;
+                int getColor = 0;
+
+                if (doCircles)
+                {
+                    foreach(CirclePoint circle in circlePoints)
+                    {
+                        if (pixelNo % pickColorFrequency == 0)
+                        {
+                            if ((getColor + 1) % Settings.Default.cleanBrushPicks == 0)
+                            {
+                                fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorPositionZ, zSpeed, xySpeed));
+                            }
+
+                            fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false));
+                            getColor++;
+                        }
+
+                        pixelNo++;
+
+                        //TODO: generate gcode for each complete circle (go through radius)
+                        if (circle.Color == colorType)
+                        {
+                            if (flipYAxis)
+                            {
+                                //fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), -currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                                fileOut.WriteLine(DrawCircle(circle.CenterX, -circle.CenterY, circle.Radius, zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                            }
+                            else
+                            {
+                                //fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                                fileOut.WriteLine(DrawCircle(circle.CenterX, circle.CenterY, circle.Radius, zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ColorCoordinate currentPoint = null;
+                    ColorCoordinate nextPoint = null;
+                    HashSet<ColorCoordinate> doneColorCoordinates = new HashSet<ColorCoordinate>();
+
+                    foreach (ColorCoordinate point in colorCoordinates)
+                    {
+                        if (currentPoint == null)
+                        {   //initialization of the first point
+                            currentPoint = point;
+                            nextPoint = point;
+                            doneColorCoordinates.Add(point);
+                        }
+
+
+                        foreach (ColorCoordinate nPoint in colorCoordinates)
+                        {
+                            if (!doneColorCoordinates.Contains(nPoint))
+                            {
+                                if (nextPoint.Equals(currentPoint) && !nPoint.Equals(currentPoint))
+                                {
+                                    nextPoint = nPoint;
+                                }
+                                if (currentPoint.checkDistance(nPoint) < currentPoint.checkDistance(nextPoint))
+                                {
+                                    nextPoint = nPoint;
+                                }
+                            }
+                        }
+
+                        if (pixelNo % pickColorFrequency == 0)
+                        {
+                            if ((getColor + 1) % Settings.Default.cleanBrushPicks == 0)
+                            {
+                                fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorPositionZ, zSpeed, xySpeed));
+                            }
+                            fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false));
+                            getColor++;
+                        }
+
+                        pixelNo++;
+
+                        if (flipYAxis)
+                        {
+                            fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), -currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                        }
+                        else
+                        {
+                            fileOut.WriteLine(PaintStroke(currentPoint.getXpos(), currentPoint.getYpos(), zMoveHeight, zMoveDepth, brushSize, zSpeed, xySpeed, canvasZeroPosX_mm, canvasZeroPosY_mm, canvasZeroPosZ_mm));
+                        }
+
+                        currentPoint = nextPoint;
+                        doneColorCoordinates.Add(currentPoint);
+
+                    }
+                }
+                
+
+                if (endOverWater)
+                {   //end with cleaning brush
+                    fileOut.WriteLine(CleanBrush(Settings.Default.useWater, Settings.Default.useSponge, Settings.Default.useTissue, colorPositionZ, zSpeed, xySpeed));
+                }
+                else
+                {
+                    if (maxNumColorPerFile == 1)
+                    {
+                        fileOut.WriteLine(gcodeEnd);
+                    }
+                }
+
+                fileOut.Close();
+            }
+
+            if (maxNumColorPerFile > 1)
+            {
+                int noOfFiles = pathArray.Length / 2;
+                double numberOfRuns = Math.Ceiling((float)noOfFiles / maxNumColorPerFile);
+                for (int k = 0; k < numberOfRuns; k++)
+                {
+                    int offset = k * maxNumColorPerFile;
+
+                    bool firstRun = true;
+                    string fileName = Settings.Default.filePrefix + "_" + k;
+                    string colors = "";
+
+                    int upperlimit = offset + maxNumColorPerFile;
+                    if (upperlimit > noOfFiles)
+                    {
+                        upperlimit = noOfFiles;
+                    }
+
+                    for (int i = offset; i < upperlimit; i++)
+                    {
+                        //generate colors as comment
+                        if (firstRun)
+                        {
+                            colors = ";" + pathArray[i, 1].Substring(0, 4);
+                            firstRun = false;
+                        }
+                        else
+                        {
+                            colors = colors + "_" + pathArray[i, 1].Substring(0, 4);
+                        }
+                    }
+                    firstRun = true;
+                    string filePath = outputPath + fileName + ".gcode";
+                    for (int i = offset; i < upperlimit; i++)
+                    {
+                        if (firstRun)
+                        {
+                            File.AppendAllText(filePath, colors + "\n\n");
+                            File.AppendAllText(filePath, gcodeStart);
+                            File.AppendAllText(filePath, File.ReadAllText(pathArray[i, 0]));
+                            firstRun = false;
+                        }
+                        else
+                        {
+                            File.AppendAllText(filePath, File.ReadAllText(pathArray[i, 0]));
+                        }
+                    }
+                    File.AppendAllText(filePath, gcodeEnd);
+                }
+            }
+
+            form1.progressBar1.Value = 100;
+            form1.progressBar1.Update();
+
+            Cursor.Current = Cursors.Default;
+
+            MessageBox.Show("gcode generation done", "PaintCam");
+
 
         }
 
         public static void GroupColors()
         {
+            //scale image down and back up to blur it
             float scale = (float)Settings.Default.groupColorFactor;
             int scaleWidth = (int)(image1.Width * scale);
             int scaleHeight = (int)(image1.Height * scale);
@@ -48,22 +331,11 @@ namespace Paintbot
 
             using (Graphics g = Graphics.FromImage(resized))
             {
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
                 g.DrawImage(image1, 0, 0, scaleWidth, scaleHeight);
             }
 
-            scale = 1 / scale;
-            scaleWidth = (int)(resized.Width * scale);
-            scaleHeight = (int)(resized.Height * scale);
-            resized = new Bitmap(resized, new Size(scaleWidth, scaleHeight));
-
-            using (Graphics g = Graphics.FromImage(resized))
-            {
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
-                g.DrawImage(image1, 0, 0, scaleWidth, scaleHeight);
-            }
-
-            image1 = new Bitmap(resized);
+            image1 = new Bitmap(resized, image1.Width, image1.Height);
             resized.Dispose();
         }
 
@@ -299,10 +571,8 @@ namespace Paintbot
             form1.progressBar1.Update();
 
             Cursor.Current = Cursors.Default;
-
-            Form2 formPopup = new Form2(form1);
-            formPopup.StartPosition = FormStartPosition.CenterParent;
-            formPopup.ShowDialog();
+            
+            MessageBox.Show("gcode generation done", "PaintCam");
         }
 
         public static string[,] GetBitmapColorNames(Bitmap bitmap)
@@ -458,6 +728,7 @@ namespace Paintbot
 
                                 if (!colorArray[(int)xCenter, (int)yCenter].Equals(color))
                                 {
+                                    //don´t accept centerpoints which have a different color
                                     xWidth = 0;
                                     yHeight = 0;
                                 }
@@ -670,14 +941,14 @@ namespace Paintbot
                 }
                 else
                 {
-                    getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " Z" + zColorHeight + " F" + (int)feedRate + gcodePartStart +
+                    getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                     "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 Z" + zColorHeight + " F" + zSpeed + gcodePartEnd;
+                    "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
                 }
 
             }
@@ -698,7 +969,7 @@ namespace Paintbot
                 }
                 else
                 {
-                    getColorString = "\nG53 Z" + zColorHeight + " F" + zSpeed + gcodePartStart +
+                    getColorString = "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartStart +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                     "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
@@ -706,7 +977,7 @@ namespace Paintbot
                     "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 Z" + zColorHeight + " F" + zSpeed + gcodePartEnd;
+                    "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
                 }
             }
 
@@ -801,10 +1072,53 @@ namespace Paintbot
             return paintStrokeString;
         }
 
+        static string DrawCircle(float xCenter, float yCenter, float radius, float zMoveHeight, float zMoveDepth, float brushSize, int zSpeed, int xySpeed, float canvasZeroPosX_mm, float canvasZeroPosY_mm, float canvasZeroPosZ_mm)
+        {
+            //generate circle drawings gcode
+            //http://www.manufacturinget.org/2011/12/cnc-g-code-g02-and-g03/
+            
+            if (Settings.Default.centerOnCanvas)
+            {
+                float width = (float)Settings.Default.maxWidthX / brushSize;
+                float height = (float)Settings.Default.maxHeightY / brushSize;
+                if (image1.Width < width && image1.Height >= height - 1)
+                {
+                    int xOffset = ((int)width - image1.Width) / 2;
+                    canvasZeroPosX_mm = canvasZeroPosX_mm + xOffset;
+                }
+                else if (image1.Width >= width - 1 && image1.Height < height)
+                {
+                    int yOffset = ((int)height - image1.Height) / 2;
+                    canvasZeroPosY_mm = canvasZeroPosY_mm + yOffset;
+                }
+            }
+
+            //G17;
+            //G53 X10 Y - 10 F3000;
+            //G02 I2.0;
+
+            //'G2 X0 I5 F500' will draw a 5mm radius circle from X0 to X10 and back
+            //TODO: check circle gcode
+            string circleString = "\nG17;" +
+                "\nG53 X" + ((xCenter - radius) * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " Y" + (yCenter * brushSize + canvasZeroPosY_mm).ToString().Replace(',', '.') + " F" + xySpeed +
+                "\nG53 Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
+                "\nG02 X" + ((xCenter - radius) * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " I" + radius.ToString().Replace(',', '.') + "; draw circle " +
+                "\nG53 Z" + (zMoveHeight + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; circle end";
+
+            oldXpos = (xCenter - radius) * brushSize + canvasZeroPosX_mm;
+            oldYpos = yCenter * brushSize + canvasZeroPosY_mm;
+            oldZpos = zMoveHeight + canvasZeroPosZ_mm;
+
+            return circleString;
+        }
+
         public static void LoadImage()
         {
             String imagePath = Settings.Default.imagePath;
-            image1 = new Bitmap(imagePath);
+            if (File.Exists(imagePath))
+            {
+                image1 = new Bitmap(imagePath);
+            }
         }
 
         public static void ResizePicture()
@@ -872,6 +1186,10 @@ namespace Paintbot
             String imagePath = Settings.Default.imagePath;
             if(File.Exists(imagePath))
             {
+                if(image1 == null)
+                {
+                    image1 = new Bitmap(imagePath);
+                }
                 xSize = image1.Width * brushSize;
                 ySize = image1.Height * brushSize;
                 form1.textBox1.Text = "X: " + xSize + "mm; Y: " + ySize + "mm";
