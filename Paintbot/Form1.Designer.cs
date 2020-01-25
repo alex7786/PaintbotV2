@@ -147,6 +147,8 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.numericUpDown34 = new System.Windows.Forms.NumericUpDown();
+            this.label50 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
@@ -182,6 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -589,7 +592,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(13, 807);
+            this.label33.Location = new System.Drawing.Point(1025, 863);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(157, 13);
             this.label33.TabIndex = 121;
@@ -1150,7 +1153,7 @@
             // numericUpDown20
             // 
             this.numericUpDown20.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "cleanBrushPicks", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown20.Location = new System.Drawing.Point(176, 805);
+            this.numericUpDown20.Location = new System.Drawing.Point(1188, 861);
             this.numericUpDown20.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1438,7 +1441,12 @@
             this.numericUpDown9.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "xySpeed_mm_min", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown9.Location = new System.Drawing.Point(146, 343);
             this.numericUpDown9.Maximum = new decimal(new int[] {
-            10000,
+            5000,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -1453,7 +1461,12 @@
             this.numericUpDown8.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "zSpeed_mm_min", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown8.Location = new System.Drawing.Point(146, 317);
             this.numericUpDown8.Maximum = new decimal(new int[] {
-            1000,
+            5000,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -1615,11 +1628,41 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
+            // numericUpDown34
+            // 
+            this.numericUpDown34.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "waterContainerHeight_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown34.Location = new System.Drawing.Point(146, 805);
+            this.numericUpDown34.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown34.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown34.Name = "numericUpDown34";
+            this.numericUpDown34.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown34.TabIndex = 173;
+            this.numericUpDown34.Value = global::Paintbot.Settings.Default.waterContainerHeight_mm;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(12, 807);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(131, 13);
+            this.label50.TabIndex = 172;
+            this.label50.Text = "waterContainerHeight[mm]";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.numericUpDown34);
+            this.Controls.Add(this.label50);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.label49);
             this.Controls.Add(this.textBox4);
@@ -1776,6 +1819,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1902,6 +1946,8 @@
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.NumericUpDown numericUpDown34;
+        private System.Windows.Forms.Label label50;
     }
 }
 

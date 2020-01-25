@@ -689,5 +689,17 @@ namespace Paintbot {
                 this["amountOfColors"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("55")]
+        public decimal waterContainerHeight_mm {
+            get {
+                return ((decimal)(this["waterContainerHeight_mm"]));
+            }
+            set {
+                this["waterContainerHeight_mm"] = value;
+            }
+        }
     }
 }

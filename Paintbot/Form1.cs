@@ -25,7 +25,7 @@ namespace Paintbot
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Program.GenerateGCode();
+            Program.GenerateGCode(false);
         }
 
         private void textBox12_TextChanged(object sender, EventArgs e)
@@ -115,7 +115,7 @@ namespace Paintbot
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Program.GenerateCircleGcode();
+            Program.GenerateGCode(true);
         }
     }
 }

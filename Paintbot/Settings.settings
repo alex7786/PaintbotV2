@@ -224,5 +224,8 @@ a128/ffcacace/10,59/-10,59
     <Setting Name="amountOfColors" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="waterContainerHeight_mm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">55</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
