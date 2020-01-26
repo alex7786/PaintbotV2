@@ -259,18 +259,18 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 114);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 13);
+            this.label9.Size = new System.Drawing.Size(108, 13);
             this.label9.TabIndex = 49;
-            this.label9.Text = "colorPosX[mm]";
+            this.label9.Text = "colorPosX[mm]Gantry";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 140);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.Size = new System.Drawing.Size(108, 13);
             this.label8.TabIndex = 47;
-            this.label8.Text = "colorPosY[mm]";
+            this.label8.Text = "colorPosY[mm]Gantry";
             // 
             // label7
             // 
