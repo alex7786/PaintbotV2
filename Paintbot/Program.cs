@@ -310,6 +310,13 @@ namespace Paintbot
                             colors = colors + "_" + pathArray[i, 1].Substring(0, 4);
                         }
                     }
+
+                    if (maxNumColorPerFile < 11)
+                    {
+                        //add colors to filename if maxNumColorPerFile not too much
+                        fileName = fileName + "_" + colors.Substring(1);
+                    }
+
                     firstRun = true;
                     string filePath = outputPath + fileName + ".gcode";
                     for (int i = offset; i < upperlimit; i++)
