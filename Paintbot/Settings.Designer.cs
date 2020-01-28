@@ -741,5 +741,77 @@ a162/ff38302d/588/-816")]
                 this["waterContainerHeight_mm"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal wiggleAmountWater {
+            get {
+                return ((decimal)(this["wiggleAmountWater"]));
+            }
+            set {
+                this["wiggleAmountWater"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal wiggleAmountSponge {
+            get {
+                return ((decimal)(this["wiggleAmountSponge"]));
+            }
+            set {
+                this["wiggleAmountSponge"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal wiggleAmountTissue {
+            get {
+                return ((decimal)(this["wiggleAmountTissue"]));
+            }
+            set {
+                this["wiggleAmountTissue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal wiggleAmountColor {
+            get {
+                return ((decimal)(this["wiggleAmountColor"]));
+            }
+            set {
+                this["wiggleAmountColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cleanBrushStart {
+            get {
+                return ((bool)(this["cleanBrushStart"]));
+            }
+            set {
+                this["cleanBrushStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool pixelFileLimit {
+            get {
+                return ((bool)(this["pixelFileLimit"]));
+            }
+            set {
+                this["pixelFileLimit"] = value;
+            }
+        }
     }
 }

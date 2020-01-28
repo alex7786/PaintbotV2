@@ -226,5 +226,23 @@ a162/ff38302d/588/-816</Value>
     <Setting Name="waterContainerHeight_mm" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">55</Value>
     </Setting>
+    <Setting Name="wiggleAmountWater" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="wiggleAmountSponge" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="wiggleAmountTissue" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="wiggleAmountColor" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="cleanBrushStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="pixelFileLimit" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

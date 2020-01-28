@@ -8,6 +8,7 @@ using System.Windows.Forms;
 namespace Paintbot
 //everything in absolute coordinates (G53)
 
+//TODO: limit by lines if shorter -> 100 pixel Settings.Default.pixelFileLimit
 {
     class Program
     {
@@ -129,6 +130,11 @@ namespace Paintbot
                     fileOut.WriteLine(gcodeStart);
                 }
 
+                if (Settings.Default.cleanBrushStart)
+                {
+                    fileOut.WriteLine(CleanBrush(Settings.Default.useWater, Settings.Default.useSponge, Settings.Default.useTissue, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
+                }
+
                 HashSet<CirclePoint> circlePoints = new HashSet<CirclePoint>();
                 HashSet<ColorCoordinate> colorCoordinates = new HashSet<ColorCoordinate>();
                 if (doCircles)
@@ -183,10 +189,10 @@ namespace Paintbot
                                 {
                                     if ((getColor + 1) % Settings.Default.cleanBrushPicks == 0)
                                     {
-                                        fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorContainerHeight, zSpeed, xySpeed));
+                                        fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
                                     }
 
-                                    fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false));
+                                    fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false, (int)Settings.Default.wiggleAmountColor, false));
                                     getColor++;
                                 }
                                 
@@ -240,9 +246,9 @@ namespace Paintbot
                         {
                             if ((getColor + 1) % Settings.Default.cleanBrushPicks == 0)
                             {
-                                fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorContainerHeight, zSpeed, xySpeed));
+                                fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
                             }
-                            fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false));
+                            fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false, (int)Settings.Default.wiggleAmountColor, false));
                             getColor++;
                         }
 
@@ -266,7 +272,7 @@ namespace Paintbot
 
                 if (endOverWater)
                 {   //end with cleaning brush
-                    fileOut.WriteLine(CleanBrush(Settings.Default.useWater, Settings.Default.useSponge, Settings.Default.useTissue, colorContainerHeight, zSpeed, xySpeed));
+                    fileOut.WriteLine(CleanBrush(Settings.Default.useWater, Settings.Default.useSponge, Settings.Default.useTissue, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
                 }
                 else
                 {
@@ -657,7 +663,7 @@ namespace Paintbot
             return colorStrings;
         }
 
-        static string GetColor(int getColorIndex, float xPos, float yPos, bool colorAtYgantry, float zPos, float zColorHeight, int zSpeed, int xySpeed, bool moveXZsameTime, float xyMoveRadius, bool brushClean)
+        static string GetColor(int getColorIndex, float xPos, float yPos, bool colorAtYgantry, float zPos, float zColorHeight, int zSpeed, int xySpeed, bool moveXZsameTime, float xyMoveRadius, bool brushClean, int wiggleAmount, bool moveRandom)
         {
             /*
              * xPos = X position of the color
@@ -675,6 +681,8 @@ namespace Paintbot
                 gcodePartEnd = "; brush clean end \n";
             }
 
+            string wiggle = "";
+            Random rand = new Random();
 
             if (moveXZsameTime)
             {
@@ -697,26 +705,41 @@ namespace Paintbot
                 {
                     feedRate = zSpeed;
                 }
-
+                
                 if (colorAtYgantry)
                 {
+                    for(int i = 0; i < wiggleAmount; i++)
+                    {
+                        if (moveRandom)
+                        {
+                            //Random on tissue and sponge
+                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
+                        }
+                        wiggle = wiggle + "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                    }
                     getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                    wiggle +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
                 }
                 else
                 {
+                    for (int i = 0; i < wiggleAmount; i++)
+                    {
+                        if (moveRandom)
+                        {
+                            //Random on tissue and sponge
+                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
+                        }
+                        wiggle = wiggle + "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                        "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                    }
                     getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                    wiggle +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
                 }
@@ -726,26 +749,41 @@ namespace Paintbot
             {
                 if (colorAtYgantry)
                 {
+                    for (int i = 0; i < wiggleAmount; i++)
+                    {
+                        if (moveRandom)
+                        {
+                            //Random on tissue and sponge
+                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
+                        }
+                        wiggle = wiggle + "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                    }
                     getColorString = "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartStart +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + //" Y" + yPos.ToString().Replace(',', '.') + 
                     " F" + xySpeed +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                    wiggle +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
                 }
                 else
                 {
+                    for (int i = 0; i < wiggleAmount; i++)
+                    {
+                        if (moveRandom)
+                        {
+                            //Random on tissue and sponge
+                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
+                        }
+                        wiggle = wiggle + "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                        "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                    }
                     getColorString = "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartStart +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                    wiggle +
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
                 }
@@ -758,29 +796,29 @@ namespace Paintbot
             return getColorString;
         }
 
-        static string CleanBrush(bool useWater, bool useSponge, bool useTissue, float zColorHeight, int zSpeed, int xySpeed) 
+        static string CleanBrush(bool useWater, bool useSponge, bool useTissue, float zColorHeight, int zSpeed, int xySpeed, int amountWiggleTissue, int amountWiggleWater, int amountWiggleSponge) 
         {
             //automatic brush cleaning
             string cleanBrush = "";
             //tissue
             if (useTissue)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true);
             }
             //water
             if (useWater)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false);
             }
             //sponge
             if (useSponge)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.spongePosX_mm, (float)Settings.Default.spongePosY_mm, false, (float)Settings.Default.spongePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.spongeMoveRadius, true);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.spongePosX_mm, (float)Settings.Default.spongePosY_mm, false, (float)Settings.Default.spongePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.spongeMoveRadius, true, (int)Settings.Default.wiggleAmountSponge, true);
             }
             //water
             if (useWater)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false);
             }
 
             return cleanBrush;
@@ -802,15 +840,22 @@ namespace Paintbot
             {
                 float width = (float)Settings.Default.maxWidthX / brushSize;
                 float height = (float)Settings.Default.maxHeightY / brushSize;
-                if (image1.Width < width && image1.Height >= height - 1)
+                if (image1.Width < (int)width && image1.Height >= (int)height - 1)
                 {
                     int xOffset = ((int)width - image1.Width) / 2;
                     canvasZeroPosX_mm = canvasZeroPosX_mm + xOffset;
                 }
-                else if (image1.Width >= width - 1 && image1.Height < height)
+                else if (image1.Width >= (int)width - 1 && image1.Height < (int)height)
                 {
                     int yOffset = ((int)height - image1.Height) / 2;
-                    canvasZeroPosY_mm = canvasZeroPosY_mm + yOffset;
+                    if (Settings.Default.flipYAxis)
+                    {
+                        canvasZeroPosY_mm = canvasZeroPosY_mm - yOffset;
+                    }
+                    else
+                    {
+                        canvasZeroPosY_mm = canvasZeroPosY_mm + yOffset;
+                    }
                 }
             }
 
