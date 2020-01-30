@@ -98,6 +98,7 @@
             this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
@@ -158,7 +159,9 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).BeginInit();
@@ -206,7 +209,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(16, 839);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(749, 44);
+            this.button2.Size = new System.Drawing.Size(534, 44);
             this.button2.TabIndex = 63;
             this.button2.Text = "generate pixel gCode";
             this.button2.UseVisualStyleBackColor = true;
@@ -854,6 +857,18 @@
             this.label54.Size = new System.Drawing.Size(101, 13);
             this.label54.TabIndex = 174;
             this.label54.Text = "movements in water";
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Checked = global::Paintbot.Settings.Default.pixelFileLimit;
+            this.checkBox14.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "pixelFileLimit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox14.Location = new System.Drawing.Point(1382, 812);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(183, 17);
+            this.checkBox14.TabIndex = 183;
+            this.checkBox14.Text = "collect colors in file if < 1000 lines";
+            this.checkBox14.UseVisualStyleBackColor = true;
             // 
             // checkBox13
             // 
@@ -1798,23 +1813,46 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // checkBox14
+            // checkBox15
             // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Checked = global::Paintbot.Settings.Default.pixelFileLimit;
-            this.checkBox14.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "pixelFileLimit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox14.Location = new System.Drawing.Point(1382, 812);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(182, 17);
-            this.checkBox14.TabIndex = 183;
-            this.checkBox14.Text = "collect colors in file if < 100 pixels";
-            this.checkBox14.UseVisualStyleBackColor = true;
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Checked = global::Paintbot.Settings.Default.resizeColorGcode;
+            this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "resizeColorGcode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox15.Location = new System.Drawing.Point(556, 839);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(289, 17);
+            this.checkBox15.TabIndex = 184;
+            this.checkBox15.Text = "automatically resize and recolor when generating gCode";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(556, 858);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(96, 23);
+            this.button13.TabIndex = 185;
+            this.button13.Text = "save settings";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(658, 858);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(96, 23);
+            this.button14.TabIndex = 186;
+            this.button14.Text = "load settings";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.button14);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.checkBox15);
             this.Controls.Add(this.checkBox14);
             this.Controls.Add(this.checkBox13);
             this.Controls.Add(this.numericUpDown35);
@@ -2126,6 +2164,9 @@
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.CheckBox checkBox13;
         private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
     }
 }
 

@@ -117,5 +117,15 @@ namespace Paintbot
         {
             Program.GenerateGCode(true);
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Program.saveSettings();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Program.loadSettings();
+        }
     }
 }

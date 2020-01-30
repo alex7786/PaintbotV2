@@ -813,5 +813,17 @@ a162/ff38302d/588/-816")]
                 this["pixelFileLimit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool resizeColorGcode {
+            get {
+                return ((bool)(this["resizeColorGcode"]));
+            }
+            set {
+                this["resizeColorGcode"] = value;
+            }
+        }
     }
 }

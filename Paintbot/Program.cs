@@ -8,7 +8,6 @@ using System.Windows.Forms;
 namespace Paintbot
 //everything in absolute coordinates (G53)
 
-//TODO: limit by lines if shorter -> 100 pixel Settings.Default.pixelFileLimit
 {
     class Program
     {
@@ -32,6 +31,21 @@ namespace Paintbot
             ParseColors();
 
             Application.Run(form1);
+        }
+        
+        public static void saveSettings()
+        {
+            //TODO: save and load settings
+            //https://stackoverflow.com/questions/3784477/c-sharp-approach-for-saving-user-settings-in-a-wpf-application
+            //foreach Settings.Default
+            //save as list or dictionary and save/load to xml
+            //evaluate the data ->
+            //https://stackoverflow.com/questions/7019978/can-i-compare-the-keys-of-two-dictionaries
+        }
+
+        public static void loadSettings()
+        {
+
         }
 
         public static void GroupColors()
@@ -57,6 +71,13 @@ namespace Paintbot
             bool doCircles = generateCircles;
 
             Cursor.Current = Cursors.WaitCursor;
+
+            //Apply automatic resize and recolor before gcode generation
+            if (Settings.Default.resizeColorGcode)
+            {
+                ResizePicture();
+                RecolorImage();
+            }
 
             float brushSize = (float)Settings.Default.brushsize_mm;
             float zMoveHeight = (float)Settings.Default.zMoveHeight_mm;
@@ -285,6 +306,8 @@ namespace Paintbot
                 fileOut.Close();
             }
 
+            //TODO: limit by lines if shorter -> 100 pixel Settings.Default.pixelFileLimit
+            //File.ReadLines(@"C:\file.txt").Count(); -> 1000lines
             if (maxNumColorPerFile > 1)
             {
                 int noOfFiles = pathArray.Length / 2;
@@ -800,15 +823,15 @@ namespace Paintbot
         {
             //automatic brush cleaning
             string cleanBrush = "";
-            //tissue
-            if (useTissue)
-            {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true);
-            }
             //water
             if (useWater)
             {
                 cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false);
+            }
+            //tissue
+            if (useTissue)
+            {
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true);
             }
             //sponge
             if (useSponge)

@@ -244,5 +244,8 @@ a162/ff38302d/588/-816</Value>
     <Setting Name="pixelFileLimit" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="resizeColorGcode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
