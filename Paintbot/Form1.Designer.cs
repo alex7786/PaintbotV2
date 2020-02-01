@@ -98,6 +98,10 @@
             this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
@@ -159,9 +163,6 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).BeginInit();
@@ -857,6 +858,51 @@
             this.label54.Size = new System.Drawing.Size(101, 13);
             this.label54.TabIndex = 174;
             this.label54.Text = "movements in water";
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(556, 858);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(96, 23);
+            this.button13.TabIndex = 185;
+            this.button13.Text = "export settings";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(658, 858);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(96, 23);
+            this.button14.TabIndex = 186;
+            this.button14.Text = "import settings";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Checked = global::Paintbot.Settings.Default.xzMoveStroke;
+            this.checkBox16.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox16.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "xzMoveStroke", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox16.Location = new System.Drawing.Point(242, 625);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(90, 17);
+            this.checkBox16.TabIndex = 187;
+            this.checkBox16.Text = "at paintstroke";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Checked = global::Paintbot.Settings.Default.resizeColorGcode;
+            this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "resizeColorGcode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox15.Location = new System.Drawing.Point(556, 839);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(289, 17);
+            this.checkBox15.TabIndex = 184;
+            this.checkBox15.Text = "automatically resize and recolor when generating gCode";
+            this.checkBox15.UseVisualStyleBackColor = true;
             // 
             // checkBox14
             // 
@@ -1561,9 +1607,9 @@
             this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "moveZXsameTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox4.Location = new System.Drawing.Point(146, 625);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(108, 17);
+            this.checkBox4.Size = new System.Drawing.Size(79, 17);
             this.checkBox4.TabIndex = 81;
-            this.checkBox4.Text = "X and Z get color";
+            this.checkBox4.Text = "at get color";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox3
@@ -1813,43 +1859,12 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
-            // checkBox15
-            // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Checked = global::Paintbot.Settings.Default.resizeColorGcode;
-            this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "resizeColorGcode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox15.Location = new System.Drawing.Point(556, 839);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(289, 17);
-            this.checkBox15.TabIndex = 184;
-            this.checkBox15.Text = "automatically resize and recolor when generating gCode";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(556, 858);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(96, 23);
-            this.button13.TabIndex = 185;
-            this.button13.Text = "save settings";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(658, 858);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(96, 23);
-            this.button14.TabIndex = 186;
-            this.button14.Text = "load settings";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.checkBox16);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.checkBox15);
@@ -2167,6 +2182,7 @@
         private System.Windows.Forms.CheckBox checkBox15;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.CheckBox checkBox16;
     }
 }
 

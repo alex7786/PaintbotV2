@@ -120,12 +120,12 @@ namespace Paintbot
 
         private void button13_Click(object sender, EventArgs e)
         {
-            Program.saveSettings();
+            Program.exportSettings();
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-            Program.loadSettings();
+            Program.importSettings();
         }
     }
 }

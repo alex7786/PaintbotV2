@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Paintbot
 //everything in absolute coordinates (G53)
 
+//TODO: stripe filter
 {
     class Program
     {
@@ -32,19 +35,102 @@ namespace Paintbot
 
             Application.Run(form1);
         }
-        
-        public static void saveSettings()
+
+        public static Dictionary<string, string> GetCurrentSettings()
         {
-            //TODO: save and load settings
-            //https://stackoverflow.com/questions/3784477/c-sharp-approach-for-saving-user-settings-in-a-wpf-application
-            //foreach Settings.Default
-            //save as list or dictionary and save/load to xml
-            //evaluate the data ->
-            //https://stackoverflow.com/questions/7019978/can-i-compare-the-keys-of-two-dictionaries
+            Dictionary<string, string> settings = new Dictionary<string, string>();
+            foreach (SettingsProperty currentProperty in Settings.Default.Properties)
+            {
+                string key = currentProperty.Name.ToString();
+                string value = Settings.Default[currentProperty.Name].ToString();
+                settings.Add(key, value);
+            }
+            return settings;
+        }
+        
+        public static void exportSettings()
+        {
+            //save as list or dictionary and save to ini
+            Dictionary<string, string> settings = GetCurrentSettings();
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "ini file|*.ini";
+            saveFileDialog1.Title = "Save a settings file";
+            saveFileDialog1.ShowDialog();
+
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog1.FileName != "")
+            {
+                using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
+                    foreach (var entry in settings)
+                    {
+                        file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+                    }
+            }
         }
 
-        public static void loadSettings()
+        public static void importSettings()
         {
+            //load settings
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "ini file|*.ini";
+            openFileDialog.Title = "Open a settings file";
+            openFileDialog.ShowDialog();
+
+            if(openFileDialog.FileName != "")
+            {
+                string settingsLine = File.ReadAllText(openFileDialog.FileName);
+                string[] settingsSplit = settingsLine.Split(']');
+                List<string> result = new List<string>();
+                foreach (string trim in settingsSplit)
+                {
+                    string element = trim.TrimStart('\r').TrimStart('\n').TrimStart('[');
+                    if(element != "")
+                    {
+                        result.Add(element);
+                    }
+                }
+
+                Dictionary<string, string> settings = new Dictionary<string, string>();
+                foreach(string keyValPair in result)
+                {
+                    int splitPos = keyValPair.IndexOf(' ');
+                    settings.Add(keyValPair.Substring(0, splitPos), keyValPair.Substring(splitPos+1));
+                }
+
+                //evaluate the data https://stackoverflow.com/questions/7019978/can-i-compare-the-keys-of-two-dictionaries
+                if(!(GetCurrentSettings().Count == settings.Count && GetCurrentSettings().Keys.SequenceEqual(settings.Keys)))
+                {
+                    MessageBox.Show("error in settings(not same format)");
+                }
+
+                //
+                foreach (SettingsProperty currentProperty in Settings.Default.Properties)
+                {
+                    foreach(KeyValuePair<string, string> keyVal in settings)
+                    {
+                        if(keyVal.Key == currentProperty.Name)
+                        {
+                            if(Settings.Default[currentProperty.Name].GetType().Name == "Decimal")
+                            {
+                                Settings.Default[currentProperty.Name] = Convert.ToDecimal(keyVal.Value);
+                            }
+                            else if (Settings.Default[currentProperty.Name].GetType().Name == "Boolean")
+                            {
+                                Settings.Default[currentProperty.Name] = Convert.ToBoolean(keyVal.Value);
+                            }
+                            else if (Settings.Default[currentProperty.Name].GetType().Name == "Int32")
+                            {
+                                Settings.Default[currentProperty.Name] = Convert.ToInt32(keyVal.Value);
+                            }
+                            else
+                            {
+                                Settings.Default[currentProperty.Name] = keyVal.Value;
+                            }
+                        }
+                    }
+                }
+            }
 
         }
 
@@ -306,7 +392,7 @@ namespace Paintbot
                 fileOut.Close();
             }
 
-            //TODO: limit by lines if shorter -> 100 pixel Settings.Default.pixelFileLimit
+            //TODO: limit by gcode lines if shorter -> 100 pixel Settings.Default.pixelFileLimit
             //File.ReadLines(@"C:\file.txt").Count(); -> 1000lines
             if (maxNumColorPerFile > 1)
             {
@@ -883,24 +969,31 @@ namespace Paintbot
             }
 
             string paintStrokeString = "";
-
-            if (xPos == oldXpos)
+            string zMovement = "";
+            if (Settings.Default.xzMoveStroke)
             {
-                paintStrokeString = "\nG53 Y" + (yPos * brushSize + canvasZeroPosY_mm).ToString().Replace(',', '.') + " F" + xySpeed +
-                "\nG53 Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
-                "\nG53 Z" + (zMoveHeight + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; paint stroke end";
-            }
-            else if(yPos == oldYpos)
-            {
-                paintStrokeString = "\nG53 X" + (xPos * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " F" + xySpeed +
-                "\nG53 Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
+                //make brush side movement
+                zMovement = "\nG53 X" + ((xPos - 2) * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " F" + xySpeed +
+                "\nG53 X" + (xPos * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                 "\nG53 Z" + (zMoveHeight + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; paint stroke end";
             }
             else
             {
-                paintStrokeString = "\nG53 X" + (xPos * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " Y" + (yPos * brushSize + canvasZeroPosY_mm).ToString().Replace(',', '.') + " F" + xySpeed +
-                "\nG53 Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
+                zMovement = "\nG53 Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                 "\nG53 Z" + (zMoveHeight + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; paint stroke end";
+            }
+
+            if (xPos == oldXpos)
+            {
+                paintStrokeString = "\nG53 Y" + (yPos * brushSize + canvasZeroPosY_mm).ToString().Replace(',', '.') + " F" + xySpeed + zMovement;
+            }
+            else if(yPos == oldYpos)
+            {
+                paintStrokeString = "\nG53 X" + (xPos * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " F" + xySpeed + zMovement;
+            }
+            else
+            {
+                paintStrokeString = "\nG53 X" + (xPos * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " Y" + (yPos * brushSize + canvasZeroPosY_mm).ToString().Replace(',', '.') + " F" + xySpeed + zMovement;
             }
 
             oldXpos = xPos*brushSize + canvasZeroPosX_mm;

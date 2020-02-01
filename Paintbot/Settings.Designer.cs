@@ -825,5 +825,17 @@ a162/ff38302d/588/-816")]
                 this["resizeColorGcode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool xzMoveStroke {
+            get {
+                return ((bool)(this["xzMoveStroke"]));
+            }
+            set {
+                this["xzMoveStroke"] = value;
+            }
+        }
     }
 }
