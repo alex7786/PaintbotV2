@@ -949,14 +949,14 @@ namespace Paintbot
             {
                 float width = (float)Settings.Default.maxWidthX / brushSize;
                 float height = (float)Settings.Default.maxHeightY / brushSize;
-                if (image1.Width < (int)width && image1.Height >= (int)height - 1)
+                if (image1.Width < (int)width)
                 {
-                    int xOffset = ((int)width - image1.Width) / 2;
+                    int xOffset = (((int)width - image1.Width) / 2) * (int)brushSize;
                     canvasZeroPosX_mm = canvasZeroPosX_mm + xOffset;
                 }
-                else if (image1.Width >= (int)width - 1 && image1.Height < (int)height)
+                if (image1.Height < (int)height)
                 {
-                    int yOffset = ((int)height - image1.Height) / 2;
+                    int yOffset = (((int)height - image1.Height) / 2) *(int)brushSize;
                     if (Settings.Default.flipYAxis)
                     {
                         canvasZeroPosY_mm = canvasZeroPosY_mm - yOffset;
@@ -1012,14 +1012,14 @@ namespace Paintbot
             {
                 float width = (float)Settings.Default.maxWidthX / brushSize;
                 float height = (float)Settings.Default.maxHeightY / brushSize;
-                if (image1.Width < width && image1.Height >= height - 1)
+                if (image1.Width < width)
                 {
-                    int xOffset = ((int)width - image1.Width) / 2;
+                    int xOffset = (((int)width - image1.Width) / 2) *(int)brushSize;
                     canvasZeroPosX_mm = canvasZeroPosX_mm + xOffset;
                 }
-                else if (image1.Width >= width - 1 && image1.Height < height)
+                else if (image1.Height < height)
                 {
-                    int yOffset = ((int)height - image1.Height) / 2;
+                    int yOffset = (((int)height - image1.Height) / 2) *(int)brushSize;
                     canvasZeroPosY_mm = canvasZeroPosY_mm + yOffset;
                 }
             }
