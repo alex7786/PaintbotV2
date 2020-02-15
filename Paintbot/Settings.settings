@@ -42,7 +42,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ignoreColor_hex" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ffffffff</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="zDepth_mm" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-5</Value>
@@ -261,6 +261,9 @@ a162/ff38302d/588/-816</Value>
     </Setting>
     <Setting Name="gcodeEnd" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gCodeMoveType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"\nG53"</Value>
     </Setting>
   </Settings>
 </SettingsFile>

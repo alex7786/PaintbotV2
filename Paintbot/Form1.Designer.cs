@@ -87,8 +87,6 @@
             this.label54 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
@@ -112,9 +110,11 @@
             this.importSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.numericUpDown39 = new System.Windows.Forms.NumericUpDown();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
@@ -165,6 +165,7 @@
             this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown31 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -175,6 +176,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -184,7 +186,6 @@
             this.tabPage4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -221,6 +222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
             this.SuspendLayout();
@@ -366,11 +368,11 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(16, 38);
+            this.label23.Location = new System.Drawing.Point(16, 34);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(237, 13);
+            this.label23.Size = new System.Drawing.Size(131, 13);
             this.label23.TabIndex = 89;
-            this.label23.Text = "everything in absolute coordinates (G53)";
+            this.label23.Text = "gcode movement type";
             // 
             // label24
             // 
@@ -817,24 +819,6 @@
             this.tabPage1.Text = "general settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // richTextBox3
-            // 
-            this.richTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gcodeEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.richTextBox3.Location = new System.Drawing.Point(88, 501);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(320, 85);
-            this.richTextBox3.TabIndex = 194;
-            this.richTextBox3.Text = global::Paintbot.Settings.Default.gcodeEnd;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gcodeStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.richTextBox2.Location = new System.Drawing.Point(88, 410);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(321, 85);
-            this.richTextBox2.TabIndex = 193;
-            this.richTextBox2.Text = global::Paintbot.Settings.Default.gcodeStart;
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -868,7 +852,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(415, 645);
+            this.tabPage2.Size = new System.Drawing.Size(416, 645);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "color settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -974,7 +958,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(415, 645);
+            this.tabPage3.Size = new System.Drawing.Size(416, 645);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "cleaning settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1024,8 +1008,8 @@
             this.tabPage4.Controls.Add(this.button11);
             this.tabPage4.Controls.Add(this.label37);
             this.tabPage4.Controls.Add(this.button12);
-            this.tabPage4.Controls.Add(this.numericUpDown23);
             this.tabPage4.Controls.Add(this.label48);
+            this.tabPage4.Controls.Add(this.numericUpDown23);
             this.tabPage4.Controls.Add(this.numericUpDown22);
             this.tabPage4.Controls.Add(this.numericUpDown21);
             this.tabPage4.Controls.Add(this.textBox3);
@@ -1122,6 +1106,15 @@
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click_1);
             // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gCodeMoveType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox5.Location = new System.Drawing.Point(153, 31);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(90, 20);
+            this.textBox5.TabIndex = 195;
+            this.textBox5.Text = global::Paintbot.Settings.Default.gCodeMoveType;
+            // 
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
@@ -1134,32 +1127,6 @@
             this.checkBox15.Text = "automatically resize and recolor when generating gCode";
             this.checkBox15.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown23
-            // 
-            this.numericUpDown23.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "groupColorFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown23.DecimalPlaces = 2;
-            this.numericUpDown23.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown23.Location = new System.Drawing.Point(328, 180);
-            this.numericUpDown23.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown23.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.numericUpDown23.Name = "numericUpDown23";
-            this.numericUpDown23.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown23.TabIndex = 166;
-            this.numericUpDown23.Tag = 3F;
-            this.numericUpDown23.Value = global::Paintbot.Settings.Default.groupColorFactor;
-            // 
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
@@ -1171,6 +1138,24 @@
             this.checkBox5.TabIndex = 108;
             this.checkBox5.Text = "center on canvas";
             this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gcodeEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.richTextBox3.Location = new System.Drawing.Point(88, 501);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(320, 85);
+            this.richTextBox3.TabIndex = 194;
+            this.richTextBox3.Text = global::Paintbot.Settings.Default.gcodeEnd;
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gcodeStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.richTextBox2.Location = new System.Drawing.Point(88, 410);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(321, 85);
+            this.richTextBox2.TabIndex = 193;
+            this.richTextBox2.Text = global::Paintbot.Settings.Default.gcodeStart;
             // 
             // numericUpDown39
             // 
@@ -1997,6 +1982,32 @@
             this.numericUpDown31.Tag = 3F;
             this.numericUpDown31.Value = global::Paintbot.Settings.Default.waterMoveRadius;
             // 
+            // numericUpDown23
+            // 
+            this.numericUpDown23.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "groupColorFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown23.DecimalPlaces = 2;
+            this.numericUpDown23.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown23.Location = new System.Drawing.Point(328, 180);
+            this.numericUpDown23.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown23.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown23.Name = "numericUpDown23";
+            this.numericUpDown23.Size = new System.Drawing.Size(75, 20);
+            this.numericUpDown23.TabIndex = 166;
+            this.numericUpDown23.Tag = 3F;
+            this.numericUpDown23.Value = global::Paintbot.Settings.Default.groupColorFactor;
+            // 
             // numericUpDown22
             // 
             this.numericUpDown22.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "minCircleDiameterPixel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2114,11 +2125,22 @@
             this.textBox12.Text = global::Paintbot.Settings.Default.imagePath;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(249, 34);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(133, 13);
+            this.label17.TabIndex = 196;
+            this.label17.Text = "usually \"\\nG53\" or \"\\nG1\"";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 737);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.tabControl1);
@@ -2154,7 +2176,6 @@
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -2191,6 +2212,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
             this.ResumeLayout(false);
@@ -2347,6 +2369,8 @@
         private System.Windows.Forms.ToolStripMenuItem importSettingsToolStripMenuItem;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label17;
     }
 }
 

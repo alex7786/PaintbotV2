@@ -181,7 +181,7 @@ namespace Paintbot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ffffffff")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ignoreColor_hex {
             get {
                 return ((string)(this["ignoreColor_hex"]));
@@ -883,6 +883,18 @@ a162/ff38302d/588/-816")]
             }
             set {
                 this["gcodeEnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"\\nG53\"")]
+        public string gCodeMoveType {
+            get {
+                return ((string)(this["gCodeMoveType"]));
+            }
+            set {
+                this["gCodeMoveType"] = value;
             }
         }
     }
