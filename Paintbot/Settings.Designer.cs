@@ -837,5 +837,17 @@ a162/ff38302d/588/-816")]
                 this["xzMoveStroke"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool endInWater {
+            get {
+                return ((bool)(this["endInWater"]));
+            }
+            set {
+                this["endInWater"] = value;
+            }
+        }
     }
 }

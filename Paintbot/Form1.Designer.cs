@@ -47,7 +47,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -163,6 +162,7 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).BeginInit();
@@ -379,15 +379,6 @@
             this.label17.Size = new System.Drawing.Size(27, 13);
             this.label17.TabIndex = 78;
             this.label17.Text = "flipY";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(12, 580);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(78, 13);
-            this.label18.TabIndex = 80;
-            this.label18.Text = "end over water";
             // 
             // label19
             // 
@@ -1615,14 +1606,14 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = global::Paintbot.Settings.Default.endOverWater;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "endOverWater", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox3.Checked = global::Paintbot.Settings.Default.endInWater;
+            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "endInWater", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox3.Location = new System.Drawing.Point(146, 579);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(113, 17);
+            this.checkBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBox3.Size = new System.Drawing.Size(84, 17);
             this.checkBox3.TabIndex = 79;
-            this.checkBox3.Text = "don\'t end at 0/0/0";
+            this.checkBox3.Text = "end in water";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // checkBox2
@@ -1859,11 +1850,26 @@
             this.textBox10.TabIndex = 50;
             this.textBox10.Text = global::Paintbot.Settings.Default.ignoreColor_hex;
             // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Checked = global::Paintbot.Settings.Default.endOverWater;
+            this.checkBox17.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox17.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "endOverWater", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox17.Location = new System.Drawing.Point(12, 579);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBox17.Size = new System.Drawing.Size(97, 17);
+            this.checkBox17.TabIndex = 188;
+            this.checkBox17.Text = "end over water";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 894);
+            this.Controls.Add(this.checkBox17);
             this.Controls.Add(this.checkBox16);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
@@ -1961,7 +1967,6 @@
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.checkBox2);
@@ -2084,7 +2089,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox checkBox4;
@@ -2183,6 +2187,7 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.CheckBox checkBox16;
+        private System.Windows.Forms.CheckBox checkBox17;
     }
 }
 

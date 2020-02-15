@@ -250,5 +250,8 @@ a162/ff38302d/588/-816</Value>
     <Setting Name="xzMoveStroke" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="endInWater" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

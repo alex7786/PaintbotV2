@@ -206,6 +206,11 @@ namespace Paintbot
             string gcodeStart = System.IO.File.ReadAllText(gcodeStartPath);
             string gcodeEnd = System.IO.File.ReadAllText(gcodeEndPath);
 
+            if (Settings.Default.endInWater)
+            {
+                gcodeEnd = GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false, true) + gcodeEnd;
+            }
+
             int x, y;
 
             HashSet<string> colorStrings = GetColorStrings(ignoreColor);
@@ -299,7 +304,7 @@ namespace Paintbot
                                         fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
                                     }
 
-                                    fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false, (int)Settings.Default.wiggleAmountColor, false));
+                                    fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false, (int)Settings.Default.wiggleAmountColor, false, false));
                                     getColor++;
                                 }
                                 
@@ -355,7 +360,7 @@ namespace Paintbot
                             {
                                 fileOut.WriteLine(CleanBrush(Settings.Default.useWater, false, false, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
                             }
-                            fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false, (int)Settings.Default.wiggleAmountColor, false));
+                            fileOut.WriteLine(GetColor(pixelNo, colorPositionX, colorPositionY, colorAtYgantry, colorPositionZ, colorContainerHeight, zSpeed, xySpeed, moveXZsameTime, (float)Settings.Default.colorMoveRadius, false, (int)Settings.Default.wiggleAmountColor, false, false));
                             getColor++;
                         }
 
@@ -376,8 +381,8 @@ namespace Paintbot
                     }
                 }
 
-
-                if (endOverWater)
+                
+                if (endOverWater || Settings.Default.endInWater)
                 {   //end with cleaning brush
                     fileOut.WriteLine(CleanBrush(Settings.Default.useWater, Settings.Default.useSponge, Settings.Default.useTissue, colorContainerHeight, zSpeed, xySpeed, (int)Settings.Default.wiggleAmountTissue, (int)Settings.Default.wiggleAmountWater, (int)Settings.Default.wiggleAmountSponge));
                 }
@@ -772,7 +777,7 @@ namespace Paintbot
             return colorStrings;
         }
 
-        static string GetColor(int getColorIndex, float xPos, float yPos, bool colorAtYgantry, float zPos, float zColorHeight, int zSpeed, int xySpeed, bool moveXZsameTime, float xyMoveRadius, bool brushClean, int wiggleAmount, bool moveRandom)
+        static string GetColor(int getColorIndex, float xPos, float yPos, bool colorAtYgantry, float zPos, float zColorHeight, int zSpeed, int xySpeed, bool moveXZsameTime, float xyMoveRadius, bool brushClean, int wiggleAmount, bool moveRandom, bool endInWater)
         {
             /*
              * xPos = X position of the color
@@ -830,8 +835,11 @@ namespace Paintbot
                     getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                     wiggle +
-                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed;
+                    if (!endInWater)
+                    {
+                        getColorString = getColorString + "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    }
                 }
                 else
                 {
@@ -849,8 +857,11 @@ namespace Paintbot
                     getColorString = "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                     wiggle +
-                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed;
+                    if (!endInWater)
+                    {
+                        getColorString = getColorString + "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    }
                 }
 
             }
@@ -873,8 +884,11 @@ namespace Paintbot
                     " F" + xySpeed +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                     wiggle +
-                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed;
+                    if (!endInWater)
+                    {
+                        getColorString = getColorString + "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    }
                 }
                 else
                 {
@@ -893,8 +907,11 @@ namespace Paintbot
                     "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
                     "\nG53 Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                     wiggle +
-                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
-                    "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    "\nG53 X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed;
+                    if (!endInWater)
+                    {
+                        getColorString = getColorString + "\nG53 Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartEnd;
+                    }
                 }
             }
 
@@ -912,22 +929,22 @@ namespace Paintbot
             //water
             if (useWater)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false, false);
             }
             //tissue
             if (useTissue)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true, false);
             }
             //sponge
             if (useSponge)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.spongePosX_mm, (float)Settings.Default.spongePosY_mm, false, (float)Settings.Default.spongePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.spongeMoveRadius, true, (int)Settings.Default.wiggleAmountSponge, true);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.spongePosX_mm, (float)Settings.Default.spongePosY_mm, false, (float)Settings.Default.spongePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.spongeMoveRadius, true, (int)Settings.Default.wiggleAmountSponge, true, false);
             }
             //water
             if (useWater)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false);
+                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false, false);
             }
 
             return cleanBrush;
