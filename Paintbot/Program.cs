@@ -203,8 +203,8 @@ namespace Paintbot
                 dir.Delete(true);
             }
 
-            string gcodeStart = System.IO.File.ReadAllText(gcodeStartPath);
-            string gcodeEnd = System.IO.File.ReadAllText(gcodeEndPath);
+            string gcodeStart = Settings.Default.gcodeStart;
+            string gcodeEnd = Settings.Default.gcodeEnd;
 
             if (Settings.Default.endInWater)
             {
@@ -990,7 +990,7 @@ namespace Paintbot
             if (Settings.Default.xzMoveStroke)
             {
                 //make brush side movement
-                zMovement = "\nG53 X" + ((xPos - 2) * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " F" + xySpeed +
+                zMovement = "\nG53 X" + ((xPos - (float)Settings.Default.brushXmoveStroke) * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " F" + xySpeed +
                 "\nG53 X" + (xPos * brushSize + canvasZeroPosX_mm).ToString().Replace(',', '.') + " Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
                 "\nG53 Z" + (zMoveHeight + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + "; paint stroke end";
             }

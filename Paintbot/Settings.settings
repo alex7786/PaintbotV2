@@ -253,5 +253,14 @@ a162/ff38302d/588/-816</Value>
     <Setting Name="endInWater" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="brushXmoveStroke" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="gcodeStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G90 ; use absolute positioning for the XYZ axes</Value>
+    </Setting>
+    <Setting Name="gcodeEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

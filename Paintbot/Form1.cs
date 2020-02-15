@@ -84,11 +84,6 @@ namespace Paintbot
             Program.RefreshPreview();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox10_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox10.Checked)
@@ -124,6 +119,43 @@ namespace Paintbot
         }
 
         private void button14_Click(object sender, EventArgs e)
+        {
+            Program.importSettings();
+        }
+
+        private void loadNewImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                String res = openFileDialog1.FileName;
+                Settings.Default.imagePath = res;
+                Program.LoadImage();
+                Program.RefreshPreview();
+                Program.DisplayPictureSize();
+            }
+        }
+
+        private void infoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.StartPosition = FormStartPosition.CenterParent;
+            form2.Show();
+        }
+
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Properties["maxWidthX"].DefaultValue = Settings.Default.maxWidthX;
+            Settings.Default.Save();
+        }
+
+        private void exportSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.exportSettings();
+        }
+
+        private void importSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.importSettings();
         }

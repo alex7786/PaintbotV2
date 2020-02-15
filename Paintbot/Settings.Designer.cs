@@ -849,5 +849,41 @@ a162/ff38302d/588/-816")]
                 this["endInWater"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal brushXmoveStroke {
+            get {
+                return ((decimal)(this["brushXmoveStroke"]));
+            }
+            set {
+                this["brushXmoveStroke"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 ; use absolute positioning for the XYZ axes")]
+        public string gcodeStart {
+            get {
+                return ((string)(this["gcodeStart"]));
+            }
+            set {
+                this["gcodeStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gcodeEnd {
+            get {
+                return ((string)(this["gcodeEnd"]));
+            }
+            set {
+                this["gcodeEnd"] = value;
+            }
+        }
     }
 }
