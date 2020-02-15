@@ -43,8 +43,15 @@ namespace Paintbot
        
         private void SetColor(string hexCode)
         {
-            ColorConverter colorConverter = new ColorConverter();
-            color = (Color)colorConverter.ConvertFromString("#" + hexCode);
+            try
+            {
+                ColorConverter colorConverter = new ColorConverter();
+                color = (Color)colorConverter.ConvertFromString("#" + hexCode);
+            }
+             catch (Exception e)
+            {
+                Program.ColorParseError();
+            }
         }
     }
 }

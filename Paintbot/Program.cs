@@ -1211,5 +1211,10 @@ namespace Paintbot
             }
             return hexcolor;
         }
+
+        public static void ColorParseError()
+        {
+            MessageBox.Show("error parsing colors, please check hex values", "PaintCam");
+        }
     }
 }
