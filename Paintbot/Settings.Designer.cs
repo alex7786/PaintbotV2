@@ -888,13 +888,25 @@ a162/ff38302d/588/-816")]
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"\\nG53\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("G53")]
         public string gCodeMoveType {
             get {
                 return ((string)(this["gCodeMoveType"]));
             }
             set {
                 this["gCodeMoveType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool zLiftDirect {
+            get {
+                return ((bool)(this["zLiftDirect"]));
+            }
+            set {
+                this["zLiftDirect"] = value;
             }
         }
     }
