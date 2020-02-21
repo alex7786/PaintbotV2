@@ -918,6 +918,11 @@ namespace Paintbot
                 }
             }
 
+            if(oldZpos <= (float)Settings.Default.zMoveHeight_mm + (float)Settings.Default.canvasZeroPosZ_mm)
+            {
+                getColorString = "\n" + gCodeMoveType + " Z" + ((float)Settings.Default.zMoveHeight_mm + (float)Settings.Default.canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed + ";raise Z" + getColorString;
+            }
+
             oldXpos = xPos;
             oldYpos = yPos;
             oldZpos = zPos;
@@ -1004,7 +1009,7 @@ namespace Paintbot
             if (!Settings.Default.zLiftDirect && checkDistance(xPos * brushSize + canvasZeroPosX_mm, yPos * brushSize + canvasZeroPosY_mm, oldXpos, oldYpos) <= maxDistAllowed)
             {
                 //dont lift brush if point is nearby and no lift required
-                zMovement = " Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed;
+                zMovement = "\n" + gCodeMoveType + " Z" + (zMoveDepth + canvasZeroPosZ_mm).ToString().Replace(',', '.') + " F" + zSpeed;
 
                 oldZpos = zMoveDepth + canvasZeroPosZ_mm;
             }
