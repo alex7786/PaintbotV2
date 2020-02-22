@@ -111,9 +111,11 @@
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label17 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.numericUpDown39 = new System.Windows.Forms.NumericUpDown();
@@ -134,6 +136,7 @@
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown40 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -177,7 +180,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
-            this.checkBox18 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -198,6 +200,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
@@ -772,7 +775,7 @@
             this.tabControl1.Location = new System.Drawing.Point(15, 56);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(424, 671);
+            this.tabControl1.Size = new System.Drawing.Size(424, 682);
             this.tabControl1.TabIndex = 191;
             // 
             // tabPage1
@@ -816,7 +819,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(416, 645);
+            this.tabPage1.Size = new System.Drawing.Size(416, 656);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "general settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -832,6 +835,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label55);
+            this.tabPage2.Controls.Add(this.numericUpDown40);
             this.tabPage2.Controls.Add(this.numericUpDown3);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label9);
@@ -854,7 +859,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(416, 645);
+            this.tabPage2.Size = new System.Drawing.Size(416, 656);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "color settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -960,7 +965,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(416, 645);
+            this.tabPage3.Size = new System.Drawing.Size(416, 656);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "cleaning settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1020,7 +1025,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(416, 645);
+            this.tabPage4.Size = new System.Drawing.Size(416, 656);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "experimental";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1117,6 +1122,15 @@
             this.label17.TabIndex = 196;
             this.label17.Text = "usually G53 or G1";
             // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(6, 627);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(108, 13);
+            this.label55.TabIndex = 126;
+            this.label55.Text = "stir color every X pick";
+            // 
             // textBox5
             // 
             this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gCodeMoveType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1149,6 +1163,19 @@
             this.checkBox5.TabIndex = 108;
             this.checkBox5.Text = "center on canvas";
             this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox18
+            // 
+            this.checkBox18.AutoSize = true;
+            this.checkBox18.Checked = global::Paintbot.Settings.Default.zLiftDirect;
+            this.checkBox18.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox18.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "zLiftDirect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox18.Location = new System.Drawing.Point(6, 175);
+            this.checkBox18.Name = "checkBox18";
+            this.checkBox18.Size = new System.Drawing.Size(145, 17);
+            this.checkBox18.TabIndex = 195;
+            this.checkBox18.Text = "lift Z at neighbored points";
+            this.checkBox18.UseVisualStyleBackColor = true;
             // 
             // richTextBox3
             // 
@@ -1449,6 +1476,16 @@
             this.numericUpDown14.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown14.TabIndex = 102;
             this.numericUpDown14.Value = global::Paintbot.Settings.Default.maxWidthX;
+            // 
+            // numericUpDown40
+            // 
+            this.numericUpDown40.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "stirColorFreq", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown40.Location = new System.Drawing.Point(140, 625);
+            this.numericUpDown40.Name = "numericUpDown40";
+            this.numericUpDown40.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown40.TabIndex = 127;
+            this.numericUpDown40.Tag = 3F;
+            this.numericUpDown40.Value = global::Paintbot.Settings.Default.stirColorFreq;
             // 
             // numericUpDown3
             // 
@@ -2136,24 +2173,11 @@
             this.textBox12.Text = global::Paintbot.Settings.Default.imagePath;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
-            // checkBox18
-            // 
-            this.checkBox18.AutoSize = true;
-            this.checkBox18.Checked = global::Paintbot.Settings.Default.zLiftDirect;
-            this.checkBox18.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox18.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "zLiftDirect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox18.Location = new System.Drawing.Point(6, 175);
-            this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(145, 17);
-            this.checkBox18.TabIndex = 195;
-            this.checkBox18.Text = "lift Z at neighbored points";
-            this.checkBox18.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 737);
+            this.ClientSize = new System.Drawing.Size(1191, 743);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.groupBox1);
@@ -2202,6 +2226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
@@ -2387,6 +2412,8 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.NumericUpDown numericUpDown40;
     }
 }
 

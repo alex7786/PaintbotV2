@@ -909,5 +909,17 @@ a162/ff38302d/588/-816")]
                 this["zLiftDirect"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal stirColorFreq {
+            get {
+                return ((decimal)(this["stirColorFreq"]));
+            }
+            set {
+                this["stirColorFreq"] = value;
+            }
+        }
     }
 }
