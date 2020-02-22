@@ -1216,10 +1216,10 @@ namespace Paintbot
 
             //get non indexed image
             image1 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap image2 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             RecolorImageLoop();
-
-            //TODO: optimize color selection
+            
             //if less then Settings.Default.minColorPixels points take another color and if Settings.Default.minColorPixels > 1
             if (Settings.Default.minColorPixels > 1)
             {
@@ -1253,6 +1253,7 @@ namespace Paintbot
                 {
                     colorPalette.Remove(colorDef);
                 }
+                image1 = image2.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 RecolorImageLoop();
             }
 
