@@ -271,5 +271,8 @@ a162/ff38302d/588/-816</Value>
     <Setting Name="stirColorFreq" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="minColorPixels" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

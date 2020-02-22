@@ -921,5 +921,17 @@ a162/ff38302d/588/-816")]
                 this["stirColorFreq"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal minColorPixels {
+            get {
+                return ((decimal)(this["minColorPixels"]));
+            }
+            set {
+                this["minColorPixels"] = value;
+            }
+        }
     }
 }

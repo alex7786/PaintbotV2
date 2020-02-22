@@ -11,7 +11,6 @@ namespace Paintbot
 //everything in absolute coordinates (G53)
 
 //TODO: stripe filter
-//TODO: Wenn weniger als x Punkte andere farbe
 {
     class Program
     {
@@ -214,7 +213,7 @@ namespace Paintbot
             }
 
             int x, y;
-
+            
             HashSet<string> colorStrings = GetColorStrings(ignoreColor);
 
             int progress = 0;
@@ -1218,6 +1217,53 @@ namespace Paintbot
             //get non indexed image
             image1 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
+            RecolorImageLoop();
+
+            //TODO: optimize color selection
+            //if less then Settings.Default.minColorPixels points take another color and if Settings.Default.minColorPixels > 1
+            if (Settings.Default.minColorPixels > 1)
+            {
+                Dictionary<Color, int> colorAmount = new Dictionary<Color, int>();
+                for (int x = 0; x < image1.Width; x++)  // Loop through the images pixels
+                {
+                    for (int y = 0; y < image1.Height; y++)
+                    {
+                        Color pixelColor = image1.GetPixel(x, y);
+                        int currentCount;
+                        colorAmount.TryGetValue(pixelColor, out currentCount);
+                        colorAmount[pixelColor] = currentCount + 1;
+                    }
+                }
+
+                HashSet<ColorDef> removeColor = new HashSet<ColorDef>();
+                foreach(KeyValuePair<Color, int> entry in colorAmount)
+                {
+                    if(entry.Value < Settings.Default.minColorPixels)
+                    {
+                        foreach (ColorDef colorDef in colorPalette)
+                        {
+                            if(colorDef.Color == entry.Key)
+                            {
+                                removeColor.Add(colorDef);
+                            }
+                        }
+                    }
+                }
+                foreach(ColorDef colorDef in removeColor)
+                {
+                    colorPalette.Remove(colorDef);
+                }
+                RecolorImageLoop();
+            }
+
+            //display amount of colors
+            Settings.Default.amountOfColors = GetColorStrings(Settings.Default.ignoreColor_hex).Count.ToString();
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        public static void RecolorImageLoop()
+        {
             for (int x = 0; x < image1.Width; x++)  // Loop through the images pixels
             {
                 for (int y = 0; y < image1.Height; y++)
@@ -1225,14 +1271,14 @@ namespace Paintbot
                     double colorDistanceOld = 99999999.0f;
                     Color pixelColor = image1.GetPixel(x, y);
                     //source: https://en.wikipedia.org/wiki/Color_difference#Euclidean
-                    foreach(ColorDef colorDef in colorPalette)
+                    foreach (ColorDef colorDef in colorPalette)
                     {
                         float rX = (colorDef.Color.R + pixelColor.R) / 2;
                         float deltaR = colorDef.Color.R - pixelColor.R;
                         float deltaG = colorDef.Color.G - pixelColor.G;
                         float deltaB = colorDef.Color.B - pixelColor.B;
-                        double colorDistance = Math.Sqrt((2 + rX / 256) * deltaR*deltaR + 4* deltaG*deltaG + (2+ (255-rX)/256) * deltaB*deltaB);
-                        if(colorDistance == 0)
+                        double colorDistance = Math.Sqrt((2 + rX / 256) * deltaR * deltaR + 4 * deltaG * deltaG + (2 + (255 - rX) / 256) * deltaB * deltaB);
+                        if (colorDistance == 0)
                         {
                             break;
                         }
@@ -1244,10 +1290,6 @@ namespace Paintbot
                     }
                 }
             }
-            //display amount of colors
-            Settings.Default.amountOfColors = GetColorStrings(Settings.Default.ignoreColor_hex).Count.ToString();
-
-            Cursor.Current = Cursors.Default;
         }
 
         public static void ParseColors()

@@ -180,6 +180,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.numericUpDown41 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -229,6 +231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -835,6 +838,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label56);
+            this.tabPage2.Controls.Add(this.numericUpDown41);
             this.tabPage2.Controls.Add(this.label55);
             this.tabPage2.Controls.Add(this.numericUpDown40);
             this.tabPage2.Controls.Add(this.numericUpDown3);
@@ -1127,9 +1132,9 @@
             this.label55.AutoSize = true;
             this.label55.Location = new System.Drawing.Point(6, 627);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(108, 13);
+            this.label55.Size = new System.Drawing.Size(134, 13);
             this.label55.TabIndex = 126;
-            this.label55.Text = "stir color every X pick";
+            this.label55.Text = "stir color every X color pick";
             // 
             // textBox5
             // 
@@ -1482,7 +1487,7 @@
             this.numericUpDown40.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "stirColorFreq", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown40.Location = new System.Drawing.Point(140, 625);
             this.numericUpDown40.Name = "numericUpDown40";
-            this.numericUpDown40.Size = new System.Drawing.Size(185, 20);
+            this.numericUpDown40.Size = new System.Drawing.Size(84, 20);
             this.numericUpDown40.TabIndex = 127;
             this.numericUpDown40.Tag = 3F;
             this.numericUpDown40.Value = global::Paintbot.Settings.Default.stirColorFreq;
@@ -2173,6 +2178,30 @@
             this.textBox12.Text = global::Paintbot.Settings.Default.imagePath;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(230, 627);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(96, 13);
+            this.label56.TabIndex = 128;
+            this.label56.Text = "min pixels per color";
+            // 
+            // numericUpDown41
+            // 
+            this.numericUpDown41.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "minColorPixels", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown41.Location = new System.Drawing.Point(332, 625);
+            this.numericUpDown41.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown41.Name = "numericUpDown41";
+            this.numericUpDown41.Size = new System.Drawing.Size(78, 20);
+            this.numericUpDown41.TabIndex = 129;
+            this.numericUpDown41.Tag = 3F;
+            this.numericUpDown41.Value = global::Paintbot.Settings.Default.minColorPixels;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2255,6 +2284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2414,6 +2444,8 @@
         private System.Windows.Forms.CheckBox checkBox18;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.NumericUpDown numericUpDown40;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.NumericUpDown numericUpDown41;
     }
 }
 
