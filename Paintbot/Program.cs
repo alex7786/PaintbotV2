@@ -856,7 +856,14 @@ namespace Paintbot
                         if (moveRandom)
                         {
                             //Random on tissue and sponge
-                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            if(getColorIndex == 99)
+                            {
+                                xPos = xPos + (float)(rand.NextDouble() * (xyMoveRadius + xyMoveRadius) - xyMoveRadius);
+                            }
+                            else
+                            {
+                                xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
                         wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
@@ -877,7 +884,14 @@ namespace Paintbot
                         if (moveRandom)
                         {
                             //Random on tissue and sponge
-                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            if (getColorIndex == 99)
+                            {
+                                xPos = xPos + (float)(rand.NextDouble() * (xyMoveRadius + xyMoveRadius) - xyMoveRadius);
+                            }
+                            else
+                            {
+                                xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
                         wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
@@ -903,7 +917,14 @@ namespace Paintbot
                         if (moveRandom)
                         {
                             //Random on tissue and sponge
-                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            if (getColorIndex == 99)
+                            {
+                                xPos = xPos + (float)(rand.NextDouble() * (xyMoveRadius + xyMoveRadius) - xyMoveRadius);
+                            }
+                            else
+                            {
+                                xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
                         wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
@@ -926,7 +947,14 @@ namespace Paintbot
                         if (moveRandom)
                         {
                             //Random on tissue and sponge
-                            xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            if (getColorIndex == 99)
+                            {
+                                xPos = xPos + (float)(rand.NextDouble() * (xyMoveRadius + xyMoveRadius) - xyMoveRadius);
+                            }
+                            else
+                            {
+                                xPos = xPos + xyMoveRadius * (float)rand.NextDouble() * 0.1f;
+                            }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
                         wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
@@ -973,7 +1001,8 @@ namespace Paintbot
             //tissue
             if (useTissue)
             {
-                cleanBrush = cleanBrush + GetColor(1, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true, false, false);
+                //99 color index for positioning check in cleaning
+                cleanBrush = cleanBrush + GetColor(99, (float)Settings.Default.tissuePosX_mm, (float)Settings.Default.tissuePosY_mm, false, (float)Settings.Default.tissuePosZ_mm, zColorHeight, zSpeed, xySpeed, false, (float)Settings.Default.tissueMoveRadius, true, (int)Settings.Default.wiggleAmountTissue, true, false, false);
             }
             //sponge
             if (useSponge)
@@ -1213,6 +1242,9 @@ namespace Paintbot
         {
             Cursor.Current = Cursors.WaitCursor;
             GC.Collect();
+
+            //TODO: make ParseColors optional on recoloring
+            ParseColors();
 
             //get non indexed image
             image1 = image1.Clone(new Rectangle(0, 0, image1.Width, image1.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
