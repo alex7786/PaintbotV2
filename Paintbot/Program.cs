@@ -866,7 +866,14 @@ namespace Paintbot
                             }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
-                        wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        if (getColorIndex == 99)
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
+                        else
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
                     }
                     getColorString = "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\n" + gCodeMoveType + " Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
@@ -894,8 +901,16 @@ namespace Paintbot
                             }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
-                        wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                        "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        if (getColorIndex == 99)
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                            "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
+                        else
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                            "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        } 
                     }
                     getColorString = "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " Z" + (zColorHeight + zPos) + " F" + (int)feedRate + gcodePartStart +
                     "\n" + gCodeMoveType + " Z" + zPos.ToString().Replace(',', '.') + " F" + zSpeed + "; lower Z " +
@@ -927,7 +942,14 @@ namespace Paintbot
                             }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
-                        wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        if (getColorIndex == 99)
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
+                        else
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed + "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
                     }
                     getColorString = "\n" + gCodeMoveType + " Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartStart +
                     "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + //" Y" + yPos.ToString().Replace(',', '.') + 
@@ -957,8 +979,16 @@ namespace Paintbot
                             }
                             yPos = yPos + xyMoveRadius * (float)rand.NextDouble() * 0.3f;
                         }
-                        wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
-                        "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        if (getColorIndex == 99)
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                             "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
+                        else
+                        {
+                            wiggle = wiggle + "\n" + gCodeMoveType + " X" + (xPos + xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos + xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed +
+                            "\n" + gCodeMoveType + " X" + (xPos - xyMoveRadius).ToString().Replace(',', '.') + " Y" + (yPos - xyMoveRadius).ToString().Replace(',', '.') + " F" + xySpeed;
+                        }
                     }
                     getColorString = "\n" + gCodeMoveType + " Z" + (zColorHeight + zPos) + " F" + zSpeed + gcodePartStart +
                     "\n" + gCodeMoveType + " X" + xPos.ToString().Replace(',', '.') + " Y" + yPos.ToString().Replace(',', '.') + " F" + xySpeed +
