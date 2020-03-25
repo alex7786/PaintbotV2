@@ -369,7 +369,7 @@ namespace Paintbot
                             }
 
                             bool stirColor = false;
-                            if ((getColor + 1) % Settings.Default.stirColorFreq == 0)
+                            if (Settings.Default.stirColorFreq != 0 && (getColor + 1) % Settings.Default.stirColorFreq == 0)
                             {
                                 stirColor = true;
                             }
@@ -411,7 +411,7 @@ namespace Paintbot
                 fileOut.Close();
             }
 
-            //TODO: limit by gcode lines if shorter -> 100 pixel Settings.Default.pixelFileLimit
+            //TODO: limit by gcode lines if shorter -> eg 100 pixel Settings.Default.pixelFileLimit
             //File.ReadLines(@"C:\file.txt").Count(); -> 1000lines
             if (maxNumColorPerFile > 1)
             {
@@ -1272,8 +1272,7 @@ namespace Paintbot
         {
             Cursor.Current = Cursors.WaitCursor;
             GC.Collect();
-
-            //TODO: make ParseColors optional on recoloring
+            
             ParseColors();
 
             //get non indexed image
@@ -1343,6 +1342,7 @@ namespace Paintbot
                         double colorDistance = Math.Sqrt((2 + rX / 256) * deltaR * deltaR + 4 * deltaG * deltaG + (2 + (255 - rX) / 256) * deltaB * deltaB);
                         if (colorDistance == 0)
                         {
+                            image1.SetPixel(x, y, colorDef.Color);
                             break;
                         }
                         else if (colorDistance < colorDistanceOld)
