@@ -87,38 +87,11 @@
             this.label54 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadNewImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.numericUpDown39 = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -136,8 +109,18 @@
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label56 = new System.Windows.Forms.Label();
+            this.numericUpDown41 = new System.Windows.Forms.NumericUpDown();
+            this.label55 = new System.Windows.Forms.Label();
             this.numericUpDown40 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
@@ -146,7 +129,12 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.numericUpDown34 = new System.Windows.Forms.NumericUpDown();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.numericUpDown17 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
@@ -169,28 +157,35 @@
             this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown31 = new System.Windows.Forms.NumericUpDown();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadNewImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.numericUpDown41 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -202,6 +197,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -209,6 +206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
@@ -228,10 +226,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).BeginInit();
+            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
@@ -313,9 +313,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(5, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.Size = new System.Drawing.Size(200, 13);
             this.label2.TabIndex = 35;
-            this.label2.Text = "zMoveHeight[mm]";
+            this.label2.Text = "zMoveHeight[mm] relative over canvas 0";
             // 
             // label1
             // 
@@ -331,9 +331,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(5, 59);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(90, 13);
+            this.label11.Size = new System.Drawing.Size(205, 13);
             this.label11.TabIndex = 73;
-            this.label11.Text = "zMoveDepth[mm]";
+            this.label11.Text = "zMoveDepth[mm] relative below canvas 0";
             // 
             // label19
             // 
@@ -827,348 +827,6 @@
             this.tabPage1.Text = "general settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(4, 325);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(293, 13);
-            this.label18.TabIndex = 191;
-            this.label18.Text = "brush side movement at paintstroke (X) [multiple of brushsize]";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.label56);
-            this.tabPage2.Controls.Add(this.numericUpDown41);
-            this.tabPage2.Controls.Add(this.label55);
-            this.tabPage2.Controls.Add(this.numericUpDown40);
-            this.tabPage2.Controls.Add(this.numericUpDown3);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.label29);
-            this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Controls.Add(this.button8);
-            this.tabPage2.Controls.Add(this.numericUpDown4);
-            this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Controls.Add(this.numericUpDown5);
-            this.tabPage2.Controls.Add(this.numericUpDown6);
-            this.tabPage2.Controls.Add(this.numericUpDown7);
-            this.tabPage2.Controls.Add(this.checkBox6);
-            this.tabPage2.Controls.Add(this.numericUpDown16);
-            this.tabPage2.Controls.Add(this.richTextBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(416, 656);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "color settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 499);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 13);
-            this.label8.TabIndex = 117;
-            this.label8.Text = "colorPosY[mm]Gantry";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 473);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(108, 13);
-            this.label9.TabIndex = 118;
-            this.label9.Text = "colorPosX[mm]Gantry";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 525);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(94, 13);
-            this.label16.TabIndex = 125;
-            this.label16.Text = "colorMovingWithY";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 601);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 13);
-            this.label5.TabIndex = 114;
-            this.label5.Text = "pickColorFrequency";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 575);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 13);
-            this.label6.TabIndex = 115;
-            this.label6.Text = "colorContainerHeight[mm]";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 549);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 13);
-            this.label7.TabIndex = 116;
-            this.label7.Text = "colorPosZ[mm]";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.numericUpDown34);
-            this.tabPage3.Controls.Add(this.label50);
-            this.tabPage3.Controls.Add(this.label30);
-            this.tabPage3.Controls.Add(this.label31);
-            this.tabPage3.Controls.Add(this.label32);
-            this.tabPage3.Controls.Add(this.label43);
-            this.tabPage3.Controls.Add(this.label51);
-            this.tabPage3.Controls.Add(this.label42);
-            this.tabPage3.Controls.Add(this.label52);
-            this.tabPage3.Controls.Add(this.label41);
-            this.tabPage3.Controls.Add(this.label53);
-            this.tabPage3.Controls.Add(this.label44);
-            this.tabPage3.Controls.Add(this.label54);
-            this.tabPage3.Controls.Add(this.label33);
-            this.tabPage3.Controls.Add(this.label47);
-            this.tabPage3.Controls.Add(this.label40);
-            this.tabPage3.Controls.Add(this.label39);
-            this.tabPage3.Controls.Add(this.label38);
-            this.tabPage3.Controls.Add(this.label46);
-            this.tabPage3.Controls.Add(this.label45);
-            this.tabPage3.Controls.Add(this.numericUpDown17);
-            this.tabPage3.Controls.Add(this.numericUpDown18);
-            this.tabPage3.Controls.Add(this.checkBox13);
-            this.tabPage3.Controls.Add(this.numericUpDown19);
-            this.tabPage3.Controls.Add(this.numericUpDown29);
-            this.tabPage3.Controls.Add(this.numericUpDown35);
-            this.tabPage3.Controls.Add(this.numericUpDown36);
-            this.tabPage3.Controls.Add(this.numericUpDown28);
-            this.tabPage3.Controls.Add(this.numericUpDown37);
-            this.tabPage3.Controls.Add(this.numericUpDown27);
-            this.tabPage3.Controls.Add(this.numericUpDown38);
-            this.tabPage3.Controls.Add(this.checkBox9);
-            this.tabPage3.Controls.Add(this.numericUpDown20);
-            this.tabPage3.Controls.Add(this.checkBox7);
-            this.tabPage3.Controls.Add(this.checkBox8);
-            this.tabPage3.Controls.Add(this.numericUpDown30);
-            this.tabPage3.Controls.Add(this.numericUpDown33);
-            this.tabPage3.Controls.Add(this.numericUpDown26);
-            this.tabPage3.Controls.Add(this.numericUpDown25);
-            this.tabPage3.Controls.Add(this.numericUpDown24);
-            this.tabPage3.Controls.Add(this.numericUpDown32);
-            this.tabPage3.Controls.Add(this.numericUpDown31);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(416, 656);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "cleaning settings";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(7, 86);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(131, 13);
-            this.label50.TabIndex = 180;
-            this.label50.Text = "waterContainerHeight[mm]";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(7, 8);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(80, 13);
-            this.label30.TabIndex = 174;
-            this.label30.Text = "waterPosX[mm]";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(7, 34);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(80, 13);
-            this.label31.TabIndex = 176;
-            this.label31.Text = "waterPosY[mm]";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(7, 60);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(80, 13);
-            this.label32.TabIndex = 178;
-            this.label32.Text = "waterPosZ[mm]";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.pictureBox2);
-            this.tabPage4.Controls.Add(this.label36);
-            this.tabPage4.Controls.Add(this.label35);
-            this.tabPage4.Controls.Add(this.button10);
-            this.tabPage4.Controls.Add(this.button11);
-            this.tabPage4.Controls.Add(this.label37);
-            this.tabPage4.Controls.Add(this.button12);
-            this.tabPage4.Controls.Add(this.label48);
-            this.tabPage4.Controls.Add(this.numericUpDown23);
-            this.tabPage4.Controls.Add(this.numericUpDown22);
-            this.tabPage4.Controls.Add(this.numericUpDown21);
-            this.tabPage4.Controls.Add(this.textBox3);
-            this.tabPage4.Controls.Add(this.checkBox11);
-            this.tabPage4.Controls.Add(this.checkBox12);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(416, 656);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "experimental";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.checkBox15);
-            this.groupBox1.Controls.Add(this.checkBox5);
-            this.groupBox1.Controls.Add(this.checkBox10);
-            this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Location = new System.Drawing.Point(878, 41);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(302, 203);
-            this.groupBox1.TabIndex = 192;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Image manipulation";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem,
-            this.aboutToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1191, 24);
-            this.menuStrip1.TabIndex = 193;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadNewImageToolStripMenuItem,
-            this.saveSettingsToolStripMenuItem,
-            this.exportSettingsToolStripMenuItem,
-            this.importSettingsToolStripMenuItem});
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.aboutToolStripMenuItem.Text = "File";
-            // 
-            // loadNewImageToolStripMenuItem
-            // 
-            this.loadNewImageToolStripMenuItem.Name = "loadNewImageToolStripMenuItem";
-            this.loadNewImageToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.loadNewImageToolStripMenuItem.Text = "load new image";
-            this.loadNewImageToolStripMenuItem.Click += new System.EventHandler(this.loadNewImageToolStripMenuItem_Click);
-            // 
-            // saveSettingsToolStripMenuItem
-            // 
-            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.saveSettingsToolStripMenuItem.Text = "save settings";
-            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
-            // 
-            // exportSettingsToolStripMenuItem
-            // 
-            this.exportSettingsToolStripMenuItem.Name = "exportSettingsToolStripMenuItem";
-            this.exportSettingsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.exportSettingsToolStripMenuItem.Text = "export settings";
-            this.exportSettingsToolStripMenuItem.Click += new System.EventHandler(this.exportSettingsToolStripMenuItem_Click);
-            // 
-            // importSettingsToolStripMenuItem
-            // 
-            this.importSettingsToolStripMenuItem.Name = "importSettingsToolStripMenuItem";
-            this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.importSettingsToolStripMenuItem.Text = "import settings";
-            this.importSettingsToolStripMenuItem.Click += new System.EventHandler(this.importSettingsToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem1
-            // 
-            this.aboutToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoToolStripMenuItem});
-            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem1.Text = "About";
-            // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
-            this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click_1);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(249, 34);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(91, 13);
-            this.label17.TabIndex = 196;
-            this.label17.Text = "usually G53 or G1";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(6, 627);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(134, 13);
-            this.label55.TabIndex = 126;
-            this.label55.Text = "stir color every X color pick";
-            // 
-            // textBox5
-            // 
-            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gCodeMoveType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox5.Location = new System.Drawing.Point(153, 31);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(90, 20);
-            this.textBox5.TabIndex = 195;
-            this.textBox5.Text = global::Paintbot.Settings.Default.gCodeMoveType;
-            // 
-            // checkBox15
-            // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Checked = global::Paintbot.Settings.Default.resizeColorGcode;
-            this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "resizeColorGcode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox15.Location = new System.Drawing.Point(6, 178);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(289, 17);
-            this.checkBox15.TabIndex = 184;
-            this.checkBox15.Text = "automatically resize and recolor when generating gCode";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Checked = global::Paintbot.Settings.Default.centerOnCanvas;
-            this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "centerOnCanvas", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox5.Location = new System.Drawing.Point(6, 77);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(109, 17);
-            this.checkBox5.TabIndex = 108;
-            this.checkBox5.Text = "center on canvas";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
             // checkBox18
             // 
             this.checkBox18.AutoSize = true;
@@ -1216,6 +874,15 @@
             this.numericUpDown39.Tag = 3F;
             this.numericUpDown39.Value = global::Paintbot.Settings.Default.brushXmoveStroke;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(4, 325);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(293, 13);
+            this.label18.TabIndex = 191;
+            this.label18.Text = "brush side movement at paintstroke (X) [multiple of brushsize]";
+            // 
             // checkBox17
             // 
             this.checkBox17.AutoSize = true;
@@ -1245,7 +912,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "brushsize_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown1.Location = new System.Drawing.Point(139, 5);
+            this.numericUpDown1.Location = new System.Drawing.Point(216, 5);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10,
             0,
@@ -1279,7 +946,7 @@
             // 
             this.numericUpDown2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "zMoveHeight_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown2.DecimalPlaces = 1;
-            this.numericUpDown2.Location = new System.Drawing.Point(139, 31);
+            this.numericUpDown2.Location = new System.Drawing.Point(216, 31);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown2.TabIndex = 65;
@@ -1290,7 +957,7 @@
             // 
             this.numericUpDown10.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "zDepth_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown10.DecimalPlaces = 1;
-            this.numericUpDown10.Location = new System.Drawing.Point(139, 57);
+            this.numericUpDown10.Location = new System.Drawing.Point(216, 57);
             this.numericUpDown10.Minimum = new decimal(new int[] {
             100,
             0,
@@ -1305,7 +972,7 @@
             // textBox10
             // 
             this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "ignoreColor_hex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox10.Location = new System.Drawing.Point(140, 83);
+            this.textBox10.Location = new System.Drawing.Point(217, 83);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(185, 20);
             this.textBox10.TabIndex = 50;
@@ -1482,6 +1149,72 @@
             this.numericUpDown14.TabIndex = 102;
             this.numericUpDown14.Value = global::Paintbot.Settings.Default.maxWidthX;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label56);
+            this.tabPage2.Controls.Add(this.numericUpDown41);
+            this.tabPage2.Controls.Add(this.label55);
+            this.tabPage2.Controls.Add(this.numericUpDown40);
+            this.tabPage2.Controls.Add(this.numericUpDown3);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.label28);
+            this.tabPage2.Controls.Add(this.label29);
+            this.tabPage2.Controls.Add(this.label27);
+            this.tabPage2.Controls.Add(this.button8);
+            this.tabPage2.Controls.Add(this.numericUpDown4);
+            this.tabPage2.Controls.Add(this.checkBox1);
+            this.tabPage2.Controls.Add(this.numericUpDown5);
+            this.tabPage2.Controls.Add(this.numericUpDown6);
+            this.tabPage2.Controls.Add(this.numericUpDown7);
+            this.tabPage2.Controls.Add(this.checkBox6);
+            this.tabPage2.Controls.Add(this.numericUpDown16);
+            this.tabPage2.Controls.Add(this.richTextBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(416, 656);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "color settings";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(230, 627);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(96, 13);
+            this.label56.TabIndex = 128;
+            this.label56.Text = "min pixels per color";
+            // 
+            // numericUpDown41
+            // 
+            this.numericUpDown41.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "minColorPixels", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown41.Location = new System.Drawing.Point(332, 625);
+            this.numericUpDown41.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown41.Name = "numericUpDown41";
+            this.numericUpDown41.Size = new System.Drawing.Size(78, 20);
+            this.numericUpDown41.TabIndex = 129;
+            this.numericUpDown41.Tag = 3F;
+            this.numericUpDown41.Value = global::Paintbot.Settings.Default.minColorPixels;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(6, 627);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(134, 13);
+            this.label55.TabIndex = 126;
+            this.label55.Text = "stir color every X color pick";
+            // 
             // numericUpDown40
             // 
             this.numericUpDown40.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "stirColorFreq", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1507,6 +1240,60 @@
             this.numericUpDown3.TabIndex = 119;
             this.numericUpDown3.Tag = 3F;
             this.numericUpDown3.Value = global::Paintbot.Settings.Default.colorPosX_mm;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 499);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 13);
+            this.label8.TabIndex = 117;
+            this.label8.Text = "colorPosY[mm]Gantry";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 473);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(108, 13);
+            this.label9.TabIndex = 118;
+            this.label9.Text = "colorPosX[mm]Gantry";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 525);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(94, 13);
+            this.label16.TabIndex = 125;
+            this.label16.Text = "colorMovingWithY";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 601);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.TabIndex = 114;
+            this.label5.Text = "pickColorFrequency";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 575);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 13);
+            this.label6.TabIndex = 115;
+            this.label6.Text = "colorContainerHeight[mm]";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 549);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 13);
+            this.label7.TabIndex = 116;
+            this.label7.Text = "colorPosZ[mm]";
             // 
             // numericUpDown4
             // 
@@ -1609,6 +1396,58 @@
             this.richTextBox1.TabIndex = 105;
             this.richTextBox1.Text = global::Paintbot.Settings.Default.colorDefinitions;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.numericUpDown34);
+            this.tabPage3.Controls.Add(this.label50);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label43);
+            this.tabPage3.Controls.Add(this.label51);
+            this.tabPage3.Controls.Add(this.label42);
+            this.tabPage3.Controls.Add(this.label52);
+            this.tabPage3.Controls.Add(this.label41);
+            this.tabPage3.Controls.Add(this.label53);
+            this.tabPage3.Controls.Add(this.label44);
+            this.tabPage3.Controls.Add(this.label54);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.label47);
+            this.tabPage3.Controls.Add(this.label40);
+            this.tabPage3.Controls.Add(this.label39);
+            this.tabPage3.Controls.Add(this.label38);
+            this.tabPage3.Controls.Add(this.label46);
+            this.tabPage3.Controls.Add(this.label45);
+            this.tabPage3.Controls.Add(this.numericUpDown17);
+            this.tabPage3.Controls.Add(this.numericUpDown18);
+            this.tabPage3.Controls.Add(this.checkBox13);
+            this.tabPage3.Controls.Add(this.numericUpDown19);
+            this.tabPage3.Controls.Add(this.numericUpDown29);
+            this.tabPage3.Controls.Add(this.numericUpDown35);
+            this.tabPage3.Controls.Add(this.numericUpDown36);
+            this.tabPage3.Controls.Add(this.numericUpDown28);
+            this.tabPage3.Controls.Add(this.numericUpDown37);
+            this.tabPage3.Controls.Add(this.numericUpDown27);
+            this.tabPage3.Controls.Add(this.numericUpDown38);
+            this.tabPage3.Controls.Add(this.checkBox9);
+            this.tabPage3.Controls.Add(this.numericUpDown20);
+            this.tabPage3.Controls.Add(this.checkBox7);
+            this.tabPage3.Controls.Add(this.checkBox8);
+            this.tabPage3.Controls.Add(this.numericUpDown30);
+            this.tabPage3.Controls.Add(this.numericUpDown33);
+            this.tabPage3.Controls.Add(this.numericUpDown26);
+            this.tabPage3.Controls.Add(this.numericUpDown25);
+            this.tabPage3.Controls.Add(this.numericUpDown24);
+            this.tabPage3.Controls.Add(this.numericUpDown32);
+            this.tabPage3.Controls.Add(this.numericUpDown31);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(416, 656);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "cleaning settings";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // numericUpDown34
             // 
             this.numericUpDown34.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "waterContainerHeight_mm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1627,6 +1466,42 @@
             this.numericUpDown34.Size = new System.Drawing.Size(185, 20);
             this.numericUpDown34.TabIndex = 181;
             this.numericUpDown34.Value = global::Paintbot.Settings.Default.waterContainerHeight_mm;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(7, 86);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(131, 13);
+            this.label50.TabIndex = 180;
+            this.label50.Text = "waterContainerHeight[mm]";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(7, 8);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(80, 13);
+            this.label30.TabIndex = 174;
+            this.label30.Text = "waterPosX[mm]";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(7, 34);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(80, 13);
+            this.label31.TabIndex = 176;
+            this.label31.Text = "waterPosY[mm]";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(7, 60);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(80, 13);
+            this.label32.TabIndex = 178;
+            this.label32.Text = "waterPosZ[mm]";
             // 
             // numericUpDown17
             // 
@@ -1769,7 +1644,7 @@
             0,
             0});
             this.numericUpDown28.Minimum = new decimal(new int[] {
-            1000,
+            1500,
             0,
             0,
             -2147483648});
@@ -1972,7 +1847,7 @@
             0,
             0});
             this.numericUpDown25.Minimum = new decimal(new int[] {
-            1000,
+            1500,
             0,
             0,
             -2147483648});
@@ -2034,6 +1909,30 @@
             this.numericUpDown31.TabIndex = 146;
             this.numericUpDown31.Tag = 3F;
             this.numericUpDown31.Value = global::Paintbot.Settings.Default.waterMoveRadius;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.pictureBox2);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.button10);
+            this.tabPage4.Controls.Add(this.button11);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.button12);
+            this.tabPage4.Controls.Add(this.label48);
+            this.tabPage4.Controls.Add(this.numericUpDown23);
+            this.tabPage4.Controls.Add(this.numericUpDown22);
+            this.tabPage4.Controls.Add(this.numericUpDown21);
+            this.tabPage4.Controls.Add(this.textBox3);
+            this.tabPage4.Controls.Add(this.checkBox11);
+            this.tabPage4.Controls.Add(this.checkBox12);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(416, 656);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "experimental";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // numericUpDown23
             // 
@@ -2130,6 +2029,131 @@
             this.checkBox12.Text = "automatically resize and recolor when applying filter";
             this.checkBox12.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.checkBox15);
+            this.groupBox1.Controls.Add(this.checkBox5);
+            this.groupBox1.Controls.Add(this.checkBox10);
+            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Location = new System.Drawing.Point(878, 41);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(302, 203);
+            this.groupBox1.TabIndex = 192;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Image manipulation";
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Checked = global::Paintbot.Settings.Default.resizeColorGcode;
+            this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "resizeColorGcode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox15.Location = new System.Drawing.Point(6, 178);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(289, 17);
+            this.checkBox15.TabIndex = 184;
+            this.checkBox15.Text = "automatically resize and recolor when generating gCode";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Checked = global::Paintbot.Settings.Default.centerOnCanvas;
+            this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Paintbot.Settings.Default, "centerOnCanvas", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox5.Location = new System.Drawing.Point(6, 77);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(109, 17);
+            this.checkBox5.TabIndex = 108;
+            this.checkBox5.Text = "center on canvas";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.aboutToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1191, 24);
+            this.menuStrip1.TabIndex = 193;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadNewImageToolStripMenuItem,
+            this.saveSettingsToolStripMenuItem,
+            this.exportSettingsToolStripMenuItem,
+            this.importSettingsToolStripMenuItem});
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.aboutToolStripMenuItem.Text = "File";
+            // 
+            // loadNewImageToolStripMenuItem
+            // 
+            this.loadNewImageToolStripMenuItem.Name = "loadNewImageToolStripMenuItem";
+            this.loadNewImageToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.loadNewImageToolStripMenuItem.Text = "load new image";
+            this.loadNewImageToolStripMenuItem.Click += new System.EventHandler(this.loadNewImageToolStripMenuItem_Click);
+            // 
+            // saveSettingsToolStripMenuItem
+            // 
+            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.saveSettingsToolStripMenuItem.Text = "save settings";
+            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
+            // 
+            // exportSettingsToolStripMenuItem
+            // 
+            this.exportSettingsToolStripMenuItem.Name = "exportSettingsToolStripMenuItem";
+            this.exportSettingsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.exportSettingsToolStripMenuItem.Text = "export settings";
+            this.exportSettingsToolStripMenuItem.Click += new System.EventHandler(this.exportSettingsToolStripMenuItem_Click);
+            // 
+            // importSettingsToolStripMenuItem
+            // 
+            this.importSettingsToolStripMenuItem.Name = "importSettingsToolStripMenuItem";
+            this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.importSettingsToolStripMenuItem.Text = "import settings";
+            this.importSettingsToolStripMenuItem.Click += new System.EventHandler(this.importSettingsToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoToolStripMenuItem});
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem1.Text = "About";
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click_1);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(249, 34);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(91, 13);
+            this.label17.TabIndex = 196;
+            this.label17.Text = "usually G53 or G1";
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "gCodeMoveType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox5.Location = new System.Drawing.Point(153, 31);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(90, 20);
+            this.textBox5.TabIndex = 195;
+            this.textBox5.Text = global::Paintbot.Settings.Default.gCodeMoveType;
+            // 
             // textBox4
             // 
             this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Paintbot.Settings.Default, "amountOfColors", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2178,30 +2202,6 @@
             this.textBox12.Text = global::Paintbot.Settings.Default.imagePath;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(230, 627);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(96, 13);
-            this.label56.TabIndex = 128;
-            this.label56.Text = "min pixels per color";
-            // 
-            // numericUpDown41
-            // 
-            this.numericUpDown41.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Paintbot.Settings.Default, "minColorPixels", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown41.Location = new System.Drawing.Point(332, 625);
-            this.numericUpDown41.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDown41.Name = "numericUpDown41";
-            this.numericUpDown41.Size = new System.Drawing.Size(78, 20);
-            this.numericUpDown41.TabIndex = 129;
-            this.numericUpDown41.Tag = 3F;
-            this.numericUpDown41.Value = global::Paintbot.Settings.Default.minColorPixels;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2234,16 +2234,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -2255,6 +2245,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
@@ -2262,6 +2255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
@@ -2281,10 +2276,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
