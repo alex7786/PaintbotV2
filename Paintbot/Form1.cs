@@ -159,5 +159,11 @@ namespace Paintbot
         {
             Program.importSettings();
         }
+
+        private void label57_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

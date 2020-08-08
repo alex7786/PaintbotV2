@@ -207,6 +207,11 @@ namespace Paintbot
             string gcodeStart = Settings.Default.gcodeStart;
             string gcodeEnd = Settings.Default.gcodeEnd;
 
+            if (Settings.Default.usePBminiSetting)
+            {
+                maxNumColorPerFile = 6;
+            }
+
             if (Settings.Default.endInWater)
             {
                 gcodeEnd = GetColor(1, (float)Settings.Default.waterPosX_mm, (float)Settings.Default.waterPosY_mm, false, (float)Settings.Default.waterPosZ_mm, (float)Settings.Default.waterContainerHeight_mm, zSpeed, xySpeed, false, (float)Settings.Default.waterMoveRadius, true, (int)Settings.Default.wiggleAmountWater, false, true, false) + gcodeEnd;
@@ -279,8 +284,44 @@ namespace Paintbot
                     {
                         if (colorDef.ColorHex.Equals(colorType))
                         {
-                            colorPositionX = colorDef.XPos;
-                            colorPositionY = colorDef.YPos;
+                            if (Settings.Default.usePBminiSetting)
+                            {
+                                switch(progress % 6)
+                                {
+                                    case 1:
+                                        colorPositionX = (float)Settings.Default.pbMiniColor1x;
+                                        colorPositionY = (float)Settings.Default.pbMiniColor1y;
+                                        break;
+                                    case 2:
+                                        colorPositionX = (float)Settings.Default.pbMiniColor2x;
+                                        colorPositionY = (float)Settings.Default.pbMiniColor2y;
+                                        break;
+                                    case 3:
+                                        colorPositionX = (float)Settings.Default.pbMiniColor3x;
+                                        colorPositionY = (float)Settings.Default.pbMiniColor3y;
+                                        break;
+                                    case 4:
+                                        colorPositionX = (float)Settings.Default.pbMiniColor4x;
+                                        colorPositionY = (float)Settings.Default.pbMiniColor4y;
+                                        break;
+                                    case 5:
+                                        colorPositionX = (float)Settings.Default.pbMiniColor5x;
+                                        colorPositionY = (float)Settings.Default.pbMiniColor5y;
+                                        break;
+                                    case 0:
+                                        colorPositionX = (float)Settings.Default.pbMiniColor6x;
+                                        colorPositionY = (float)Settings.Default.pbMiniColor6y;
+                                        break;
+                                    default:
+                                        MessageBox.Show("PB mini error");
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                colorPositionX = colorDef.XPos;
+                                colorPositionY = colorDef.YPos;
+                            }
                             break;
                         }
                     }

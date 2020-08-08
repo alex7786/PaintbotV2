@@ -933,5 +933,161 @@ a162/ff38302d/588/-816")]
                 this["minColorPixels"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool usePBminiSetting {
+            get {
+                return ((bool)(this["usePBminiSetting"]));
+            }
+            set {
+                this["usePBminiSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor1x {
+            get {
+                return ((decimal)(this["pbMiniColor1x"]));
+            }
+            set {
+                this["pbMiniColor1x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor1y {
+            get {
+                return ((decimal)(this["pbMiniColor1y"]));
+            }
+            set {
+                this["pbMiniColor1y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor2x {
+            get {
+                return ((decimal)(this["pbMiniColor2x"]));
+            }
+            set {
+                this["pbMiniColor2x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor2y {
+            get {
+                return ((decimal)(this["pbMiniColor2y"]));
+            }
+            set {
+                this["pbMiniColor2y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor3x {
+            get {
+                return ((decimal)(this["pbMiniColor3x"]));
+            }
+            set {
+                this["pbMiniColor3x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor3y {
+            get {
+                return ((decimal)(this["pbMiniColor3y"]));
+            }
+            set {
+                this["pbMiniColor3y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor4x {
+            get {
+                return ((decimal)(this["pbMiniColor4x"]));
+            }
+            set {
+                this["pbMiniColor4x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor4y {
+            get {
+                return ((decimal)(this["pbMiniColor4y"]));
+            }
+            set {
+                this["pbMiniColor4y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor5x {
+            get {
+                return ((decimal)(this["pbMiniColor5x"]));
+            }
+            set {
+                this["pbMiniColor5x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor5y {
+            get {
+                return ((decimal)(this["pbMiniColor5y"]));
+            }
+            set {
+                this["pbMiniColor5y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor6x {
+            get {
+                return ((decimal)(this["pbMiniColor6x"]));
+            }
+            set {
+                this["pbMiniColor6x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal pbMiniColor6y {
+            get {
+                return ((decimal)(this["pbMiniColor6y"]));
+            }
+            set {
+                this["pbMiniColor6y"] = value;
+            }
+        }
     }
 }
