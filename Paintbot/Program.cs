@@ -474,15 +474,22 @@ namespace Paintbot
 
                     for (int i = offset; i < upperlimit; i++)
                     {
+                        //TODO: automatic parse name length
+                        int colorNameLength = 4;
+                        if (Settings.Default.usePBminiSetting)
+                        {
+                            colorNameLength = 2;
+                        }                 
+                          
                         //generate colors as comment
                         if (firstRun)
                         {
-                            colors = ";" + pathArray[i, 1].Substring(0, 4);
+                            colors = ";" + pathArray[i, 1].Substring(0, colorNameLength);
                             firstRun = false;
                         }
                         else
                         {
-                            colors = colors + "_" + pathArray[i, 1].Substring(0, 4);
+                            colors = colors + "_" + pathArray[i, 1].Substring(0, colorNameLength);
                         }
                     }
 
